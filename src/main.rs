@@ -1,3 +1,9 @@
+mod ballot;
+
+use crate::ballot::Student;
+
 fn main() {
-    println!("Hello, world!");
+    let mut student = Student::new("Ethan Chapman", 10);
+
+    println!("{:?}", student);
 }
