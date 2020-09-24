@@ -1,10 +1,7 @@
 mod ballot;
 mod input;
-
-use crate::ballot::Student;
+// mod optimizer;
 
 fn main() {
-    let ballot = input::load_input();
-
-    println!();
+    input::load_input();
 }
