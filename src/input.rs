@@ -10,8 +10,8 @@ pub fn load_input() -> Ballot {
     // Load file
     let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
     let mut input_str: String = String::new();
-    input_file.read_to_string(&mut input_str);
-    let mut input = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
+    input_file.read_to_string(&mut input_str).expect("input file read failed");
+    let input = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
     let houses = input[0]["houses"].clone().into_vec().expect("houses is not an array");
     let ballots = input[0]["ballots"].clone().into_vec().expect("ballots is not an array");
 
