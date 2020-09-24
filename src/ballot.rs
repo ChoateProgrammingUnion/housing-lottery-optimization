@@ -1,11 +1,11 @@
 #[derive(Debug)]
-pub struct Student<'a> {  // Perhaps rename because a double would count as 1 student
-    pub name: &'a str,
+pub struct Student {  // Perhaps rename because a double would count as 1 student
+    pub name: String,
     pub ballot: Vec<u8>,
 }
 
-impl<'a> Student<'a> {
-    pub fn new(name: &'a str, num_houses: u8) -> Self {
+impl Student {
+    pub fn new(name: String, num_houses: u8) -> Self {
         Self {
             name,
             ballot: vec![0; num_houses as usize]
@@ -14,13 +14,13 @@ impl<'a> Student<'a> {
 }
 
 #[derive(Debug)]
-pub struct House<'a> {
-    pub name: &'a str,
+pub struct House {
+    pub name: String,
     pub capacity: u8
 }
 
-impl<'a> House<'a> {
-    pub fn new(name: &'a str, capacity: u8) -> Self {
+impl House {
+    pub fn new(name: String, capacity: u8) -> Self {
         Self {
             name,
             capacity
@@ -29,12 +29,12 @@ impl<'a> House<'a> {
 }
 
 #[derive(Debug)]
-struct Ballot<'a> {
-    pub students: Vec<Student<'a>>,
-    pub houses: Vec<House<'a>>
+pub struct Ballot {
+    pub students: Vec<Student>,
+    pub houses: Vec<House>
 }
 
-impl<'a> Ballot<'a> {
+impl Ballot {
     pub fn new() -> Self {
         Self {
             students: vec![],
