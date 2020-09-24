@@ -35,6 +35,7 @@ impl Identity for Optimizer{
 
 pub trait MCMCOptimizer: Optimizer {
     fn acceptance(&self, (i32, i32), (i32, i32)) -> f64;
+    fn propose(&self) -> ((i32, i32), (i32, i32));
 }
 
 impl MCMC{
