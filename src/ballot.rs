@@ -1,7 +1,7 @@
 #[derive(Debug)]
 pub struct Student<'a> {  // Perhaps rename because a double would count as 1 student
-    name: &'a str,
-    ballot: Vec<u8>,
+    pub name: &'a str,
+    pub ballot: Vec<u8>,
 }
 
 impl<'a> Student<'a> {
@@ -15,8 +15,8 @@ impl<'a> Student<'a> {
 
 #[derive(Debug)]
 pub struct House<'a> {
-    name: &'a str,
-    capacity: u8
+    pub name: &'a str,
+    pub capacity: u8
 }
 
 impl<'a> House<'a> {
@@ -30,8 +30,8 @@ impl<'a> House<'a> {
 
 #[derive(Debug)]
 struct Ballot<'a> {
-    students: Vec<Student<'a>>,
-    houses: Vec<House<'a>>
+    pub students: Vec<Student<'a>>,
+    pub houses: Vec<House<'a>>
 }
 
 impl<'a> Ballot<'a> {
