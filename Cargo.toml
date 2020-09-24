@@ -1,0 +1,7 @@
+[package]
+name = "housing-lottery-optimization"
+version = "0.1.0"
+authors = ["Ethan Chapman"]
+
+[dependencies]
+
