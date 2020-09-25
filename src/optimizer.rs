@@ -15,11 +15,11 @@ pub trait Optimizer {
 /*
 The null/identity optimizer. Just here for testing. Returns an empty schedule. Just for testing.
  */
-impl Identity{
+struct Identity{
     
 }
 
-impl Identity for Optimizer{
+impl Optimizer for Identity{
     fn new(ballots: &'static Ballot) -> Identity{
         Identity {
             ballots: Ballot
@@ -47,11 +47,11 @@ pub trait MCMCOptimizer: Optimizer {
     fn propose(&self) -> ((i32, i32), (i32));
 }
 
-impl MCMCNaive{
+struct MCMCNaive{
     
 }
 
-impl MCMCNaive for MCMCOptimizer{
+impl MCMCOptimizer for MCMCNaive{
     fn new(ballots: &'static Ballot) -> Identity{
         Identity {
             ballots: Ballot
