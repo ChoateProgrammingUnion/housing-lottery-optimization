@@ -5,3 +5,4 @@ authors = ["Ethan Chapman"]
 
 [dependencies]
 yaml-rust = "0.4.4"
+rand = "0.7.3"
