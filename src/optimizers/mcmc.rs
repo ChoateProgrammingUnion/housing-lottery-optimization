@@ -18,7 +18,7 @@ impl Proposal {
 pub(self) trait MCMCOptimizer: Optimizer {
     // An acceptance function takes in a particular location of the student (house, student) and the new house and returns a probability between 0-1 of acceptance.
     // 1 means a 100% probability of accepting
-    fn acceptance(&self, proposal: Proposal) -> f64;
+    fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64;
     // A proposal function samples from all the house-student pairs and returns a students random change ((house, student), new_house).
-    fn propose(&self) -> Proposal;
+    fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal;
 }
