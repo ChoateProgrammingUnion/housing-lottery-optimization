@@ -16,11 +16,12 @@ impl MCMCNaive {
 
 impl MCMCOptimizer for MCMCNaive{
     fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64 {
-        unimplemented!()
+        let student: Student = schedule[proposal.student_location.0][proposal.student_location.1];
+        unimplemented!();
     }
 
     fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
-        unimplemented!()
+        unimplemented!();
     }
 }
 
