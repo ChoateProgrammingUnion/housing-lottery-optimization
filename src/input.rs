@@ -6,7 +6,7 @@ use crate::ballot::{Ballot, Student, House};
 use std::io::Read;
 use std::collections::HashMap;
 
-pub fn load_input() -> Ballot {
+pub fn load_input(process: fn(Student)-> Student) -> Ballot {
     // Load file
     let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
     let mut input_str: String = String::new();
@@ -46,7 +46,7 @@ pub fn load_input() -> Ballot {
             student.ballot[house_index as usize] = house_weight as u8;
         }
 
-        new_ballot.students.push(student);
+        new_ballot.students.push(process(student));
     }
 
     new_ballot

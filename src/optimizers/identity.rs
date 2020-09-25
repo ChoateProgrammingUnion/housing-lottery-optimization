@@ -17,12 +17,12 @@ impl Identity {
 }
 
 impl Optimizer for Identity {
-    fn optimize(&self, schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> {
+    fn optimize(&self) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
         return schedule;
     }
 
-    fn objective(&self, schedule: Vec<Vec<Student>>) -> f64 {
+    fn objective(&self) -> f64 {
         return 0.0;
     }
 }
