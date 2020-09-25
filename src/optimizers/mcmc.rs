@@ -1,6 +1,7 @@
 pub mod mcmc_naive;
 
 use optimizers::Optimizer;
+use ballot::Student;
 
 pub(self) struct Proposal {
     pub(self) student_location: (i32, i32),
