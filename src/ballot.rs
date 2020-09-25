@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Student {  // Perhaps rename because a double would count as 1 student
     pub name: String,
     pub ballot: Vec<u8>,
@@ -13,7 +13,7 @@ impl Student {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct House {
     pub name: String,
     pub capacity: u8

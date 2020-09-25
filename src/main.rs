@@ -1,7 +1,13 @@
+use optimizers::Optimizer;
+
 mod ballot;
 mod input;
+mod optimizers;
 // mod optimizer;
 
 fn main() {
-    input::load_input();
+    let ballot = input::load_input();
+    let identity = optimizers::identity::Identity::new(ballot);
+    let result = identity.optimize();
+    println!("{:?}", result);
 }
