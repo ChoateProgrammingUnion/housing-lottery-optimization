@@ -15,11 +15,11 @@ impl MCMCNaive {
 }
 
 impl MCMCOptimizer for MCMCNaive{
-    fn acceptance(&self, proposal: Proposal) -> f64 {
+    fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64 {
         unimplemented!()
     }
 
-    fn propose(&self) -> Proposal {
+    fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
         unimplemented!()
     }
 }

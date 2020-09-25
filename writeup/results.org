@@ -1,0 +1,28 @@
+#+title: Housing Allocation Optimization 
+#+author: Max Fan
+#+OPTIONS: toc:nil
+
+* Motivations
+Traditionally, housing allocation at Choate Rosemary Hall was done by hand.
+Decades ago, this process was done through a lottery, with students randomly selecting numbers out of a hat.
+The students would be allocated to the house of their choosing in the ordering of the numbers they received.
+This system was later amended to allow for more flexibility, giving Choate students the system, they have today -- a "random" lottery that takes into account everyone's preferences and priorities.
+
+The optimization techniques available have drastically improved since the 20th century.
+It is now feasible for normal laptops to churn through hundreds of thousands of possibilities per second.
+In addition to the computational leaps made within the past century, there has been great development in the theory of optimization and resource allocation.
+We aim to examine and develop several optimization techniques that can take advantage of these recent developments.
+
+* Introduction
+
+** The Deans' Algorithm
+
+** MCMC
+
+** Constraint Solvers
+
+* Methodology
+
+* Results
+
+* Conclusion
