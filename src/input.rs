@@ -29,7 +29,7 @@ pub fn load_input() -> Ballot {
 
         house_name_map.insert(String::from(name), new_ballot.houses.len() as u8);
 
-        new_ballot.houses.push(House::new(String::from(name), capacity as u8))
+        new_ballot.houses.push(House::new(String::from(name), capacity as usize))
     }
 
     // Add ballots
@@ -37,7 +37,7 @@ pub fn load_input() -> Ballot {
         let student_name = ballot["name"].as_str().expect("student name is not a string");
         let rankings = ballot["rankings"].clone().into_vec().expect("student rankings is not an array");
 
-        let mut student = Student::new(String::from(student_name), num_houses as u8);
+        let mut student = Student::new(String::from(student_name), num_houses);
 
         for ranking in rankings {
             let house_name = ranking["name"].as_str().expect("house name is not a string");

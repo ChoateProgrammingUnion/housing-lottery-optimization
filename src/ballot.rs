@@ -5,10 +5,10 @@ pub struct Student {  // Perhaps rename because a double would count as 1 studen
 }
 
 impl Student {
-    pub fn new(name: String, num_houses: u8) -> Self {
+    pub fn new(name: String, num_houses: usize) -> Self {
         Self {
             name,
-            ballot: vec![0; num_houses as usize]
+            ballot: vec![0; num_houses]
         }
     }
 }
@@ -16,11 +16,11 @@ impl Student {
 #[derive(Debug, Clone)]
 pub struct House {
     pub name: String,
-    pub capacity: u8
+    pub capacity: usize
 }
 
 impl House {
-    pub fn new(name: String, capacity: u8) -> Self {
+    pub fn new(name: String, capacity: usize) -> Self {
         Self {
             name,
             capacity

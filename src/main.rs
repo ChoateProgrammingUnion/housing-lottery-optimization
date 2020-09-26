@@ -3,7 +3,6 @@ use optimizers::Optimizer;
 mod ballot;
 mod input;
 mod optimizers;
-// mod optimizer;
 
 fn main() {
     let ballot = input::load_input();
