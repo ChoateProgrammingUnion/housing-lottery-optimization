@@ -17,7 +17,9 @@ impl MCMCNaive {
 impl MCMCOptimizer for MCMCNaive{
     fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64 {
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
-        unimplemented!();
+        let ballot: Vec<f64> = student.clone().ballot;
+
+        return ballot[proposal.proposed_house]
     }
 
     fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
