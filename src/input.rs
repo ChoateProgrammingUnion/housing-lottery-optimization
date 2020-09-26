@@ -16,7 +16,7 @@ pub fn load_input(process: fn(Student)-> Student) -> Ballot {
     let ballots = input[0]["ballots"].clone().into_vec().expect("ballots is not an array");
 
     // Hash map for changing house name into id
-    let mut house_name_map: HashMap<String, u8> = HashMap::new();
+    let mut house_name_map: HashMap<String, f64> = HashMap::new();
 
     // Set up Ballot object
     let mut new_ballot = Ballot::new();
@@ -27,7 +27,7 @@ pub fn load_input(process: fn(Student)-> Student) -> Ballot {
         let name = house["name"].as_str().expect("house name is not a string");
         let capacity = house["capacity"].as_i64().expect("house capacity is not an integer");
 
-        house_name_map.insert(String::from(name), new_ballot.houses.len() as u8);
+        house_name_map.insert(String::from(name), new_ballot.houses.len() as f64);
 
         new_ballot.houses.push(House::new(String::from(name), capacity as usize))
     }
@@ -43,7 +43,7 @@ pub fn load_input(process: fn(Student)-> Student) -> Ballot {
             let house_name = ranking["name"].as_str().expect("house name is not a string");
             let house_weight = ranking["weight"].as_i64().expect("house weight is not an integer");
             let house_index = house_name_map[house_name];
-            student.ballot[house_index as usize] = house_weight as u8;
+            student.ballot[house_index as usize] = house_weight as f64;
         }
 
         new_ballot.students.push(process(student));
