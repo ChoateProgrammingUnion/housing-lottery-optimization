@@ -25,6 +25,6 @@ pub(self) trait MCMCOptimizer: Optimizer {
 }
 
 
-fn normalize(student: Student) -> student Student {
+fn normalize(student: Student) -> Student {
     unimplemented!();
 }
