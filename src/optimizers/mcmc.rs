@@ -4,12 +4,12 @@ use optimizers::Optimizer;
 use ballot::Student;
 
 pub(self) struct Proposal {
-    pub(self) student_location: (i32, i32),
-    pub(self) proposed_house: i32
+    pub(self) student_location: (usize, usize),
+    pub(self) proposed_house: usize
 }
 
 impl Proposal {
-    fn new(student_location: (i32, i32), proposed_house: i32) -> Self {
+    fn new(student_location: (usize, usize), proposed_house: usize) -> Self {
         Self {
             student_location, proposed_house
         }
@@ -22,4 +22,9 @@ pub(self) trait MCMCOptimizer: Optimizer {
     fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64;
     // A proposal function samples from all the house-student pairs and returns a students random change ((house, student), new_house).
     fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal;
+}
+
+
+fn normalize(student: Student) -> student Student {
+    unimplemented!();
 }
