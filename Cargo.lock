@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "housing-lottery-optimization"
+name = "housing-optimization"
 version = "0.1.0"
 dependencies = [
  "rand",
