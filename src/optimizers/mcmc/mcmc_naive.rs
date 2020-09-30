@@ -34,7 +34,7 @@ impl MCMCOptimizer for MCMCNaive{
     fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
         // Uniform, random sampling
         let mut rng = rand::rngs::StdRng::seed_from_u64(0);
-        let (schedule, size) = self.size(schedule);
+        let size = self.ballots.students.len();
 
         let student = rng.gen_range(0, size);
         let mut house = rng.gen_range(0, schedule.len() -1);
