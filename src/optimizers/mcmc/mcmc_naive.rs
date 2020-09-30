@@ -1,6 +1,8 @@
 use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::Optimizer;
+use optimizers::rand::SeedableRng;
+use optimizers::rand::Rng;
 
 struct MCMCNaive{
     ballots: Ballot
@@ -12,6 +14,13 @@ impl MCMCNaive {
             ballots
         }
     }
+    fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
+        let mut counter = 0;
+        for house in &schedule {
+            counter += house.len();
+        }
+        return (schedule, counter);
+    }
 }
 
 impl MCMCOptimizer for MCMCNaive{
@@ -19,11 +28,25 @@ impl MCMCOptimizer for MCMCNaive{
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
         let ballot: Vec<f64> = student.clone().ballot;
 
-        return ballot[proposal.proposed_house]
+        return ballot[proposal.proposed_house];
     }
 
     fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
-        unimplemented!();
+        // Uniform, random sampling
+        let mut rng = rand::rngs::StdRng::seed_from_u64(0);
+        let (schedule, size) = self.size(schedule);
+
+        let student = rng.gen_range(0, size);
+        let mut house = rng.gen_range(0, schedule.len() -1);
+
+        if house >= schedule.len() { // ensure we don't get the same house
+            house += 1;
+        }
+
+        return Proposal{
+            student_location: ((student as f64 / schedule.len() as f64).floor() as usize, student % schedule.len()),
+            proposed_house: house
+        }
     }
 }
 
