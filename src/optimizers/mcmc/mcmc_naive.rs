@@ -24,14 +24,14 @@ impl MCMCNaive {
 }
 
 impl MCMCOptimizer for MCMCNaive{
-    fn acceptance(&self, schedule: Vec<Vec<Student>>, proposal: Proposal) -> f64 {
+    fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
         let ballot: Vec<f64> = student.clone().ballot;
 
         return ballot[proposal.proposed_house];
     }
 
-    fn propose(&self, schedule: Vec<Vec<Student>>) -> Proposal {
+    fn propose(&self, schedule: &Vec<Vec<Student>>) -> Proposal {
         // Uniform, random sampling
         let mut rng = rand::rngs::StdRng::seed_from_u64(0);
         let size = self.ballots.students.len();
