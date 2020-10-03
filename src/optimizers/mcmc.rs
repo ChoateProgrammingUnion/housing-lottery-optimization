@@ -28,10 +28,11 @@ pub(self) trait MCMCOptimizer: Optimizer {
 
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> Proposal;
 
-    fn dice(&self) -> f64 {
+    fn gen_range(&self, min: f64, max: f64) -> f64 {
         // let mut rng = rand::rngs::StdRng::seed_from_u64(0);
         let mut rng = thread_rng();
-        let dice: f64 = rng.gen_range(0 as f64, 1 as f64);
+        let dice: f64 = rng.gen_range(min, max);
+
         return dice;
     }
 
@@ -39,7 +40,7 @@ pub(self) trait MCMCOptimizer: Optimizer {
         let proposed_change: Proposal = self.propose(&schedule);
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
-        if self.dice() < acceptance_prob { // proposal accepted
+        if self.gen_range(0 as f64, 1 as f64) < acceptance_prob { // proposal accepted
             let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house].push(student);
         }
