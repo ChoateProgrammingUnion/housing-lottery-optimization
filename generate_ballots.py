@@ -15,17 +15,16 @@ def algorithm(house,a):
 	# add algorithm for the new houses if needed
 
 
-def create_weight(a):
+def create_weight(house):
 	weight = []
 	for i in range(10):
-		weight.append(int(algorithm(a,1+0.1*len(weight))*100))
+		weight.append(int(algorithm(house,1+0.1*len(weight))*100))
 	return weight
 
-def randhouse(a):
-	global check
+def randhouse(house):
 	weight = []
 	my_list = []
-	weight = create_weight(a)
+	weight = create_weight(house)
 	for answer in range(1,11):
 		my_list += [answer]*weight[answer-1]
 	return random.choice(my_list)
