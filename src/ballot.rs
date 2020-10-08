@@ -43,20 +43,34 @@ impl Ballot {
     }
 }
 
-// normalize the max rating to 1, and everything else scaled proportionally
-pub fn normalize(student: Student) -> Student {
+// scaled the max rating to 1, and everything else scaled proportionally
+pub fn scaled(student: Student) -> Student {
     // find max
     let mut max: f64 = 0.0;
-    for i in 0..student.ballot.len(){
-        if student.ballot[i]>max {
-            max = student.ballot[i];
+    for elm in &student.ballot{
+        if elm>&max {
+            max = *elm;
         }
     }
 
-    // normalize ballot to maximum
+    // scale ballot to maximum
+    let mut scaled = Student::new(student.name, 0);
+    for i in 0..student.ballot.len(){
+        scaled.ballot[i] = student.ballot[i]/max;
+    }
+
+    scaled
+}
+
+// normalize the sum of the ratings to 1
+pub fn normalize(student: Student) -> Student {
+    // finds sum
+    let sum: f64 = student.ballot.iter().sum();
+
+    // normalize ballot to sum
     let mut normalized = Student::new(student.name, 0);
     for i in 0..student.ballot.len(){
-        normalized.ballot[i] = student.ballot[i]/max;
+        normalized.ballot[i] = student.ballot[i]/sum;
     }
 
     normalized
