@@ -41,7 +41,7 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
 
         for ranking in rankings {
             let house_name = ranking["name"].as_str().expect("house name is not a string");
-            let house_weight = ranking["weight"].as_f64().expect("house weight is not an float");
+            let house_weight = ranking["weight"].as_f64().expect("house weight is not a float");
             let house_index = house_name_map[house_name];
             student.ballot[house_index as usize] = house_weight;
             student.ballot_sum += house_weight;
