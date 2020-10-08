@@ -4,11 +4,6 @@ mod ballot;
 mod input;
 mod optimizers;
 
-// move to ballot.rs once implemented
-fn normalize(student: ballot::Student) -> ballot::Student {
-    unimplemented!();
-}
-
 fn scale(student: ballot::Student) -> ballot::Student {
     unimplemented!();
 }
