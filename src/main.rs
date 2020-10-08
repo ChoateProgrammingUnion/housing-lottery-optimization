@@ -2,6 +2,7 @@ use optimizers::Optimizer;
 
 mod ballot;
 mod input;
+mod output;
 mod optimizers;
 
 fn scale(student: ballot::Student) -> ballot::Student {
@@ -14,7 +15,7 @@ fn identity(student: ballot::Student) -> ballot::Student {
 
 fn main() {
     let ballot = input::load_input(identity);
-    let identity = optimizers::identity::Identity::new(ballot);
+    let mut identity = optimizers::identity::Identity::new(&ballot);
     let result = identity.optimize();
-    println!("{:?}", result);
+    output::write_output(&result, &ballot);
 }
