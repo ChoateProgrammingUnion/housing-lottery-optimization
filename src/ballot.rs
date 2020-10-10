@@ -44,7 +44,7 @@ impl Ballot {
 }
 
 // scaled the max rating to 1, and everything else scaled proportionally
-pub fn scaled(student: Student) -> Student {
+pub fn scale(student: Student) -> Student {
     // find max
     let mut max: f64 = 0.0;
     for elm in &student.ballot{
