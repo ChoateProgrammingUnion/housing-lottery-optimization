@@ -14,7 +14,7 @@ fn identity(student: ballot::Student) -> ballot::Student {
 
 fn main() {
     let ballot = input::load_input(identity);
-    let identity = optimizers::identity::Identity::new(ballot);
+    let identity = optimizers::deans_algorithm::DeansAlgorithm::new(ballot);
     let result = identity.optimize();
     println!("{:?}", result);
 }
