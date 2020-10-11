@@ -8,7 +8,6 @@ mod logger;
 use optimizers::Optimizer;
 
 use std::time::Instant;
-use std::io;
 
 extern crate log;
 use log::LevelFilter;

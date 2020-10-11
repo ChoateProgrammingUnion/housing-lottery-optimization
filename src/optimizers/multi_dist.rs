@@ -1,4 +1,4 @@
-use ballot::{Ballot, Student, House};
+use ballot::{Ballot, Student};
 use optimizers::{Optimizer, generate_random_allocation};
 
 use super::rand::rngs::StdRng;

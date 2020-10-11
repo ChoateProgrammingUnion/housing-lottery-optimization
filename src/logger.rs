@@ -3,9 +3,7 @@ extern crate env_logger;
 extern crate log;
 use self::chrono::Local;
 use self::env_logger::Builder;
-use self::log::LevelFilter;
 use std::io::Write;
-use std::ops::Deref;
 
 // PURPLE = "\x1B[95m";
 // CYAN = "\x1B[96m";
