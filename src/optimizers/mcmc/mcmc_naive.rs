@@ -50,8 +50,10 @@ impl MCMCOptimizer for MCMCNaive{
 }
 
 impl Optimizer for MCMCNaive {
-    fn optimize(&mut self) -> Vec<Vec<Student>> {
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
+        for round in 1..rounds{
+        }
         return schedule;
     }
 
