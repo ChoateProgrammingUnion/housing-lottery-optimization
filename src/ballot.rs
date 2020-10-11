@@ -11,7 +11,7 @@ impl Student {
         Self {
             name,
             ballot: vec![0.0; num_houses],
-            friends: vec![String::from("")],
+            friends: vec![String::new()],
             ballot_sum: 0.0
         }
     }
