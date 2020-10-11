@@ -1,8 +1,6 @@
 use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::Optimizer;
-use optimizers::rand::SeedableRng;
-use optimizers::rand::Rng;
 
 struct MCMCNaive{
     ballots: Ballot

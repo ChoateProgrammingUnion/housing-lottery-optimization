@@ -14,6 +14,7 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     let input = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
     let houses = input[0]["houses"].clone().into_vec().expect("houses is not an array");
     let ballots = input[0]["ballots"].clone().into_vec().expect("ballots is not an array");
+    crate::log_debug!(format!("yaml loaded to arrays ({} houses, {} students)", houses.len(), ballots.len()), "input");
 
     // Hash map for changing house name into id
     let mut house_name_map: HashMap<String, f64> = HashMap::new();
@@ -27,9 +28,12 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
         let name = house["name"].as_str().expect("house name is not a string");
         let capacity = house["capacity"].as_i64().expect("house capacity is not an integer");
 
-        house_name_map.insert(String::from(name), new_ballot.houses.len() as f64);
+        let new_house = House::new(String::from(name), capacity as usize);
 
-        new_ballot.houses.push(House::new(String::from(name), capacity as usize))
+        crate::log_trace!(format!("adding house to list: {:?}", new_house), "input");
+
+        house_name_map.insert(String::from(name), new_ballot.houses.len() as f64);
+        new_ballot.houses.push(new_house)
     }
 
     // Add ballots
@@ -44,10 +48,19 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
             let house_weight = ranking["weight"].as_f64().expect("house weight is not a float");
             let house_index = house_name_map[house_name];
             student.ballot[house_index as usize] = house_weight;
-            student.ballot_sum += house_weight;
         }
 
-        new_ballot.students.push(process(student));
+        crate::log_trace!(format!("preprocessed student: {}({:?})", student.name, student.ballot), "input");
+
+        let mut processed_student = process(student);
+        for n in &processed_student.ballot {
+            processed_student.ballot_sum += n;
+        }
+
+        crate::log_trace!(format!("processed ballot: {}({:?}, sum={})",
+            processed_student.name, processed_student.ballot, processed_student.ballot_sum), "input");
+
+        new_ballot.students.push(processed_student);
     }
 
     new_ballot

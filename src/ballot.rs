@@ -4,7 +4,6 @@ pub struct Student {  // Perhaps rename because a double would count as 1 studen
     pub ballot: Vec<f64>,
     pub ballot_sum: f64
 }
-
 impl Student {
     pub fn new(name: String, num_houses: usize) -> Self {
         Self {
