@@ -1,6 +1,8 @@
 pub mod identity;
 pub mod mcmc;
+pub mod deans_algorithm;
 pub mod multi_dist;
+
 
 use ballot::Ballot;
 use ballot::Student;
@@ -10,7 +12,7 @@ use self::rand::rngs::StdRng;
 use self::rand::{SeedableRng, Rng};
 
 pub trait Optimizer {
-    fn optimize(&mut self) -> Vec<Vec<Student>>;
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>>;
     fn objective(&self) -> f64; // the objective function
 }
 

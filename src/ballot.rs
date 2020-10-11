@@ -2,6 +2,7 @@
 pub struct Student {  // Perhaps rename because a double would count as 1 student
     pub name: String,
     pub ballot: Vec<f64>,
+    pub friends: Vec<usize>,
     pub ballot_sum: f64
 }
 impl Student {
@@ -9,10 +10,14 @@ impl Student {
         Self {
             name,
             ballot: vec![0.0; num_houses],
+            friends: vec![0],
             ballot_sum: 0.0
         }
     }
 }
+
+
+
 
 #[derive(Debug, Clone)]
 pub struct House {
@@ -45,7 +50,7 @@ impl Ballot {
 }
 
 // scaled the max rating to 1, and everything else scaled proportionally
-pub fn scaled(student: Student) -> Student {
+pub fn scale(student: Student) -> Student {
     // find max
     let mut max: f64 = 0.0;
     for elm in &student.ballot{
@@ -75,4 +80,8 @@ pub fn normalize(student: Student) -> Student {
     }
 
     normalized
+}
+
+pub fn identity(student: Student) -> Student {
+    return student;
 }

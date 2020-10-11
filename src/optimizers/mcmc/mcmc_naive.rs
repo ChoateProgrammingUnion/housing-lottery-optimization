@@ -1,6 +1,6 @@
 use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
-use optimizers::Optimizer;
+use optimizers::{Optimizer, generate_random_allocation};
 
 struct MCMCNaive{
     ballots: Ballot
@@ -33,8 +33,8 @@ impl MCMCOptimizer for MCMCNaive{
         // Uniform, random sampling
         let size = self.ballots.students.len();
 
-        let student = self.gen_range(0 as f64, size as f64) as usize;
-        let mut house = self.gen_range(0 as f64, (schedule.len() -1) as f64) as usize;
+        let student = self.gen_range(0, size);
+        let mut house = self.gen_range(0, schedule.len() -1);
 
         if house >= schedule.len() { // ensure we don't get the same house
             house += 1;
@@ -48,8 +48,11 @@ impl MCMCOptimizer for MCMCNaive{
 }
 
 impl Optimizer for MCMCNaive {
-    fn optimize(&mut self) -> Vec<Vec<Student>> {
-        let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
+        let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
+        for round in 0..rounds{
+            schedule = self.step(schedule);
+        }
         return schedule;
     }
 
@@ -57,3 +60,5 @@ impl Optimizer for MCMCNaive {
         return 0.0;
     }
 }
+
+

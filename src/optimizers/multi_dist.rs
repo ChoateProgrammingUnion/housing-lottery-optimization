@@ -60,7 +60,7 @@ impl MultiDist {
 }
 
 impl Optimizer for MultiDist {
-    fn optimize(&mut self) -> Vec<Vec<Student>> {
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule = generate_random_allocation(&self.ballots, 0);
         self.do_random_move(&schedule);
         return schedule;
