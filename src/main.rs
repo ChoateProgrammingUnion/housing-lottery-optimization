@@ -12,22 +12,13 @@ use std::io;
 
 
 fn main() {
-    let ballot = input::load_input(ballot::identity);
     logger::init();
 
     crate::log_info!("processing...", "input");
-    let ballot = input::load_input(identity);
+    let ballot = input::load_input(ballot::identity);
     crate::log_info!("successfully processed", "input");
 
     let mut identity = optimizers::identity::Identity::new(&ballot);
-
-    crate::log_info!("starting", "optimizer");
-    let time_before_optimize = Instant::now();
-    let result = identity.optimize();
-    let optimized_time = time_before_optimize.elapsed();
-    crate::log_info!("finished", "optimizer");
-
-    crate::log_info!("writing", "output");
 
     // println!("How many rounds?");
     // let mut rounds_input = String::new();
@@ -35,10 +26,15 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
+    let rounds: usize = 2;
 
+    crate::log_info!("starting", "optimizer");
+    let time_before_optimize = Instant::now();
     let result = identity.optimize(rounds);
-    println!("{:?}", result);
+    let optimized_time = time_before_optimize.elapsed();
+    crate::log_info!("finished", "optimizer");
 
+    crate::log_info!("writing", "output");
     output::write_output(&result, &ballot);
     data_output::write_output(&result, &ballot, &optimized_time);
     crate::log_info!("finished", "output");
