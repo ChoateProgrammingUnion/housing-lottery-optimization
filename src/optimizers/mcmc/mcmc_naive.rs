@@ -1,8 +1,8 @@
 use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
-use optimizers::Optimizer;
 use optimizers::rand::SeedableRng;
 use optimizers::rand::Rng;
+use optimizers::{Optimizer, generate_random_allocation};
 
 struct MCMCNaive{
     ballots: Ballot
@@ -51,8 +51,9 @@ impl MCMCOptimizer for MCMCNaive{
 
 impl Optimizer for MCMCNaive {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
-        let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
-        for round in 1..rounds{
+        let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
+        for round in 0..rounds{
+            schedule = self.step(schedule);
         }
         return schedule;
     }
@@ -61,3 +62,5 @@ impl Optimizer for MCMCNaive {
         return 0.0;
     }
 }
+
+
