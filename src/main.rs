@@ -27,7 +27,7 @@ fn main() {
     let ballot = input::load_input(ballot::identity);
     crate::log_info!("successfully processed", "input");
 
-    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0);
+    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 2.0);
 
     // println!("How many rounds?");
     // let mut rounds_input = String::new();
@@ -35,7 +35,7 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
-    let rounds: usize = 1000;
+    let rounds: usize = 200;
 
     crate::log_info!("starting", "optimizer");
     let time_before_optimize = Instant::now();

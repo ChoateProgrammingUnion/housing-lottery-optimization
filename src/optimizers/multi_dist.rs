@@ -7,14 +7,16 @@ use super::rand::{SeedableRng, Rng};
 
 pub struct MultiDist {
     pub ballots: Ballot,
-    rng: StdRng
+    rng: StdRng,
+    weight_power: f64
 }
 
 impl MultiDist {
-    pub fn new(ballots: &Ballot, random_seed: u64) -> MultiDist {
+    pub fn new(ballots: &Ballot, random_seed: u64, weight_power: f64) -> MultiDist {
         MultiDist {
             ballots: ballots.clone(),
-            rng: StdRng::seed_from_u64(random_seed)
+            rng: StdRng::seed_from_u64(random_seed),
+            weight_power
         }
     }
 
@@ -29,9 +31,13 @@ impl MultiDist {
     }
 
     fn pick_student_to_move(&mut self, schedule: &mut Vec<Vec<Student>>) -> (usize, usize) {
+        let weight_power = self.weight_power;
+
         /* Pick house to move student from */
         let house_index = Self::pick_from_distribution(
-            &schedule, Self::house_weight,
+            &schedule, |item, index| {
+                Self::house_weight(item, index).powf(weight_power)
+            },
             |item, weight, index| {
                 crate::log_trace!(format!("[house] House {} has a total weight of {}", index, weight), "random_move")
             }, &mut self.rng);
@@ -42,7 +48,7 @@ impl MultiDist {
         let student_index = Self::pick_from_distribution(
             &schedule[house_index],
             |item, index| {
-                Self::student_inverse_weight(item, house_index)
+                Self::student_inverse_weight(item, house_index).powf(weight_power)
             },
             |item, weight, index| {
                 crate::log_trace!(format!("[student] {} has a total weight of {}", item.name, weight), "random_move")
@@ -54,10 +60,11 @@ impl MultiDist {
 
     fn pick_move_location(&mut self, house_index: usize, student_index: usize, schedule: &mut Vec<Vec<Student>>) -> (usize, usize) {
         let student = &schedule[house_index][student_index];
+        let weight_power = self.weight_power;
 
         let move_house_weight = |item: &Vec<Student>, index: usize| -> f64 {
             if index == house_index { return 0f64 }
-            student.ballot[index]
+            student.ballot[index].powf(weight_power)
         };
 
         let house_index_2 = Self::pick_from_distribution(
@@ -69,7 +76,7 @@ impl MultiDist {
         crate::log_debug!(format!("[house-2] ID {} ({}) was selected", house_index_2, self.ballots.houses[house_index_2].name), "random_move");
 
         let move_student_weight = |item: &Student, index: usize| -> f64 {
-            item.ballot[house_index]
+            item.ballot[house_index].powf(weight_power)
         };
 
         let student_index_2 = Self::pick_from_distribution(
