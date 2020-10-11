@@ -1,11 +1,9 @@
 extern crate chrono;
 extern crate env_logger;
 extern crate log;
-extern crate ansi_term;
 use self::chrono::Local;
 use self::env_logger::Builder;
 use self::log::LevelFilter;
-use self::ansi_term::Color;
 use std::io::Write;
 use std::ops::Deref;
 

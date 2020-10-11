@@ -1,4 +1,4 @@
-use ballot::{Ballot, Student};
+use ballot::{Ballot, Student, House};
 use optimizers::{Optimizer, generate_random_allocation};
 
 use super::rand::rngs::StdRng;
@@ -19,50 +19,105 @@ impl MultiDist {
     }
 
     fn do_random_move(&mut self, schedule: &mut Vec<Vec<Student>>) {
-        let houses = &self.ballots.houses;
-        let students = &self.ballots.students;
-
-        /* Pick house to move student from */
-        fn house_weight_for_student(student: &Student, house_id: usize) -> f64 {
-            student.ballot_sum - student.ballot[house_id]
-        }
-
-        let mut house_weights = vec![0.0; houses.len()];
-        for i in 0..houses.len() {
-            for j in 0..schedule[i].len() {
-                house_weights[i] += house_weight_for_student(&schedule[i][j], i);
-            }
-            println!("[move] [house] [gen_weights] House {} has a total weight of {}", i, house_weights[i]);
-        }
-
-        let mut house_dist = WeightedIndex::new(house_weights).unwrap();
-        let house_index: usize = self.rng.sample(&house_dist);
-        println!("[move] [house] ID {} ({}) was selected with probability {}/{}", house_index, houses[house_index].name, houses[house_index].capacity, students.len());
-        // // Pick student in house
-        // //   Sum up the weights and find the max weight TODO Define max weight
-        // let mut total_weight: f64 = 0.0;
-        // let mut max_weight: f64 = 0.0;
-        // for student in &schedule[house_index] {
-        //     let weight = student.ballot[house_index];
-        //     total_weight += weight;
-        //     if max_weight < weight {
-        //         max_weight = weight;
-        //     }
-        // }
-        // println!("[move] [house] House {} has a total weight of {} and a max weight of {}", house_index, total_weight, max_weight);
-        // //  Define
-        // self.rng.sample()
+        crate::log_debug!("Picking student from a random house to move", "random_move");
+        let (house_index, student_index) = self.pick_student_to_move(schedule);
+        let (house_index_2, student_index_2) = self.pick_move_location(house_index, student_index, schedule);
+        let temp_student = schedule[house_index_2][student_index_2].clone();
+        schedule[house_index_2][student_index_2] = schedule[house_index][student_index].clone();
+        schedule[house_index][student_index] = temp_student;
+        crate::log_debug!("Move success", "random_move");
     }
 
-    fn weight(&self, student: Student, house_id: usize) -> f64 {
-        student.ballot[house_id]
+    fn pick_student_to_move(&mut self, schedule: &mut Vec<Vec<Student>>) -> (usize, usize) {
+        /* Pick house to move student from */
+        let house_index = Self::pick_from_distribution(
+            &schedule, Self::house_weight,
+            |item, weight, index| {
+                crate::log_trace!(format!("[house] House {} has a total weight of {}", index, weight), "random_move")
+            }, &mut self.rng);
+
+        crate::log_debug!(format!("[house] ID {} ({}) was selected", house_index, self.ballots.houses[house_index].name), "random_move");
+
+        /* Pick student in house */
+        let student_index = Self::pick_from_distribution(
+            &schedule[house_index],
+            |item, index| {
+                Self::student_inverse_weight(item, house_index)
+            },
+            |item, weight, index| {
+                crate::log_trace!(format!("[student] {} has a total weight of {}", item.name, weight), "random_move")
+            }, &mut self.rng);
+
+        crate::log_debug!(format!("[student] {} was selected", schedule[house_index][student_index].name), "random_move");
+        (house_index, student_index)
+    }
+
+    fn pick_move_location(&mut self, house_index: usize, student_index: usize, schedule: &mut Vec<Vec<Student>>) -> (usize, usize) {
+        let student = &schedule[house_index][student_index];
+
+        let move_house_weight = |item: &Vec<Student>, index: usize| -> f64 {
+            if index == house_index { return 0f64 }
+            student.ballot[index]
+        };
+
+        let house_index_2 = Self::pick_from_distribution(
+            schedule, move_house_weight,
+            |item, weight, index| {
+                crate::log_trace!(format!("[house-2] House {} has a weight of {}", index, weight), "random_move")
+            }, &mut self.rng);
+
+        crate::log_debug!(format!("[house-2] ID {} ({}) was selected", house_index_2, self.ballots.houses[house_index_2].name), "random_move");
+
+        let move_student_weight = |item: &Student, index: usize| -> f64 {
+            item.ballot[house_index]
+        };
+
+        let student_index_2 = Self::pick_from_distribution(
+            &schedule[house_index_2], move_student_weight,
+            |item, weight, index| {
+                crate::log_trace!(format!("[student-2] {} has a weight of {}", item.name, weight), "random_move")
+            }, &mut self.rng);
+
+        crate::log_debug!(format!("[student-2] {} was selected", schedule[house_index_2][student_index_2].name), "random_move");
+
+        (house_index_2, student_index_2)
+    }
+
+    /* Helper Functions */
+    fn pick_from_distribution<T, F: Fn(&T, usize) -> f64>(set: &Vec<T>, weight: F, log_weight: fn(&T, f64, usize), rng: &mut StdRng) -> usize {
+        let mut weights = vec![0.0; set.len()];
+
+        for i in 0..set.len() {
+            weights[i] = weight(&set[i], i);
+            log_weight(&set[i], weights[i], i);
+        }
+
+        let mut dist = WeightedIndex::new(&weights).unwrap();
+        rng.sample(&dist)
+    }
+
+    /* Weight Functions */
+    fn student_inverse_weight(student: &Student, house_id: usize) -> f64 {
+        1.0 - student.ballot[house_id] / student.ballot_sum
+    }
+
+    fn student_weight(student: &Student, house_id: usize) -> f64 {
+        student.ballot[house_id] / student.ballot_sum
+    }
+
+    fn house_weight(house: &Vec<Student>, house_id: usize) -> f64 {
+        let mut sum = 0f64;
+        for student in house { sum += Self::student_inverse_weight(student, house_id); }
+        sum
     }
 }
 
 impl Optimizer for MultiDist {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule = generate_random_allocation(&self.ballots, 0);
-        self.do_random_move(&mut schedule);
+        for _ in 0..rounds {
+            self.do_random_move(&mut schedule);
+        }
         return schedule;
     }
 
