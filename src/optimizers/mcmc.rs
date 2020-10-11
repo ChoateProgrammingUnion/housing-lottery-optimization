@@ -35,10 +35,10 @@ pub(self) trait MCMCOptimizer: Optimizer {
         return dice;
     }
 
-    fn gen_range(&self, min: f64, max: f64) -> f64 {
+    fn gen_range(&self, min: usize, max: usize) -> usize {
         // let mut rng = rand::rngs::StdRng::seed_from_u64(0);
         let mut rng = thread_rng();
-        let dice: f64 = rng.gen_range(min, max);
+        let dice: usize = rng.gen_range(min, max);
 
         return dice;
     }
