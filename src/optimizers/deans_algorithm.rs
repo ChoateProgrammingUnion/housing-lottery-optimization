@@ -43,7 +43,7 @@ impl DeansAlgorithm{
 }
 
 impl Optimizer for DeansAlgorithm{
-    fn optimize(&self) -> Vec<Vec<Student>> {
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         // create a vector that includes a vector for each house
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
 
