@@ -1,46 +1,46 @@
 import yaml
 import random
+from numpy.random import zipf
 
-houses = ["Tenny","CK","East Cottage"] # add houses
-capacity = [25,25,25] # unused rn
-users = [] # ballots
+houses = ["Tenny", "CK", "East Cottage", "KEC", "Pratt"]  # add houses
 
-def algorithm(house,a):
-	if house == 0:
-		return a ** 2 # popular
-	if house == 1:
-		return 1 # completely random
-	if house == 2:
-		return (a-3)**2 # not popular
-	# add algorithm for the new houses if needed
-
-
-def create_weight(house):
-	weight = []
-	for i in range(10):
-		weight.append(int(algorithm(house,1+0.1*len(weight))*100))
-	return weight
 
 def randhouse(house):
-	weight = []
-	my_list = []
-	weight = create_weight(house)
-	for answer in range(1,11):
-		my_list += [answer]*weight[answer-1]
-	return random.choice(my_list)
+    x = zipf(
+        a=1.01 + random.random() / 2, size=1000
+    )  # use zipf distribution with some randomness in the variability of the distribution, a = 1-2 because larger number of distribution makes one number too popular
+    return (
+        10
+        - (int(random.choice(x[x < 6])) * 2 - random.randint(0, 1))
+        - int(house / (len(houses) - 1) * 8)
+        - random.randint(-1, 1)
+    ) % 10 + 1.0  # return a number between 1-10, change popularity between houses so that some more are popular than others
+   # chooses a random number between 1-5 from the zipf list, *2 to make it 2,4,6,8,10, then minus 1 randomly to allow all integers from 1-10. Then, shift the distribution to make different popularities.
 
-for i in range(100):
-	name = "Person "+str(i)
-	ranking = []
-	for j in range(len(houses)):
-		ranking.append({'name': houses[j], 'weight': randhouse(j)})
-	users.append({'name':name, 'ranking':ranking})
 
-house = []
-for i in range(len(houses)):
-	house.append({'name': houses[i]})
+def create():
+    users = []  # ballots
+    people = 100
+    capacity = [int(people / len(houses))] * (len(houses) - 1) + [
+        people - int(people / len(houses)) * (len(houses) - 1)
+    ] * 1
+    for i in range(people):
+        name = "Person " + str(i)
+        ranking = []
+        for j in range(len(houses)):
+            ranking.append({"name": houses[j], "weight": randhouse(j)})
+        users.append({"name": name, "ranking": ranking})
 
-overall = [{'houses':house}, {'ballots':users}]
+    house = []
+    for i in range(len(houses)):
+        house.append({"name": houses[i], "capacity": capacity[i]})
 
-with open('input2.yaml', 'w') as f:
-    data  = yaml.dump(overall,f)
+    return [{"houses": house}, {"ballots": users}]
+
+
+num_files = int(input())
+for i in range(num_files):  # number of yaml files to generate
+    name = "input" + str(i + 1) + ".yaml"
+    overall = create()
+    with open(name, "w") as f:
+        data = yaml.dump(overall, f)
