@@ -3,6 +3,7 @@ pub struct Student {  // Perhaps rename because a double would count as 1 studen
     pub name: String,
     pub ballot: Vec<f64>,
     pub friends: Vec<String>,
+    pub ballot_sum: f64
 }
 
 impl Student {
@@ -11,6 +12,7 @@ impl Student {
             name,
             ballot: vec![0.0; num_houses],
             friends: vec![String::from("")],
+            ballot_sum: 0.0
         }
     }
 }
@@ -30,7 +32,7 @@ impl House {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Ballot {
     pub students: Vec<Student>,
     pub houses: Vec<House>

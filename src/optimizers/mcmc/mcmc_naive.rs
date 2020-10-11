@@ -9,9 +9,9 @@ struct MCMCNaive{
 }
 
 impl MCMCNaive {
-    fn new(ballots: Ballot) -> Self {
+    fn new(ballots: &Ballot) -> Self {
         Self {
-            ballots
+            ballots: ballots.clone()
         }
     }
     fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
@@ -50,7 +50,7 @@ impl MCMCOptimizer for MCMCNaive{
 }
 
 impl Optimizer for MCMCNaive {
-    fn optimize(&self) -> Vec<Vec<Student>> {
+    fn optimize(&mut self) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
         return schedule;
     }
