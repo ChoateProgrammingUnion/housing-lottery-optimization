@@ -79,3 +79,7 @@ pub fn normalize(student: Student) -> Student {
 
     normalized
 }
+
+pub fn identity(student: Student) -> Student {
+    return student;
+}
