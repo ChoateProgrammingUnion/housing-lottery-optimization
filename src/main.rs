@@ -19,5 +19,7 @@ fn main() {
     let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
 
     let result = identity.optimize(rounds);
+    println!("{:?}", result);
+  
     output::write_output(&result, &ballot);
 }

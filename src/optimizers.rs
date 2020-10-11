@@ -1,6 +1,8 @@
 pub mod identity;
 pub mod mcmc;
+pub mod deans_algorithm;
 pub mod multi_dist;
+
 
 use ballot::Ballot;
 use ballot::Student;
