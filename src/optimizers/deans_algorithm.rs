@@ -4,8 +4,6 @@ implementation of the algorithm the deans use
 
 use ballot::{Ballot, Student};
 use optimizers::Optimizer;
-use optimizers::rand::SeedableRng;
-use optimizers::rand::Rng;
 use optimizers::rand::seq::IteratorRandom;
 
 pub struct DeansAlgorithm {

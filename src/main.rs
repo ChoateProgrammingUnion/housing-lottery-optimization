@@ -8,7 +8,6 @@ mod logger;
 use optimizers::Optimizer;
 
 use std::time::Instant;
-use std::io;
 
 extern crate log;
 use log::LevelFilter;
@@ -21,13 +20,13 @@ fn main() {
     // LevelFilter::Info  - Print info messages (and errors)
     // LevelFilter::Debug - Print debug messages (and info, error)
     // LevelFilter::Trace - Print trace messages (and info, error, debug) (a lot of messages)
-    logger::init(LevelFilter::Trace);
+    logger::init(LevelFilter::Off);
 
     crate::log_info!("processing...", "input");
     let ballot = input::load_input(ballot::identity);
     crate::log_info!("successfully processed", "input");
 
-    let mut identity = optimizers::identity::Identity::new(&ballot);
+    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
 
     // println!("How many rounds?");
     // let mut rounds_input = String::new();
@@ -35,7 +34,7 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
-    let rounds: usize = 2;
+    let rounds: usize = 100000;
 
     crate::log_info!("starting", "optimizer");
     let time_before_optimize = Instant::now();
