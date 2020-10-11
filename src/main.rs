@@ -1,25 +1,50 @@
-use optimizers::Optimizer;
-
 mod ballot;
 mod input;
-use std::io;
 mod output;
+mod data_output;
 mod optimizers;
+mod logger;
+
+use optimizers::Optimizer;
+
+use std::time::Instant;
+use std::io;
+
+extern crate log;
+use log::LevelFilter;
 
 
 fn main() {
+    // Change this to set the log level
+    // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
+    // LevelFilter::Error - Print errors (nonfatal errors that are logged)
+    // LevelFilter::Info  - Print info messages (and errors)
+    // LevelFilter::Debug - Print debug messages (and info, error)
+    // LevelFilter::Trace - Print trace messages (and info, error, debug) (a lot of messages)
+    logger::init(LevelFilter::Trace);
+
+    crate::log_info!("processing...", "input");
     let ballot = input::load_input(ballot::identity);
+    crate::log_info!("successfully processed", "input");
+
     let mut identity = optimizers::identity::Identity::new(&ballot);
 
-    println!("How many rounds?");
-    let mut rounds_input = String::new();
-    io::stdin()
-        .read_line(&mut rounds_input)
-        .expect("Not a valid input!");
-    let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
+    // println!("How many rounds?");
+    // let mut rounds_input = String::new();
+    // io::stdin()
+    //     .read_line(&mut rounds_input)
+    //     .expect("Not a valid input!");
+    // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
+    let rounds: usize = 2;
 
+    crate::log_info!("starting", "optimizer");
+    let time_before_optimize = Instant::now();
     let result = identity.optimize(rounds);
-    println!("{:?}", result);
-  
+    let optimized_time = time_before_optimize.elapsed();
+    crate::log_info!("finished", "optimizer");
+
+    crate::log_info!("writing", "output");
     output::write_output(&result, &ballot);
+    data_output::write_output(&result, &ballot, &optimized_time);
+    crate::log_info!("finished", "output");
 }

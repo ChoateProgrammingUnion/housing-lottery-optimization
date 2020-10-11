@@ -18,7 +18,7 @@ impl MultiDist {
         }
     }
 
-    fn do_random_move(&mut self, schedule: &Vec<Vec<Student>>) {
+    fn do_random_move(&mut self, schedule: &mut Vec<Vec<Student>>) {
         let houses = &self.ballots.houses;
         let students = &self.ballots.students;
 
@@ -62,7 +62,7 @@ impl MultiDist {
 impl Optimizer for MultiDist {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule = generate_random_allocation(&self.ballots, 0);
-        self.do_random_move(&schedule);
+        self.do_random_move(&mut schedule);
         return schedule;
     }
 

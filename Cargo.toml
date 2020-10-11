@@ -6,3 +6,7 @@ authors = ["Ethan Chapman", "Max Fan", "Ian Haile", "Aiyu Kamate", "Jeffrey Zhou
 [dependencies]
 yaml-rust = "0.4.4"
 rand = "0.7.3"
+env_logger = "0.7.1"
+chrono = "0.4.19"
+log = "0.4.11"
+ansi_term = "0.12.1"

@@ -1,4 +1,4 @@
-use crate::ballot::{Ballot, Student, House};
+use crate::ballot::{Ballot, Student};
 
 use std::fs::File;
 use std::io::Write;
