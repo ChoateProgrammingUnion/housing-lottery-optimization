@@ -1,7 +1,6 @@
 pub mod mcmc_naive;
 
 use optimizers::Optimizer;
-use optimizers::rand::SeedableRng;
 use optimizers::rand::Rng;
 use super::rand::{thread_rng};
 use ballot::Student;

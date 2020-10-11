@@ -18,7 +18,7 @@ impl Identity {
 
 impl Optimizer for Identity {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
-        let mut schedule = generate_random_allocation(&self.ballots, 0);
+        let schedule = generate_random_allocation(&self.ballots, 0);
         return schedule;
     }
 
