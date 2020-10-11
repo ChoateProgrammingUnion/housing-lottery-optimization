@@ -10,9 +10,18 @@ use optimizers::Optimizer;
 use std::time::Instant;
 use std::io;
 
+extern crate log;
+use log::LevelFilter;
+
 
 fn main() {
-    logger::init();
+    // Change this to set the log level
+    // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
+    // LevelFilter::Error - Print errors (nonfatal errors that are logged)
+    // LevelFilter::Info  - Print info messages (and errors)
+    // LevelFilter::Debug - Print debug messages (and info, error)
+    // LevelFilter::Trace - Print trace messages (and info, error, debug) (a lot of messages)
+    logger::init(LevelFilter::Trace);
 
     crate::log_info!("processing...", "input");
     let ballot = input::load_input(ballot::identity);

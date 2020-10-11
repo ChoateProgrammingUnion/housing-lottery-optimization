@@ -60,7 +60,7 @@ macro_rules! log_trace {
     }
 }
 
-pub fn init() {
+pub fn init(log_level: log::LevelFilter) {
     Builder::new()
         .format(|buf, record| {
             writeln!(buf,
@@ -70,6 +70,6 @@ pub fn init() {
                      record.args()
             )
         })
-        .filter(None, LevelFilter::Trace)
+        .filter(None, log_level)
         .init();
 }
