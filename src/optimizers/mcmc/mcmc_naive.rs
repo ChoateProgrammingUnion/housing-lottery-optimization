@@ -33,17 +33,36 @@ impl MCMCOptimizer for MCMCNaive{
         // Uniform, random sampling
         let size = self.ballots.students.len();
 
-        let student = self.gen_range(0, size);
-        let mut house = self.gen_range(0, schedule.len() -1);
+        let mut student_location = self.gen_range(0, size);
+        let mut new_house = self.gen_range(0, schedule.len() -1);
 
-        if house >= student { // ensure we don't get the same house
-            house += 1;
+
+        let mut counter: usize = 0;
+        let mut current_house: usize = 0;
+        let mut current_index: usize = 0;
+
+        'house: for house in schedule {
+            for student in house {
+                if counter == student_location {
+                    break 'house;
+                }
+                counter += 1;
+                current_index += 1;
+            }
+            current_index = 0;
+            current_house += 1;
         }
 
-        return Proposal{
-            student_location: (student, student % schedule.len()),
-            proposed_house: house
+        if new_house >= current_house { // ensure we don't get the same house
+            new_house += 1;
         }
+
+        let proposed_change = Proposal{
+            student_location: (current_house, current_index),
+            proposed_house: new_house
+        };
+
+        return proposed_change
     }
 }
 
