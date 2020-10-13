@@ -38,11 +38,8 @@ def create():
     return [{"houses": house}, {"ballots": users}]
 
 
-num_files = int(input())
-for i in range(num_files):  # number of yaml files to generate
-    name = "input" + str(i + 1) + ".yaml"
-    overall = create()
-    with open(name, "w") as f:
-        #data = yaml.dump(overall, f)
-        data = yaml.dump(overall[0], f)
-        data = yaml.dump(overall[1], f)
+name = "input.yaml"
+overall = create()
+with open(name, "w") as f:
+    data = yaml.dump(overall[0], f)
+    data = yaml.dump(overall[1], f)

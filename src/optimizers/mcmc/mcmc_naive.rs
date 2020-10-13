@@ -36,12 +36,12 @@ impl MCMCOptimizer for MCMCNaive{
         let student = self.gen_range(0, size);
         let mut house = self.gen_range(0, schedule.len() -1);
 
-        if house >= schedule.len() { // ensure we don't get the same house
+        if house >= student { // ensure we don't get the same house
             house += 1;
         }
 
         return Proposal{
-            student_location: ((student as f64 / schedule.len() as f64).floor() as usize, student % schedule.len()),
+            student_location: (student, student % schedule.len()),
             proposed_house: house
         }
     }
