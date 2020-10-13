@@ -11,9 +11,9 @@ pub struct DeansAlgorithm {
 }
 
 impl DeansAlgorithm{
-    pub fn new(ballots: Ballot) -> Self {
+    pub fn new(ballots: &Ballot) -> Self {
         Self {
-            ballots
+            ballots: ballots.clone()
         }
     }
 

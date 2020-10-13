@@ -2,12 +2,12 @@ use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::{Optimizer, generate_random_allocation};
 
-struct MCMCNaive{
+pub struct MCMCNaive{
     ballots: Ballot
 }
 
 impl MCMCNaive {
-    fn new(ballots: &Ballot) -> Self {
+    pub fn new(ballots: &Ballot) -> Self {
         Self {
             ballots: ballots.clone()
         }
