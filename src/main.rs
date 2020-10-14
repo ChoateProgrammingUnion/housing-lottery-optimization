@@ -24,11 +24,11 @@ fn main() {
     logger::init(LevelFilter::Off);
 
     crate::log_info!("processing...", "input");
-    let ballot = input::load_input(ballot::identity);
+    let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
 
-    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
-    //let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
+    //let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+    let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     //let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
 
     // println!("How many rounds?");
