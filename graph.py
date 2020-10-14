@@ -10,9 +10,6 @@ with open(filename, "r") as f:
 
 
 def algorithm(house,n_house):
-    #algorithmz = [file['choice_distribution' + str(a)][0][1], file['choice_distribution' + str(a)][1][2],
-      #           file['choice_distribution' + str(a)][2][3], file['choice_distribution' + str(a)][3][4],
-          #       file['choice_distribution' + str(a)][4][5]]
     algorithmz = []
     for i in range(0,n_house):
         algorithmz.append(file['choice_distribution' + str(house)][i][i+1])
@@ -20,7 +17,6 @@ def algorithm(house,n_house):
 
 
 def graph_create(n_house):
-    #n_groups = 5
     fig, ax = plt.subplots()
     index = np.arange(n_house)
     bar_width = 0.2
@@ -30,7 +26,7 @@ def graph_create(n_house):
 
     plt.ylabel('People')
     plt.title('Housing Allocation')
-    plt.xticks(index + bar_width, ('1st Choice', '2nd Choice', '3rd Choice', '4th Choice', "5th Choice"))
+    plt.xticks(index + bar_width, ("Choice "+str(i+1) for i in range(n_house)))
     plt.legend()
     plt.show()
 
