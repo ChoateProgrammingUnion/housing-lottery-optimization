@@ -34,7 +34,7 @@ def graph_create(number):
     plt.ylabel('People')
     plt.title('Housing Allocation')
     plt.xticks(index + bar_width, ('1st Choice', '2nd Choice', '3rd Choice', 'Fourth Choice', "Fifth Choice"))
-
+    plt.legend()
     plt.show()
 
 
