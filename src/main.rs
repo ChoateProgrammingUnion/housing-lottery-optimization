@@ -44,7 +44,7 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
-    for x in 0..6 {
+    for x in 0..4 {
         let num: usize = 10;
         let mut rounds: usize = 1*num.pow(x as u32);
 
