@@ -16,14 +16,14 @@ def algorithm(a):
     return algorithmz
 
 
-def graph_create(number):
+def graph_create():
     n_groups = 5
     fig, ax = plt.subplots()
     index = np.arange(n_groups)
     bar_width = 0.2
     
     for i in range(1,5):
-        bars = plt.bar(index, algorithm(number), index + (i-1)*bar_width, color = list[i-1], label = str(10*10**i) + "Trials")
+        bars = plt.bar(index + (i-1)*bar_width, algorithm(i), bar_width, color = list[i-1], label = str(10*10**i) + " Trials")
     
     
     #bars1 = plt.bar(index, algorithm(1), bar_width, color='b',label='100 Trials')
@@ -38,4 +38,4 @@ def graph_create(number):
     plt.show()
 
 
-graph_create(4)
+graph_create()
