@@ -23,7 +23,7 @@ fn main() {
     logger::init(LevelFilter::Off);
 
     crate::log_info!("processing...", "input");
-    let ballot = input::load_input(ballot::identity);
+    let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
 
     //let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
