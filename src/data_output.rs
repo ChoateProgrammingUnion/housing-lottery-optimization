@@ -3,10 +3,14 @@ use crate::ballot::{Ballot, Student};
 use std::fs::File;
 use std::io::Write;
 use std::time::Duration;
+use std::fs::OpenOptions;
 
-pub fn write_output(allocations: &Vec<Vec<Student>>, ballot: &Ballot, optimized_time: &Duration) {
+pub fn write_output(allocations: &Vec<Vec<Student>>, ballot: &Ballot, optimized_time: &Duration, Number: &str) {
     // Open output file
-    let mut data_file = File::create("data_output.yaml").expect("file creation failed");
+    if Number == "1"{
+        let mut data_file = File::create("data_output.yaml").expect("file creation failed");
+    }
+    let mut data_file = OpenOptions::new().append(true).open("data_output.yaml").expect("file open failed");
 
     // Write elapsed time
     let mut yaml_string = format!("run_time_nanos: {}\n", optimized_time.as_nanos());
@@ -28,7 +32,9 @@ pub fn write_output(allocations: &Vec<Vec<Student>>, ballot: &Ballot, optimized_
     }
 
     // Write Choice Numbers
-    yaml_string += "\nchoice_distribution:\n";
+    yaml_string += "\nchoice_distribution";
+    yaml_string += Number;
+    yaml_string += ":\n";
     for i in 0..choice_nums.len() {
         yaml_string += &*format!("  - {}: {}\n", i + 1, choice_nums[i]);
     }
