@@ -22,7 +22,7 @@ def graph_create(n_house):
     bar_width = 0.2
     
     for i in range(1,n_house):
-        bars = plt.bar(index + (i-1)*bar_width, algorithm(i,n_house), bar_width, color = color[(i-1)%4], label = str(10*10**i) + " Trials")
+        bars = plt.bar(index + (i-1)*bar_width, algorithm(i,n_house), bar_width, color = color[(i-1)%4], label = str(1*10**(i-1)) + " Trials")
 
     plt.ylabel('People')
     plt.title('Housing Allocation')

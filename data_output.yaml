@@ -1,32 +1,32 @@
-run_time_nanos: 583954
+run_time_nanos: 583652
 
 choice_distribution1:
-  - 1: 30
-  - 2: 19
-  - 3: 17
-  - 4: 19
-  - 5: 15
-run_time_nanos: 985375
+  - 1: 23
+  - 2: 20
+  - 3: 22
+  - 4: 17
+  - 5: 18
+run_time_nanos: 1037619
 
 choice_distribution2:
-  - 1: 39
-  - 2: 18
-  - 3: 15
-  - 4: 19
-  - 5: 9
-run_time_nanos: 4802143
+  - 1: 36
+  - 2: 20
+  - 3: 19
+  - 4: 12
+  - 5: 13
+run_time_nanos: 5311130
 
 choice_distribution3:
-  - 1: 77
-  - 2: 18
-  - 3: 4
-  - 4: 1
-  - 5: 0
-run_time_nanos: 43119789
+  - 1: 68
+  - 2: 26
+  - 3: 5
+  - 4: 0
+  - 5: 1
+run_time_nanos: 42312035
 
 choice_distribution4:
-  - 1: 70
-  - 2: 26
-  - 3: 2
-  - 4: 2
+  - 1: 71
+  - 2: 25
+  - 3: 4
+  - 4: 0
   - 5: 0
