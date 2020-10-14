@@ -8,6 +8,7 @@ mod logger;
 use optimizers::Optimizer;
 
 use std::time::Instant;
+use std::process::Command;
 
 extern crate log;
 use log::LevelFilter;
@@ -24,11 +25,17 @@ fn main() {
     logger::init(LevelFilter::Off);
 
     crate::log_info!("processing...", "input");
-    let ballot = input::load_input(ballot::normalize);
+    Command::new("python3")
+            .arg("generate_ballots.py")
+            .output()
+            .expect("failed to execute process");
+            
+    let ballot = input::load_input(ballot::identity);
+    //let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
 
-    //let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
-    let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
+    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+    //let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     //let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
 
     // println!("How many rounds?");
@@ -52,4 +59,8 @@ fn main() {
         data_output::write_output(&result, &ballot, &optimized_time, &(x+1).to_string());
         crate::log_info!("finished", "output");
     }
+    Command::new("python3")
+            .arg("graph.py")
+            .output()
+            .expect("failed to execute process");
 }
