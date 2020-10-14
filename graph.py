@@ -9,21 +9,24 @@ with open(filename, "r") as f:
     file = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def algorithm(a):
-    algorithmz = [file['choice_distribution' + str(a)][0][1], file['choice_distribution' + str(a)][1][2],
-                 file['choice_distribution' + str(a)][2][3], file['choice_distribution' + str(a)][3][4],
-                 file['choice_distribution' + str(a)][4][5]]
+def algorithm(house,n_house):
+    #algorithmz = [file['choice_distribution' + str(a)][0][1], file['choice_distribution' + str(a)][1][2],
+      #           file['choice_distribution' + str(a)][2][3], file['choice_distribution' + str(a)][3][4],
+          #       file['choice_distribution' + str(a)][4][5]]
+    algorithmz = []
+    for i in range(0,n_house):
+        algorithmz.append(file['choice_distribution' + str(house)][i][i+1])
     return algorithmz
 
 
-def graph_create():
-    n_groups = 5
+def graph_create(n_house):
+    #n_groups = 5
     fig, ax = plt.subplots()
-    index = np.arange(n_groups)
+    index = np.arange(n_house)
     bar_width = 0.2
     
-    for i in range(1,5):
-        bars = plt.bar(index + (i-1)*bar_width, algorithm(i), bar_width, color = color[i-1], label = str(10*10**i) + " Trials")
+    for i in range(1,n_house):
+        bars = plt.bar(index + (i-1)*bar_width, algorithm(i,n_house), bar_width, color = color[(i-1)%4], label = str(10*10**i) + " Trials")
 
     plt.ylabel('People')
     plt.title('Housing Allocation')
@@ -32,4 +35,4 @@ def graph_create():
     plt.show()
 
 
-graph_create()
+graph_create(len(file['choice_distribution1']))
