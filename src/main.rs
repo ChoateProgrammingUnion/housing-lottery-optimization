@@ -30,13 +30,13 @@ fn main() {
             .output()
             .expect("failed to execute process");
             
-    let ballot = input::load_input(ballot::identity);
+    let ballot = input::load_input(ballot::normalize);
     //let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
 
-    let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
-    //let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
-    //let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
+    let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
+    // let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+    // let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
 
     // println!("How many rounds?");
     // let mut rounds_input = String::new();
@@ -44,7 +44,7 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
-    for x in 0..4 {
+    for x in 0..6 {
         let num: usize = 10;
         let mut rounds: usize = 1*num.pow(x as u32);
 
