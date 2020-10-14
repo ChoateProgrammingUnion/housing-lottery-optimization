@@ -24,16 +24,10 @@ def graph_create():
     
     for i in range(1,5):
         bars = plt.bar(index + (i-1)*bar_width, algorithm(i), bar_width, color = list[i-1], label = str(10*10**i) + " Trials")
-    
-    
-    #bars1 = plt.bar(index, algorithm(1), bar_width, color='b',label='100 Trials')
-    #bars2 = plt.bar(index + bar_width, algorithm(2), bar_width, color='g', label='1000 Trials')
-    #bars3 = plt.bar(index + 2*bar_width, algorithm(3), bar_width, color='r', label='10000 Trials')
-    #bars4 = plt.bar(index + 3*bar_width, algorithm(4), bar_width, color='y', label='100000 Trials')
 
     plt.ylabel('People')
     plt.title('Housing Allocation')
-    plt.xticks(index + bar_width, ('1st Choice', '2nd Choice', '3rd Choice', 'Fourth Choice', "Fifth Choice"))
+    plt.xticks(index + bar_width, ('1st Choice', '2nd Choice', '3rd Choice', '4th Choice', "5th Choice"))
     plt.legend()
     plt.show()
 
