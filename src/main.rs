@@ -11,9 +11,10 @@ use std::time::Instant;
 
 extern crate log;
 use log::LevelFilter;
-
+//use cpython::{Python, PyDict, PyResult};
 
 fn main() {
+
     // Change this to set the log level
     // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
     // LevelFilter::Error - Print errors (nonfatal errors that are logged)
@@ -36,16 +37,19 @@ fn main() {
     //     .read_line(&mut rounds_input)
     //     .expect("Not a valid input!");
     // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
-    let rounds: usize = 100000;
+    for x in 0..4 {
+        let num: usize = 10;
+        let mut rounds: usize = 1*num.pow(x as u32);
 
-    crate::log_info!("starting", "optimizer");
-    let time_before_optimize = Instant::now();
-    let result = identity.optimize(rounds);
-    let optimized_time = time_before_optimize.elapsed();
-    crate::log_info!("finished", "optimizer");
+        crate::log_info!("starting", "optimizer");
+        let time_before_optimize = Instant::now();
+        let result = identity.optimize(rounds);
+        let optimized_time = time_before_optimize.elapsed();
+        crate::log_info!("finished", "optimizer");
 
-    crate::log_info!("writing", "output");
-    output::write_output(&result, &ballot);
-    data_output::write_output(&result, &ballot, &optimized_time);
-    crate::log_info!("finished", "output");
+        crate::log_info!("writing", "output");
+        output::write_output(&result, &ballot);
+        data_output::write_output(&result, &ballot, &optimized_time);
+        crate::log_info!("finished", "output");
+    }
 }

@@ -1,0 +1,40 @@
+run_time_nanos: 82838913
+
+choice_distribution:
+  - 1: 65
+  - 2: 26
+  - 3: 6
+  - 4: 3
+  - 5: 0
+run_time_nanos: 1119439
+
+choice_distribution:
+  - 1: 32
+  - 2: 16
+  - 3: 14
+  - 4: 26
+  - 5: 12
+run_time_nanos: 2271321
+
+choice_distribution:
+  - 1: 41
+  - 2: 18
+  - 3: 12
+  - 4: 21
+  - 5: 8
+run_time_nanos: 5684236
+
+choice_distribution:
+  - 1: 72
+  - 2: 19
+  - 3: 7
+  - 4: 2
+  - 5: 0
+run_time_nanos: 58749156
+
+choice_distribution:
+  - 1: 72
+  - 2: 20
+  - 3: 5
+  - 4: 3
+  - 5: 0
