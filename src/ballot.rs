@@ -58,7 +58,7 @@ pub fn scale(student: Student) -> Student {
     }
 
     // scale ballot to maximum
-    let mut scaled = Student::new(student.name, 0);
+    let mut scaled = Student::new(student.name, student.ballot.len());
     for i in 0..student.ballot.len(){
         scaled.ballot[i] = student.ballot[i]/max;
     }
@@ -72,7 +72,7 @@ pub fn normalize(student: Student) -> Student {
     let sum: f64 = student.ballot.iter().sum();
 
     // normalize ballot to sum
-    let mut normalized = Student::new(student.name, 0);
+    let mut normalized = Student::new(student.name, student.ballot.len());
     for i in 0..student.ballot.len(){
         normalized.ballot[i] = student.ballot[i]/sum;
     }

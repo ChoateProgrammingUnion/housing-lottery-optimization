@@ -4,6 +4,8 @@ implementation of the algorithm the deans use
 
 use ballot::{Ballot, Student};
 use optimizers::Optimizer;
+use optimizers::rand::SeedableRng;
+use optimizers::rand::Rng;
 use optimizers::rand::seq::IteratorRandom;
 
 pub struct DeansAlgorithm {
@@ -11,9 +13,9 @@ pub struct DeansAlgorithm {
 }
 
 impl DeansAlgorithm{
-    pub fn new(ballots: &Ballot) -> Self {
+    pub fn new(ballots: Ballot) -> Self {
         Self {
-            ballots: ballots.clone()
+            ballots
         }
     }
 
@@ -45,13 +47,17 @@ impl Optimizer for DeansAlgorithm{
         // create a vector that includes a vector for each house
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
 
-        let input = &self.ballots.students;
+        let mut input = self.ballots.students.clone();
 
         // chooses a student at random, finds their most prefered available house, and places that student into the respective house
         for i in 0..input.len() {
             let mut rng = rand::thread_rng();
-            let choice = input.iter().choose(&mut rng).unwrap();
-            let preference = self.find_max(&self.ballots, &schedule, choice);
+            let len: f64 = input.len() as f64;
+            let rand_num: f64 = rng.gen();
+            let index_choice: usize = (len*rand_num) as usize;
+            let choice = input[index_choice].clone();
+            let preference = self.find_max(&self.ballots, &schedule, &choice);
+            input.remove(index_choice);
             schedule[preference].push(choice.clone());
         }
         schedule
