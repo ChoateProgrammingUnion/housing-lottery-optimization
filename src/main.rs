@@ -49,7 +49,7 @@ fn main() {
 
         crate::log_info!("writing", "output");
         output::write_output(&result, &ballot);
-        data_output::write_output(&result, &ballot, &optimized_time);
+        data_output::write_output(&result, &ballot, &optimized_time, &(x+1).to_string());
         crate::log_info!("finished", "output");
     }
 }
