@@ -1,5 +1,7 @@
 /target
+input.yaml
 .idea*
 .idea/
 output.yaml
 data_output.yaml
+.DS_Store
