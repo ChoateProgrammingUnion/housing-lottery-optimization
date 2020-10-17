@@ -27,10 +27,10 @@ impl MCMCOptimizer for Minimax{
         // if current house is better, chance of moving is new rank^(-2)
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
 
-        let mut current_house_rank = 0;
+        let mut current_house_rank = 1;
         let current_house_score = &student.ballot[proposal.student_location.0];
 
-        let mut new_house_rank = 0;
+        let mut new_house_rank = 1;
         let new_house_score = &student.ballot[proposal.proposed_house];
 
         // finds how many houses are higher scored than the house in question so the rank can be determined
@@ -44,10 +44,10 @@ impl MCMCOptimizer for Minimax{
         }
 
         if new_house_rank > current_house_rank {
-            let probability: f64 = 1.0 - (current_house_rank^(-2)) as f64;
+            let probability: f64 = 1.0 - (current_house_rank as f64).powf(-2.0);
             return probability;
         } else {
-            let probability: f64 = (new_house_rank^(-2)) as f64;
+            let probability: f64 = (current_house_rank as f64).powf(-2.0);
             return probability;
         }
     }
@@ -64,15 +64,15 @@ impl MCMCOptimizer for Minimax{
         let mut current_house: usize = 0;
         let mut current_index: usize = 0;
 
-        'house: for house in schedule {
-            for student in house {
-                if counter == student_location {
-                    break 'house;
-                }
-                counter += 1;
-                current_index += 1;
+        for house in schedule {
+            counter += house.len();
+
+            if counter > student_location {
+                counter -= house.len();
+                current_index = student_location - counter;
+                break;
             }
-            current_index = 0;
+
             current_house += 1;
         }
 

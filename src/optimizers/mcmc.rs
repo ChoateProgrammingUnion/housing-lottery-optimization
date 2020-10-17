@@ -2,8 +2,7 @@ pub mod mcmc_naive;
 pub mod minimax;
 
 use optimizers::Optimizer;
-use optimizers::rand::Rng;
-use super::rand::{thread_rng};
+use super::rand::{thread_rng, Rng};
 use ballot::Student;
 
 #[derive(Debug, Clone)]
