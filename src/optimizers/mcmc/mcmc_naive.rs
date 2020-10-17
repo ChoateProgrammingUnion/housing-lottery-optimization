@@ -83,5 +83,3 @@ impl Optimizer for MCMCNaive {
         return 0.0;
     }
 }
-
-

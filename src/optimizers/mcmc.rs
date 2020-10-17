@@ -55,6 +55,41 @@ pub(self) trait MCMCOptimizer: Optimizer {
     }
 }
 
-fn normalize(student: Student) -> Student {
-    unimplemented!();
+#[cfg(test)]
+mod tests {
+    use crate::*;
+
+    #[test]
+    fn test_mcmc_naive() {
+        let ballot = input::load_input(ballot::normalize);
+
+        let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
+
+        identity.optimize(0);
+        identity.optimize(1);
+        identity.optimize(10);
+    }
+
+    #[test]
+    fn test_deans_algo(){
+        let ballot = input::load_input(ballot::normalize);
+
+        let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(ballot);
+
+        identity.optimize(0);
+        identity.optimize(1);
+        identity.optimize(10);
+    }
+
+    #[test]
+    fn test_multi_dist(){
+        let ballot = input::load_input(ballot::normalize);
+
+        let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+
+        identity.optimize(0);
+        identity.optimize(1);
+        identity.optimize(10);
+    }
 }
+
