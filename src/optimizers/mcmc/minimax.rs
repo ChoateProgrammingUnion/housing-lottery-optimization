@@ -32,7 +32,10 @@ impl MCMCOptimizer for Minimax{
 
         let mut new_house_rank = 1;
         let new_house_score = &student.ballot[proposal.proposed_house];
-
+        
+        if schedule[proposal.proposed_house].len() >= self.ballots.houses[proposal.proposed_house].capacity {
+            return 0.0;
+        }
         // finds how many houses are higher scored than the house in question so the rank can be determined
         for house in &student.ballot{
             if house > current_house_score {
