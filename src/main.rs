@@ -30,6 +30,7 @@ fn main() {
             .output()
             .expect("failed to execute process");
             
+
     let ballot = input::load_input(ballot::identity);
     // let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
@@ -38,6 +39,7 @@ fn main() {
     let mut identity = optimizers::mcmc::minimax::Minimax::new(&ballot);
     //let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     //let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
+
 
     // println!("How many rounds?");
     // let mut rounds_input = String::new();
