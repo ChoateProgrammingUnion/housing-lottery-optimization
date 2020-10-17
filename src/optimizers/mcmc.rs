@@ -1,4 +1,5 @@
 pub mod mcmc_naive;
+pub mod minimax;
 
 use optimizers::Optimizer;
 use optimizers::rand::Rng;
@@ -53,8 +54,4 @@ pub(self) trait MCMCOptimizer: Optimizer {
 
         return schedule
     }
-}
-
-fn normalize(student: Student) -> Student {
-    unimplemented!();
 }
