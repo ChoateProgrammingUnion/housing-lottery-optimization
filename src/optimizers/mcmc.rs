@@ -64,6 +64,8 @@ mod tests {
         let students_total = ballot.students.len();
         let mut students = Vec::new();
 
+        assert_eq!(ballot.houses.len(), schedule.len());
+
         for (count, house) in schedule.iter().enumerate() {
             assert!(ballot.houses[count].capacity >= house.len());
             for student in house {
