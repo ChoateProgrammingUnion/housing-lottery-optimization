@@ -1,4 +1,5 @@
 pub mod mcmc_naive;
+pub mod minimax;
 
 use optimizers::Optimizer;
 use optimizers::rand::Rng;
@@ -116,4 +117,3 @@ mod tests {
         assert!(validate_ballot(&input_ballot, multi.optimize(100)));
     }
 }
-
