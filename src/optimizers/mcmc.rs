@@ -58,38 +58,60 @@ pub(self) trait MCMCOptimizer: Optimizer {
 #[cfg(test)]
 mod tests {
     use crate::*;
+    use ballot::Ballot;
+
+    fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<ballot::Student>>) -> bool{
+        let students_total = ballot.students.len();
+        let mut students = Vec::new();
+
+        for (count, house) in schedule.iter().enumerate() {
+            assert!(ballot.houses[count].capacity >= house.len());
+            for student in house {
+                students.push(student.clone());
+            }
+        }
+
+        for student in 0..students.len() {
+            let mut student = students.pop().expect("Empty datatype").clone();
+            for other_student in &students {
+                assert_ne!(student.name, other_student.name);
+            }
+        }
+
+        true
+    }
 
     #[test]
     fn test_mcmc_naive() {
-        let ballot = input::load_input(ballot::normalize);
+        let input_ballot = input::load_input(ballot::normalize);
 
-        let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
+        let mut naive = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&input_ballot);
 
-        identity.optimize(0);
-        identity.optimize(1);
-        identity.optimize(10);
+        assert!(validate_ballot(&input_ballot, naive.optimize(0)));
+        assert!(validate_ballot(&input_ballot, naive.optimize(1)));
+        assert!(validate_ballot(&input_ballot, naive.optimize(10)));
     }
 
     #[test]
     fn test_deans_algo(){
-        let ballot = input::load_input(ballot::normalize);
+        let input_ballot = input::load_input(ballot::normalize);
 
-        let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(ballot);
+        let mut dean = optimizers::deans_algorithm::DeansAlgorithm::new(&input_ballot);
 
-        identity.optimize(0);
-        identity.optimize(1);
-        identity.optimize(10);
+        assert!(validate_ballot(&input_ballot, dean.optimize(0)));
+        assert!(validate_ballot(&input_ballot, dean.optimize(1)));
+        assert!(validate_ballot(&input_ballot, dean.optimize(10)));
     }
 
     #[test]
     fn test_multi_dist(){
-        let ballot = input::load_input(ballot::normalize);
+        let input_ballot = input::load_input(ballot::normalize);
 
-        let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0, 10.0);
 
-        identity.optimize(0);
-        identity.optimize(1);
-        identity.optimize(10);
+        assert!(validate_ballot(&input_ballot, multi.optimize(0)));
+        assert!(validate_ballot(&input_ballot, multi.optimize(1)));
+        assert!(validate_ballot(&input_ballot, multi.optimize(10)));
     }
 }
 
