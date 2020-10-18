@@ -91,7 +91,7 @@ mod tests {
 
         assert!(validate_ballot(&input_ballot, naive.optimize(0)));
         assert!(validate_ballot(&input_ballot, naive.optimize(1)));
-        assert!(validate_ballot(&input_ballot, naive.optimize(10)));
+        assert!(validate_ballot(&input_ballot, naive.optimize(100)));
     }
 
     #[test]
@@ -102,7 +102,7 @@ mod tests {
 
         assert!(validate_ballot(&input_ballot, dean.optimize(0)));
         assert!(validate_ballot(&input_ballot, dean.optimize(1)));
-        assert!(validate_ballot(&input_ballot, dean.optimize(10)));
+        assert!(validate_ballot(&input_ballot, dean.optimize(100)));
     }
 
     #[test]
@@ -113,7 +113,7 @@ mod tests {
 
         assert!(validate_ballot(&input_ballot, multi.optimize(0)));
         assert!(validate_ballot(&input_ballot, multi.optimize(1)));
-        assert!(validate_ballot(&input_ballot, multi.optimize(10)));
+        assert!(validate_ballot(&input_ballot, multi.optimize(100)));
     }
 }
 
