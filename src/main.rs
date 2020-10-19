@@ -29,14 +29,16 @@ fn main() {
             .arg("generate_ballots.py")
             .output()
             .expect("failed to execute process");
-            
 
-    let ballot = input::load_input(ballot::identity);
-    // let ballot = input::load_input(ballot::normalize);
+        
+
+    //let ballot = input::load_input(ballot::identity);
+    let ballot = input::load_input(ballot::normalize);
     crate::log_info!("successfully processed", "input");
 
-    // let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
-    let mut identity = optimizers::mcmc::minimax::Minimax::new(&ballot);
+    //let mut identity = optimizers::multi_dist::MultiDist::new(&ballot, 0, 10.0);
+    let mut identity = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&ballot);
+    //let mut identity = optimizers::mcmc::minimax::Minimax::new(&ballot);
     //let mut identity = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     //let mut identity = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
 
@@ -50,7 +52,7 @@ fn main() {
     
     for x in 0..4 {
         let num: usize = 10;
-        let mut rounds: usize = 1*num.pow(x as u32);
+        let mut rounds: usize = 10*num.pow(x as u32);
 
         crate::log_info!("starting", "optimizer");
         let time_before_optimize = Instant::now();

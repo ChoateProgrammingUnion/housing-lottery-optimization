@@ -13,323 +13,323 @@ ballots:
 - name: Person 0
   ranking:
   - name: Tenny
-    weight: 6.0
+    weight: 10.0
   - name: CK
     weight: 6.0
   - name: East Cottage
-    weight: 8.0
+    weight: 3.0
   - name: KEC
-    weight: 1.0
+    weight: 4.0
   - name: Pratt
-    weight: 9.0
+    weight: 6.0
 - name: Person 1
   ranking:
   - name: Tenny
-    weight: 10.0
-  - name: CK
     weight: 9.0
+  - name: CK
+    weight: 8.0
   - name: East Cottage
-    weight: 6.0
+    weight: 3.0
   - name: KEC
-    weight: 5.0
+    weight: 3.0
   - name: Pratt
     weight: 1.0
 - name: Person 2
   ranking:
   - name: Tenny
-    weight: 6.0
-  - name: CK
     weight: 5.0
+  - name: CK
+    weight: 7.0
   - name: East Cottage
-    weight: 6.0
-  - name: KEC
     weight: 3.0
+  - name: KEC
+    weight: 10.0
   - name: Pratt
-    weight: 1.0
+    weight: 2.0
 - name: Person 3
   ranking:
   - name: Tenny
     weight: 10.0
   - name: CK
-    weight: 9.0
+    weight: 7.0
   - name: East Cottage
     weight: 5.0
   - name: KEC
-    weight: 9.0
+    weight: 3.0
   - name: Pratt
-    weight: 10.0
+    weight: 7.0
 - name: Person 4
   ranking:
   - name: Tenny
-    weight: 6.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 8.0
-  - name: Pratt
     weight: 1.0
+  - name: CK
+    weight: 10.0
+  - name: East Cottage
+    weight: 4.0
+  - name: KEC
+    weight: 10.0
+  - name: Pratt
+    weight: 10.0
 - name: Person 5
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 10.0
   - name: CK
     weight: 6.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
-    weight: 2.0
+    weight: 3.0
   - name: Pratt
-    weight: 9.0
+    weight: 3.0
 - name: Person 6
   ranking:
   - name: Tenny
-    weight: 6.0
-  - name: CK
     weight: 10.0
+  - name: CK
+    weight: 7.0
   - name: East Cottage
-    weight: 4.0
+    weight: 6.0
   - name: KEC
-    weight: 3.0
+    weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 2.0
 - name: Person 7
   ranking:
   - name: Tenny
-    weight: 2.0
-  - name: CK
     weight: 6.0
+  - name: CK
+    weight: 5.0
   - name: East Cottage
-    weight: 9.0
+    weight: 6.0
   - name: KEC
     weight: 4.0
   - name: Pratt
-    weight: 10.0
+    weight: 1.0
 - name: Person 8
   ranking:
   - name: Tenny
-    weight: 6.0
+    weight: 9.0
   - name: CK
-    weight: 8.0
+    weight: 6.0
   - name: East Cottage
-    weight: 4.0
+    weight: 5.0
   - name: KEC
-    weight: 3.0
+    weight: 2.0
   - name: Pratt
     weight: 10.0
 - name: Person 9
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 7.0
   - name: CK
-    weight: 5.0
+    weight: 6.0
   - name: East Cottage
-    weight: 4.0
+    weight: 7.0
   - name: KEC
     weight: 3.0
   - name: Pratt
-    weight: 9.0
+    weight: 2.0
 - name: Person 10
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 6.0
   - name: CK
-    weight: 6.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 4.0
-  - name: Pratt
     weight: 1.0
+  - name: East Cottage
+    weight: 1.0
+  - name: KEC
+    weight: 7.0
+  - name: Pratt
+    weight: 2.0
 - name: Person 11
   ranking:
   - name: Tenny
-    weight: 10.0
-  - name: CK
-    weight: 5.0
-  - name: East Cottage
-    weight: 3.0
-  - name: KEC
-    weight: 5.0
-  - name: Pratt
     weight: 1.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 7.0
+  - name: KEC
+    weight: 2.0
+  - name: Pratt
+    weight: 10.0
 - name: Person 12
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 10.0
   - name: CK
     weight: 7.0
-  - name: East Cottage
-    weight: 7.0
-  - name: KEC
-    weight: 3.0
-  - name: Pratt
-    weight: 3.0
-- name: Person 13
-  ranking:
-  - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 9.0
   - name: East Cottage
     weight: 4.0
   - name: KEC
-    weight: 10.0
+    weight: 5.0
   - name: Pratt
-    weight: 3.0
+    weight: 2.0
+- name: Person 13
+  ranking:
+  - name: Tenny
+    weight: 10.0
+  - name: CK
+    weight: 4.0
+  - name: East Cottage
+    weight: 6.0
+  - name: KEC
+    weight: 8.0
+  - name: Pratt
+    weight: 10.0
 - name: Person 14
   ranking:
   - name: Tenny
     weight: 1.0
   - name: CK
-    weight: 4.0
+    weight: 7.0
   - name: East Cottage
-    weight: 3.0
+    weight: 6.0
   - name: KEC
-    weight: 4.0
+    weight: 8.0
   - name: Pratt
-    weight: 1.0
+    weight: 2.0
 - name: Person 15
   ranking:
   - name: Tenny
-    weight: 3.0
+    weight: 9.0
   - name: CK
-    weight: 2.0
-  - name: East Cottage
     weight: 6.0
+  - name: East Cottage
+    weight: 4.0
   - name: KEC
-    weight: 10.0
+    weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 10.0
 - name: Person 16
   ranking:
   - name: Tenny
-    weight: 3.0
+    weight: 10.0
   - name: CK
-    weight: 8.0
+    weight: 9.0
   - name: East Cottage
-    weight: 7.0
-  - name: KEC
-    weight: 2.0
-  - name: Pratt
     weight: 3.0
+  - name: KEC
+    weight: 9.0
+  - name: Pratt
+    weight: 10.0
 - name: Person 17
   ranking:
   - name: Tenny
-    weight: 3.0
+    weight: 9.0
   - name: CK
-    weight: 6.0
+    weight: 5.0
   - name: East Cottage
-    weight: 4.0
+    weight: 5.0
   - name: KEC
-    weight: 3.0
-  - name: Pratt
     weight: 2.0
+  - name: Pratt
+    weight: 9.0
 - name: Person 18
   ranking:
   - name: Tenny
-    weight: 4.0
+    weight: 9.0
   - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 4.0
+  - name: KEC
+    weight: 3.0
+  - name: Pratt
+    weight: 10.0
+- name: Person 19
+  ranking:
+  - name: Tenny
     weight: 5.0
+  - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 7.0
+  - name: KEC
+    weight: 5.0
+  - name: Pratt
+    weight: 6.0
+- name: Person 20
+  ranking:
+  - name: Tenny
+    weight: 1.0
+  - name: CK
+    weight: 6.0
   - name: East Cottage
     weight: 7.0
   - name: KEC
     weight: 3.0
-  - name: Pratt
-    weight: 9.0
-- name: Person 19
-  ranking:
-  - name: Tenny
-    weight: 9.0
-  - name: CK
-    weight: 7.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 5.0
-  - name: Pratt
-    weight: 8.0
-- name: Person 20
-  ranking:
-  - name: Tenny
-    weight: 10.0
-  - name: CK
-    weight: 6.0
-  - name: East Cottage
-    weight: 9.0
-  - name: KEC
-    weight: 2.0
   - name: Pratt
     weight: 2.0
 - name: Person 21
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 6.0
   - name: CK
-    weight: 5.0
+    weight: 7.0
   - name: East Cottage
-    weight: 3.0
-  - name: KEC
     weight: 10.0
+  - name: KEC
+    weight: 2.0
   - name: Pratt
-    weight: 4.0
+    weight: 6.0
 - name: Person 22
   ranking:
   - name: Tenny
-    weight: 1.0
-  - name: CK
-    weight: 3.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 1.0
-  - name: Pratt
     weight: 10.0
+  - name: CK
+    weight: 9.0
+  - name: East Cottage
+    weight: 2.0
+  - name: KEC
+    weight: 4.0
+  - name: Pratt
+    weight: 2.0
 - name: Person 23
   ranking:
   - name: Tenny
-    weight: 3.0
+    weight: 9.0
   - name: CK
-    weight: 8.0
+    weight: 9.0
   - name: East Cottage
-    weight: 2.0
+    weight: 1.0
   - name: KEC
-    weight: 4.0
+    weight: 2.0
   - name: Pratt
-    weight: 10.0
+    weight: 8.0
 - name: Person 24
   ranking:
   - name: Tenny
-    weight: 9.0
+    weight: 5.0
   - name: CK
-    weight: 7.0
+    weight: 1.0
   - name: East Cottage
-    weight: 4.0
+    weight: 7.0
   - name: KEC
     weight: 3.0
   - name: Pratt
-    weight: 2.0
+    weight: 10.0
 - name: Person 25
   ranking:
   - name: Tenny
-    weight: 9.0
-  - name: CK
-    weight: 7.0
-  - name: East Cottage
-    weight: 7.0
-  - name: KEC
-    weight: 7.0
-  - name: Pratt
     weight: 5.0
+  - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 9.0
+  - name: KEC
+    weight: 5.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 26
   ranking:
   - name: Tenny
-    weight: 4.0
+    weight: 2.0
   - name: CK
-    weight: 10.0
-  - name: East Cottage
     weight: 8.0
+  - name: East Cottage
+    weight: 5.0
   - name: KEC
     weight: 4.0
   - name: Pratt
@@ -337,208 +337,196 @@ ballots:
 - name: Person 27
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 9.0
   - name: CK
-    weight: 5.0
+    weight: 6.0
   - name: East Cottage
-    weight: 4.0
-  - name: KEC
-    weight: 10.0
-  - name: Pratt
     weight: 7.0
+  - name: KEC
+    weight: 5.0
+  - name: Pratt
+    weight: 3.0
 - name: Person 28
   ranking:
   - name: Tenny
-    weight: 10.0
-  - name: CK
     weight: 6.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 10.0
-  - name: Pratt
-    weight: 7.0
-- name: Person 29
-  ranking:
-  - name: Tenny
-    weight: 9.0
   - name: CK
-    weight: 7.0
+    weight: 8.0
   - name: East Cottage
-    weight: 7.0
+    weight: 1.0
   - name: KEC
     weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 9.0
+- name: Person 29
+  ranking:
+  - name: Tenny
+    weight: 4.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 9.0
+  - name: KEC
+    weight: 9.0
+  - name: Pratt
+    weight: 2.0
 - name: Person 30
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
-    weight: 2.0
-  - name: East Cottage
     weight: 6.0
-  - name: KEC
+  - name: East Cottage
     weight: 4.0
+  - name: KEC
+    weight: 2.0
   - name: Pratt
-    weight: 3.0
+    weight: 7.0
 - name: Person 31
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 6.0
   - name: CK
-    weight: 4.0
-  - name: East Cottage
-    weight: 4.0
-  - name: KEC
-    weight: 3.0
-  - name: Pratt
-    weight: 10.0
-- name: Person 32
-  ranking:
-  - name: Tenny
     weight: 9.0
-  - name: CK
-    weight: 7.0
   - name: East Cottage
     weight: 5.0
   - name: KEC
-    weight: 3.0
+    weight: 2.0
+  - name: Pratt
+    weight: 1.0
+- name: Person 32
+  ranking:
+  - name: Tenny
+    weight: 6.0
+  - name: CK
+    weight: 9.0
+  - name: East Cottage
+    weight: 7.0
+  - name: KEC
+    weight: 4.0
   - name: Pratt
     weight: 10.0
 - name: Person 33
   ranking:
   - name: Tenny
-    weight: 7.0
-  - name: CK
-    weight: 6.0
-  - name: East Cottage
     weight: 10.0
+  - name: CK
+    weight: 4.0
+  - name: East Cottage
+    weight: 4.0
   - name: KEC
-    weight: 5.0
+    weight: 8.0
   - name: Pratt
-    weight: 2.0
+    weight: 6.0
 - name: Person 34
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 8.0
   - name: CK
     weight: 9.0
   - name: East Cottage
-    weight: 8.0
+    weight: 5.0
   - name: KEC
-    weight: 2.0
+    weight: 3.0
   - name: Pratt
-    weight: 1.0
+    weight: 6.0
 - name: Person 35
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
-    weight: 3.0
+    weight: 7.0
   - name: East Cottage
-    weight: 3.0
+    weight: 4.0
   - name: KEC
-    weight: 2.0
+    weight: 3.0
   - name: Pratt
-    weight: 10.0
+    weight: 1.0
 - name: Person 36
   ranking:
   - name: Tenny
-    weight: 1.0
+    weight: 5.0
   - name: CK
     weight: 6.0
   - name: East Cottage
-    weight: 6.0
+    weight: 5.0
   - name: KEC
-    weight: 3.0
+    weight: 10.0
   - name: Pratt
-    weight: 1.0
+    weight: 5.0
 - name: Person 37
   ranking:
   - name: Tenny
-    weight: 9.0
+    weight: 2.0
   - name: CK
-    weight: 1.0
+    weight: 8.0
   - name: East Cottage
-    weight: 9.0
+    weight: 6.0
   - name: KEC
-    weight: 5.0
+    weight: 9.0
   - name: Pratt
     weight: 1.0
 - name: Person 38
   ranking:
   - name: Tenny
-    weight: 3.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
-    weight: 7.0
-  - name: KEC
-    weight: 4.0
-  - name: Pratt
-    weight: 2.0
-- name: Person 39
-  ranking:
-  - name: Tenny
-    weight: 5.0
+    weight: 1.0
   - name: CK
     weight: 9.0
   - name: East Cottage
-    weight: 4.0
+    weight: 7.0
   - name: KEC
-    weight: 2.0
+    weight: 8.0
+  - name: Pratt
+    weight: 9.0
+- name: Person 39
+  ranking:
+  - name: Tenny
+    weight: 10.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 1.0
+  - name: KEC
+    weight: 1.0
   - name: Pratt
     weight: 6.0
 - name: Person 40
   ranking:
   - name: Tenny
-    weight: 4.0
+    weight: 10.0
   - name: CK
-    weight: 4.0
+    weight: 6.0
   - name: East Cottage
-    weight: 5.0
+    weight: 6.0
   - name: KEC
-    weight: 4.0
-  - name: Pratt
     weight: 2.0
+  - name: Pratt
+    weight: 5.0
 - name: Person 41
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 8.0
   - name: CK
-    weight: 2.0
+    weight: 8.0
   - name: East Cottage
-    weight: 9.0
+    weight: 5.0
   - name: KEC
     weight: 3.0
   - name: Pratt
-    weight: 8.0
+    weight: 10.0
 - name: Person 42
   ranking:
   - name: Tenny
-    weight: 6.0
+    weight: 4.0
   - name: CK
-    weight: 7.0
+    weight: 10.0
   - name: East Cottage
-    weight: 3.0
+    weight: 5.0
   - name: KEC
     weight: 2.0
   - name: Pratt
-    weight: 2.0
+    weight: 10.0
 - name: Person 43
-  ranking:
-  - name: Tenny
-    weight: 9.0
-  - name: CK
-    weight: 5.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 3.0
-  - name: Pratt
-    weight: 2.0
-- name: Person 44
   ranking:
   - name: Tenny
     weight: 8.0
@@ -549,664 +537,676 @@ ballots:
   - name: KEC
     weight: 3.0
   - name: Pratt
+    weight: 10.0
+- name: Person 44
+  ranking:
+  - name: Tenny
+    weight: 5.0
+  - name: CK
+    weight: 10.0
+  - name: East Cottage
+    weight: 5.0
+  - name: KEC
     weight: 3.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 45
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
+    weight: 3.0
+  - name: East Cottage
     weight: 2.0
+  - name: KEC
+    weight: 4.0
+  - name: Pratt
+    weight: 5.0
+- name: Person 46
+  ranking:
+  - name: Tenny
+    weight: 8.0
+  - name: CK
+    weight: 10.0
+  - name: East Cottage
+    weight: 4.0
+  - name: KEC
+    weight: 6.0
+  - name: Pratt
+    weight: 10.0
+- name: Person 47
+  ranking:
+  - name: Tenny
+    weight: 10.0
+  - name: CK
+    weight: 4.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
     weight: 10.0
   - name: Pratt
-    weight: 2.0
-- name: Person 46
-  ranking:
-  - name: Tenny
-    weight: 10.0
-  - name: CK
-    weight: 9.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 4.0
-  - name: Pratt
-    weight: 1.0
-- name: Person 47
-  ranking:
-  - name: Tenny
-    weight: 9.0
-  - name: CK
     weight: 7.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 10.0
-  - name: Pratt
-    weight: 10.0
 - name: Person 48
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 10.0
   - name: CK
-    weight: 7.0
-  - name: East Cottage
-    weight: 4.0
-  - name: KEC
     weight: 3.0
+  - name: East Cottage
+    weight: 9.0
+  - name: KEC
+    weight: 1.0
   - name: Pratt
     weight: 1.0
 - name: Person 49
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 4.0
   - name: CK
-    weight: 7.0
+    weight: 6.0
   - name: East Cottage
-    weight: 2.0
+    weight: 4.0
   - name: KEC
-    weight: 3.0
+    weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 3.0
 - name: Person 50
   ranking:
   - name: Tenny
-    weight: 3.0
+    weight: 7.0
   - name: CK
-    weight: 5.0
+    weight: 6.0
   - name: East Cottage
-    weight: 2.0
+    weight: 3.0
   - name: KEC
     weight: 5.0
   - name: Pratt
-    weight: 1.0
+    weight: 2.0
 - name: Person 51
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
-    weight: 7.0
+    weight: 5.0
   - name: East Cottage
-    weight: 2.0
+    weight: 7.0
   - name: KEC
-    weight: 10.0
+    weight: 5.0
   - name: Pratt
-    weight: 1.0
+    weight: 3.0
 - name: Person 52
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 10.0
   - name: CK
-    weight: 7.0
+    weight: 9.0
   - name: East Cottage
-    weight: 4.0
+    weight: 7.0
   - name: KEC
-    weight: 2.0
-  - name: Pratt
     weight: 1.0
+  - name: Pratt
+    weight: 3.0
 - name: Person 53
   ranking:
   - name: Tenny
-    weight: 9.0
+    weight: 10.0
   - name: CK
-    weight: 5.0
+    weight: 6.0
   - name: East Cottage
     weight: 4.0
   - name: KEC
-    weight: 9.0
+    weight: 4.0
   - name: Pratt
-    weight: 3.0
+    weight: 10.0
 - name: Person 54
   ranking:
   - name: Tenny
-    weight: 5.0
+    weight: 7.0
   - name: CK
     weight: 4.0
   - name: East Cottage
-    weight: 6.0
-  - name: KEC
     weight: 9.0
+  - name: KEC
+    weight: 10.0
   - name: Pratt
     weight: 10.0
 - name: Person 55
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 1.0
+  - name: CK
+    weight: 2.0
+  - name: East Cottage
+    weight: 6.0
+  - name: KEC
+    weight: 5.0
+  - name: Pratt
+    weight: 2.0
+- name: Person 56
+  ranking:
+  - name: Tenny
+    weight: 6.0
+  - name: CK
+    weight: 5.0
+  - name: East Cottage
+    weight: 3.0
+  - name: KEC
+    weight: 1.0
+  - name: Pratt
+    weight: 9.0
+- name: Person 57
+  ranking:
+  - name: Tenny
+    weight: 9.0
+  - name: CK
+    weight: 9.0
+  - name: East Cottage
+    weight: 8.0
+  - name: KEC
+    weight: 1.0
+  - name: Pratt
+    weight: 7.0
+- name: Person 58
+  ranking:
+  - name: Tenny
+    weight: 9.0
   - name: CK
     weight: 8.0
+  - name: East Cottage
+    weight: 5.0
+  - name: KEC
+    weight: 2.0
+  - name: Pratt
+    weight: 3.0
+- name: Person 59
+  ranking:
+  - name: Tenny
+    weight: 9.0
+  - name: CK
+    weight: 4.0
   - name: East Cottage
     weight: 3.0
   - name: KEC
     weight: 4.0
   - name: Pratt
-    weight: 6.0
-- name: Person 56
-  ranking:
-  - name: Tenny
-    weight: 9.0
-  - name: CK
-    weight: 7.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 5.0
-  - name: Pratt
-    weight: 3.0
-- name: Person 57
-  ranking:
-  - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
     weight: 2.0
-  - name: Pratt
-    weight: 10.0
-- name: Person 58
-  ranking:
-  - name: Tenny
-    weight: 7.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
-    weight: 3.0
-  - name: KEC
-    weight: 2.0
-  - name: Pratt
-    weight: 9.0
-- name: Person 59
-  ranking:
-  - name: Tenny
-    weight: 2.0
-  - name: CK
-    weight: 9.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 8.0
-  - name: Pratt
-    weight: 7.0
 - name: Person 60
   ranking:
   - name: Tenny
-    weight: 1.0
+    weight: 8.0
   - name: CK
-    weight: 8.0
+    weight: 5.0
   - name: East Cottage
-    weight: 8.0
-  - name: KEC
-    weight: 10.0
-  - name: Pratt
     weight: 2.0
+  - name: KEC
+    weight: 2.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 61
   ranking:
   - name: Tenny
     weight: 8.0
   - name: CK
-    weight: 7.0
+    weight: 3.0
   - name: East Cottage
-    weight: 4.0
+    weight: 5.0
   - name: KEC
-    weight: 7.0
+    weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 3.0
 - name: Person 62
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 9.0
   - name: CK
-    weight: 5.0
+    weight: 9.0
   - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 4.0
-  - name: Pratt
     weight: 3.0
+  - name: KEC
+    weight: 3.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 63
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 1.0
   - name: CK
     weight: 8.0
   - name: East Cottage
-    weight: 1.0
+    weight: 8.0
   - name: KEC
-    weight: 9.0
-  - name: Pratt
     weight: 5.0
+  - name: Pratt
+    weight: 2.0
 - name: Person 64
   ranking:
   - name: Tenny
-    weight: 4.0
+    weight: 9.0
   - name: CK
-    weight: 8.0
+    weight: 7.0
   - name: East Cottage
-    weight: 5.0
+    weight: 8.0
   - name: KEC
-    weight: 5.0
+    weight: 10.0
   - name: Pratt
-    weight: 6.0
+    weight: 10.0
 - name: Person 65
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 4.0
   - name: CK
-    weight: 6.0
+    weight: 9.0
+  - name: East Cottage
+    weight: 2.0
+  - name: KEC
+    weight: 2.0
+  - name: Pratt
+    weight: 10.0
+- name: Person 66
+  ranking:
+  - name: Tenny
+    weight: 7.0
+  - name: CK
+    weight: 5.0
   - name: East Cottage
     weight: 4.0
+  - name: KEC
+    weight: 10.0
+  - name: Pratt
+    weight: 10.0
+- name: Person 67
+  ranking:
+  - name: Tenny
+    weight: 6.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 7.0
   - name: KEC
     weight: 2.0
   - name: Pratt
     weight: 1.0
-- name: Person 66
-  ranking:
-  - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 7.0
-  - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 3.0
-  - name: Pratt
-    weight: 2.0
-- name: Person 67
-  ranking:
-  - name: Tenny
-    weight: 7.0
-  - name: CK
-    weight: 5.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 4.0
-  - name: Pratt
-    weight: 2.0
 - name: Person 68
+  ranking:
+  - name: Tenny
+    weight: 7.0
+  - name: CK
+    weight: 2.0
+  - name: East Cottage
+    weight: 7.0
+  - name: KEC
+    weight: 8.0
+  - name: Pratt
+    weight: 2.0
+- name: Person 69
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
-    weight: 10.0
-  - name: East Cottage
-    weight: 4.0
-  - name: KEC
-    weight: 10.0
-  - name: Pratt
-    weight: 1.0
-- name: Person 69
-  ranking:
-  - name: Tenny
-    weight: 7.0
-  - name: CK
     weight: 8.0
   - name: East Cottage
-    weight: 6.0
+    weight: 7.0
   - name: KEC
-    weight: 4.0
+    weight: 6.0
   - name: Pratt
-    weight: 5.0
+    weight: 2.0
 - name: Person 70
   ranking:
   - name: Tenny
     weight: 8.0
   - name: CK
-    weight: 5.0
+    weight: 8.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
-    weight: 3.0
+    weight: 4.0
   - name: Pratt
-    weight: 10.0
+    weight: 7.0
 - name: Person 71
   ranking:
   - name: Tenny
-    weight: 2.0
-  - name: CK
     weight: 1.0
+  - name: CK
+    weight: 6.0
   - name: East Cottage
     weight: 5.0
   - name: KEC
-    weight: 5.0
+    weight: 3.0
   - name: Pratt
-    weight: 1.0
+    weight: 2.0
 - name: Person 72
   ranking:
   - name: Tenny
-    weight: 7.0
-  - name: CK
     weight: 3.0
+  - name: CK
+    weight: 5.0
   - name: East Cottage
     weight: 7.0
   - name: KEC
-    weight: 7.0
+    weight: 10.0
   - name: Pratt
-    weight: 5.0
+    weight: 6.0
 - name: Person 73
   ranking:
   - name: Tenny
-    weight: 6.0
+    weight: 10.0
   - name: CK
-    weight: 9.0
+    weight: 7.0
   - name: East Cottage
-    weight: 4.0
+    weight: 6.0
   - name: KEC
-    weight: 4.0
-  - name: Pratt
     weight: 2.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 74
   ranking:
   - name: Tenny
-    weight: 1.0
+    weight: 9.0
   - name: CK
-    weight: 4.0
+    weight: 7.0
   - name: East Cottage
-    weight: 4.0
+    weight: 1.0
   - name: KEC
-    weight: 4.0
+    weight: 2.0
   - name: Pratt
     weight: 10.0
 - name: Person 75
   ranking:
   - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
     weight: 7.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 2.0
   - name: KEC
-    weight: 5.0
+    weight: 4.0
   - name: Pratt
-    weight: 1.0
+    weight: 9.0
 - name: Person 76
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 10.0
   - name: CK
-    weight: 8.0
+    weight: 5.0
   - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 2.0
-  - name: Pratt
     weight: 4.0
+  - name: KEC
+    weight: 4.0
+  - name: Pratt
+    weight: 8.0
 - name: Person 77
   ranking:
   - name: Tenny
-    weight: 9.0
+    weight: 7.0
   - name: CK
     weight: 7.0
   - name: East Cottage
-    weight: 5.0
+    weight: 4.0
   - name: KEC
-    weight: 6.0
+    weight: 2.0
   - name: Pratt
-    weight: 8.0
+    weight: 1.0
 - name: Person 78
   ranking:
   - name: Tenny
+    weight: 4.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 4.0
+  - name: KEC
     weight: 6.0
+  - name: Pratt
+    weight: 1.0
+- name: Person 79
+  ranking:
+  - name: Tenny
+    weight: 1.0
   - name: CK
     weight: 4.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
-    weight: 5.0
+    weight: 2.0
   - name: Pratt
-    weight: 3.0
-- name: Person 79
-  ranking:
-  - name: Tenny
-    weight: 7.0
-  - name: CK
-    weight: 9.0
-  - name: East Cottage
-    weight: 6.0
-  - name: KEC
-    weight: 1.0
-  - name: Pratt
-    weight: 1.0
+    weight: 10.0
 - name: Person 80
   ranking:
   - name: Tenny
-    weight: 5.0
+    weight: 2.0
   - name: CK
-    weight: 7.0
+    weight: 1.0
   - name: East Cottage
-    weight: 5.0
-  - name: KEC
-    weight: 5.0
-  - name: Pratt
     weight: 9.0
+  - name: KEC
+    weight: 8.0
+  - name: Pratt
+    weight: 10.0
 - name: Person 81
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 4.0
   - name: CK
-    weight: 6.0
+    weight: 5.0
   - name: East Cottage
-    weight: 8.0
+    weight: 10.0
   - name: KEC
-    weight: 2.0
+    weight: 8.0
   - name: Pratt
-    weight: 9.0
+    weight: 1.0
 - name: Person 82
   ranking:
   - name: Tenny
     weight: 9.0
   - name: CK
-    weight: 7.0
-  - name: East Cottage
     weight: 3.0
-  - name: KEC
-    weight: 8.0
-  - name: Pratt
-    weight: 1.0
-- name: Person 83
-  ranking:
-  - name: Tenny
-    weight: 4.0
-  - name: CK
-    weight: 8.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
-    weight: 4.0
+    weight: 1.0
+  - name: Pratt
+    weight: 7.0
+- name: Person 83
+  ranking:
+  - name: Tenny
+    weight: 1.0
+  - name: CK
+    weight: 7.0
+  - name: East Cottage
+    weight: 5.0
+  - name: KEC
+    weight: 3.0
   - name: Pratt
     weight: 10.0
 - name: Person 84
   ranking:
   - name: Tenny
-    weight: 6.0
+    weight: 7.0
   - name: CK
-    weight: 4.0
+    weight: 8.0
   - name: East Cottage
-    weight: 6.0
+    weight: 1.0
   - name: KEC
-    weight: 3.0
+    weight: 1.0
   - name: Pratt
-    weight: 10.0
+    weight: 6.0
 - name: Person 85
   ranking:
   - name: Tenny
-    weight: 7.0
+    weight: 4.0
   - name: CK
     weight: 7.0
   - name: East Cottage
     weight: 6.0
   - name: KEC
-    weight: 3.0
-  - name: Pratt
     weight: 10.0
+  - name: Pratt
+    weight: 2.0
 - name: Person 86
   ranking:
   - name: Tenny
-    weight: 1.0
+    weight: 3.0
   - name: CK
-    weight: 6.0
+    weight: 7.0
   - name: East Cottage
     weight: 3.0
   - name: KEC
-    weight: 4.0
-  - name: Pratt
     weight: 5.0
+  - name: Pratt
+    weight: 4.0
 - name: Person 87
   ranking:
   - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 5.0
-  - name: East Cottage
     weight: 6.0
+  - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 2.0
   - name: KEC
-    weight: 1.0
+    weight: 2.0
   - name: Pratt
-    weight: 1.0
+    weight: 7.0
 - name: Person 88
-  ranking:
-  - name: Tenny
-    weight: 6.0
-  - name: CK
-    weight: 9.0
-  - name: East Cottage
-    weight: 1.0
-  - name: KEC
-    weight: 2.0
-  - name: Pratt
-    weight: 9.0
-- name: Person 89
-  ranking:
-  - name: Tenny
-    weight: 2.0
-  - name: CK
-    weight: 8.0
-  - name: East Cottage
-    weight: 2.0
-  - name: KEC
-    weight: 3.0
-  - name: Pratt
-    weight: 10.0
-- name: Person 90
-  ranking:
-  - name: Tenny
-    weight: 9.0
-  - name: CK
-    weight: 6.0
-  - name: East Cottage
-    weight: 10.0
-  - name: KEC
-    weight: 5.0
-  - name: Pratt
-    weight: 2.0
-- name: Person 91
   ranking:
   - name: Tenny
     weight: 7.0
   - name: CK
-    weight: 4.0
+    weight: 8.0
   - name: East Cottage
-    weight: 9.0
+    weight: 5.0
   - name: KEC
+    weight: 9.0
+  - name: Pratt
+    weight: 8.0
+- name: Person 89
+  ranking:
+  - name: Tenny
+    weight: 6.0
+  - name: CK
+    weight: 6.0
+  - name: East Cottage
+    weight: 4.0
+  - name: KEC
+    weight: 8.0
+  - name: Pratt
     weight: 3.0
+- name: Person 90
+  ranking:
+  - name: Tenny
+    weight: 7.0
+  - name: CK
+    weight: 2.0
+  - name: East Cottage
+    weight: 6.0
+  - name: KEC
+    weight: 10.0
   - name: Pratt
     weight: 10.0
+- name: Person 91
+  ranking:
+  - name: Tenny
+    weight: 10.0
+  - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 5.0
+  - name: KEC
+    weight: 8.0
+  - name: Pratt
+    weight: 1.0
 - name: Person 92
   ranking:
   - name: Tenny
     weight: 10.0
   - name: CK
-    weight: 6.0
-  - name: East Cottage
-    weight: 7.0
-  - name: KEC
-    weight: 9.0
-  - name: Pratt
-    weight: 8.0
-- name: Person 93
-  ranking:
-  - name: Tenny
-    weight: 10.0
-  - name: CK
-    weight: 7.0
-  - name: East Cottage
     weight: 2.0
-  - name: KEC
-    weight: 1.0
-  - name: Pratt
-    weight: 7.0
-- name: Person 94
-  ranking:
-  - name: Tenny
-    weight: 8.0
-  - name: CK
-    weight: 9.0
   - name: East Cottage
-    weight: 4.0
+    weight: 10.0
   - name: KEC
     weight: 1.0
   - name: Pratt
     weight: 3.0
-- name: Person 95
+- name: Person 93
   ranking:
   - name: Tenny
-    weight: 9.0
+    weight: 7.0
   - name: CK
-    weight: 2.0
+    weight: 8.0
   - name: East Cottage
     weight: 8.0
   - name: KEC
-    weight: 1.0
+    weight: 3.0
   - name: Pratt
+    weight: 3.0
+- name: Person 94
+  ranking:
+  - name: Tenny
+    weight: 1.0
+  - name: CK
+    weight: 8.0
+  - name: East Cottage
+    weight: 6.0
+  - name: KEC
+    weight: 3.0
+  - name: Pratt
+    weight: 8.0
+- name: Person 95
+  ranking:
+  - name: Tenny
+    weight: 8.0
+  - name: CK
+    weight: 6.0
+  - name: East Cottage
+    weight: 9.0
+  - name: KEC
     weight: 2.0
+  - name: Pratt
+    weight: 3.0
 - name: Person 96
   ranking:
   - name: Tenny
-    weight: 10.0
+    weight: 1.0
   - name: CK
-    weight: 1.0
+    weight: 8.0
   - name: East Cottage
-    weight: 5.0
-  - name: KEC
     weight: 1.0
+  - name: KEC
+    weight: 3.0
   - name: Pratt
-    weight: 2.0
+    weight: 10.0
 - name: Person 97
   ranking:
   - name: Tenny
     weight: 10.0
   - name: CK
-    weight: 5.0
-  - name: East Cottage
     weight: 6.0
+  - name: East Cottage
+    weight: 1.0
   - name: KEC
-    weight: 10.0
+    weight: 3.0
   - name: Pratt
-    weight: 8.0
+    weight: 2.0
 - name: Person 98
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 9.0
   - name: CK
     weight: 2.0
   - name: East Cottage
-    weight: 5.0
+    weight: 4.0
   - name: KEC
-    weight: 10.0
+    weight: 3.0
   - name: Pratt
-    weight: 9.0
+    weight: 6.0
 - name: Person 99
   ranking:
   - name: Tenny
-    weight: 8.0
+    weight: 9.0
   - name: CK
-    weight: 4.0
+    weight: 8.0
   - name: East Cottage
-    weight: 6.0
+    weight: 4.0
   - name: KEC
-    weight: 5.0
+    weight: 7.0
   - name: Pratt
     weight: 1.0
