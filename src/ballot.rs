@@ -83,3 +83,23 @@ pub fn normalize(student: Student) -> Student {
 pub fn identity(student: Student) -> Student {
     return student;
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::*;
+
+    #[test]
+    fn test_ballot_normalize() {
+        let ballot = input::load_input(ballot::normalize);
+    }
+
+    #[test]
+    fn test_ballot_identity() {
+        let ballot = input::load_input(ballot::identity);
+    }
+
+    #[test]
+    fn test_ballot_scale() {
+        let ballot = input::load_input(ballot::scale);
+    }
+}
