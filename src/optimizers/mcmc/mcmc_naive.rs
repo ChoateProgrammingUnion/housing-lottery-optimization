@@ -26,9 +26,7 @@ impl MCMCOptimizer for MCMCNaive{
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
         let ballot: Vec<f64> = student.clone().ballot;
 
-        
-
-        if schedule[proposal.proposed_house].len() == self.ballots.houses[proposal.proposed_house].capacity {
+        if schedule[proposal.proposed_house].len() >= self.ballots.houses[proposal.proposed_house].capacity {
             return 0 as f64;
         } else {
             return ballot[proposal.proposed_house];
@@ -85,5 +83,3 @@ impl Optimizer for MCMCNaive {
         return 0.0;
     }
 }
-
-

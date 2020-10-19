@@ -137,13 +137,35 @@ mod tests {
     }
 
     #[test]
-    fn test_mcmc_swap() {
+    fn test_mcmc_naive() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut naive = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&input_ballot);
+        let mut naive = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&input_ballot);
 
         assert!(validate_ballot(&input_ballot, naive.optimize(0)));
         assert!(validate_ballot(&input_ballot, naive.optimize(1)));
         assert!(validate_ballot(&input_ballot, naive.optimize(100)));
+    }
+
+    #[test]
+    fn test_deans_algo(){
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut dean = optimizers::deans_algorithm::DeansAlgorithm::new(&input_ballot);
+
+        assert!(validate_ballot(&input_ballot, dean.optimize(0)));
+        assert!(validate_ballot(&input_ballot, dean.optimize(1)));
+        assert!(validate_ballot(&input_ballot, dean.optimize(100)));
+    }
+
+    #[test]
+    fn test_multi_dist(){
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0, 10.0);
+
+        assert!(validate_ballot(&input_ballot, multi.optimize(0)));
+        assert!(validate_ballot(&input_ballot, multi.optimize(1)));
+        assert!(validate_ballot(&input_ballot, multi.optimize(100)));
     }
 }
