@@ -137,6 +137,17 @@ mod tests {
     }
 
     #[test]
+    fn test_mcmc_swap() {
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut naive = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&input_ballot);
+
+        assert!(validate_ballot(&input_ballot, naive.optimize(0)));
+        assert!(validate_ballot(&input_ballot, naive.optimize(1)));
+        assert!(validate_ballot(&input_ballot, naive.optimize(100)));
+    }
+
+    #[test]
     fn test_mcmc_naive() {
         let input_ballot = input::load_input(ballot::normalize);
 
