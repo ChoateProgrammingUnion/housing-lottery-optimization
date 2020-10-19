@@ -2,6 +2,7 @@
 input.yaml
 .idea*
 .idea/
+input.yaml
 output.yaml
 data_output.yaml
 .DS_Store
