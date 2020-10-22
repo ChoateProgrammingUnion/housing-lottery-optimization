@@ -13,6 +13,7 @@ use self::rand::{SeedableRng, Rng};
 
 pub trait Optimizer {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>>;
+    fn reseed(&mut self, new_seed: u64);
     fn objective(&self) -> f64; // the objective function
 }
 

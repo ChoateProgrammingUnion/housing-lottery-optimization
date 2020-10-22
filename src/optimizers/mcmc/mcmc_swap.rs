@@ -77,6 +77,10 @@ impl Optimizer for MCMCSWAP {
         return schedule;
     }
 
+    fn reseed(&mut self, new_seed: u64) {
+
+    }
+
     fn objective(&self) -> f64 {
         return 0.0;
     }

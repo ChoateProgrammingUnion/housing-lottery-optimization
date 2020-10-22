@@ -3,16 +3,18 @@ pub struct Student {  // Perhaps rename because a double would count as 1 studen
     pub name: String,
     pub ballot: Vec<f64>,
     pub friends: Vec<usize>,
-    pub ballot_sum: f64
+    pub ballot_sum: f64,
+    pub id: usize
 }
 
 impl Student {
-    pub fn new(name: String, num_houses: usize) -> Self {
+    pub fn new(name: String, num_houses: usize, id: usize) -> Self {
         Self {
             name,
             ballot: vec![0.0; num_houses],
             friends: vec![0],
-            ballot_sum: 0.0
+            ballot_sum: 0.0,
+            id
         }
     }
 }
@@ -58,7 +60,7 @@ pub fn scale(student: Student) -> Student {
     }
 
     // scale ballot to maximum
-    let mut scaled = Student::new(student.name, student.ballot.len());
+    let mut scaled = student.clone();
     for i in 0..student.ballot.len(){
         scaled.ballot[i] = student.ballot[i]/max;
     }
@@ -72,7 +74,7 @@ pub fn normalize(student: Student) -> Student {
     let sum: f64 = student.ballot.iter().sum();
 
     // normalize ballot to sum
-    let mut normalized = Student::new(student.name, student.ballot.len());
+    let mut normalized = student.clone();
     for i in 0..student.ballot.len(){
         normalized.ballot[i] = student.ballot[i]/sum;
     }

@@ -63,6 +63,10 @@ impl Optimizer for DeansAlgorithm{
         schedule
     }
 
+    fn reseed(&mut self, new_seed: u64) {
+
+    }
+
     // doesn't use objective function, so it just returns 0.0
     fn objective(&self) -> f64 {
         0.0
