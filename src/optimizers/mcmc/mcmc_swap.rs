@@ -47,7 +47,6 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         //println!("Schedule {:?}",schedule[proposal.proposed_house]);
         //println!("Self {:?}",self.ballots.houses[proposal.proposed_house]);
 
-
         let current_house2 = &student2.ballot[proposal.proposed_house.0];
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
         
