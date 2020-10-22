@@ -100,9 +100,11 @@ pub(self) trait MCMCOptimizerSWAP: Optimizer {
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
             let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
-            let mut student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
             schedule[proposed_change.proposed_house.0].push(student);
-            schedule[proposed_change.student_location.0].push(student2);
+            if proposed_change.proposed_house.1 != 1000{
+                let mut student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
+                schedule[proposed_change.student_location.0].push(student2);
+            }
         }
 
         return schedule
