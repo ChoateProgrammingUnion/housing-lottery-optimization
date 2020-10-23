@@ -7,6 +7,7 @@ use rand::rngs::StdRng;
 
 mod distribution;
 
+#[derive(Clone)]
 pub struct MultiDist {
     pub ballots: Ballot,
     rng: StdRng

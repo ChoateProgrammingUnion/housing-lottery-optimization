@@ -2,6 +2,7 @@ use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::{Optimizer, generate_random_allocation};
 
+#[derive(Clone)]
 pub struct Minimax{
     ballots: Ballot
 }

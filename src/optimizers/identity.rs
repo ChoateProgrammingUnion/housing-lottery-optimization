@@ -4,6 +4,7 @@ The null/identity optimizer. Just here for testing. Returns an empty schedule. J
 use ballot::{Ballot, Student};
 use optimizers::{Optimizer, generate_random_allocation};
 
+#[derive(Clone)]
 pub struct Identity {
     pub ballots: Ballot
 }

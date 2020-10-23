@@ -22,7 +22,7 @@ impl AllocatedStudent {
         let s = student.clone();
         let mut house_preference_dists = vec![WeightedIndex::new(
             student.ballot.iter().map(|x| {
-                x.powf(10.0)
+                x.powf(20.0)
             }).collect::<Vec<f64>>()).unwrap(); student.ballot.len()];
         for i in 0..student.ballot.len() {
             house_preference_dists[i].update_weights(&[(i, &0.0)]).expect("distribution update failed");
@@ -32,7 +32,7 @@ impl AllocatedStudent {
             for swap_house in 0..student.ballot.len() {
                 let mut a = student.ballot[swap_house] - 0.5 * student.ballot[current_house];
                 if a < 0.0 { a = 0.0 }
-                swap_weights[(current_house, swap_house)] = (a + 0.0001).powf(10.0);
+                swap_weights[(current_house, swap_house)] = (a + 0.0001).powf(20.0);
             }
         }
         Self {

@@ -2,7 +2,7 @@ use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizerSWAP, ProposalSWAP};
 use optimizers::{Optimizer, generate_random_allocation};
 
-
+#[derive(Clone)]
 pub struct MCMCSWAP{
     ballots: Ballot
 }

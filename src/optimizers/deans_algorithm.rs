@@ -6,6 +6,7 @@ use ballot::{Ballot, Student};
 use optimizers::Optimizer;
 use rand::Rng;
 
+#[derive(Clone)]
 pub struct DeansAlgorithm {
     pub ballots: Ballot
 }
