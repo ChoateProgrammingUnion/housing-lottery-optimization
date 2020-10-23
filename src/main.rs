@@ -8,10 +8,11 @@ mod logger;
 use optimizers::Optimizer;
 
 use std::time::{Instant, Duration};
-use std::process::Command;
 
 extern crate log;
 extern crate chrono;
+extern crate array2d;
+extern crate rand;
 
 use log::LevelFilter;
 use ballot::Student;
@@ -39,15 +40,8 @@ fn main() {
     //let mut optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     //let mut optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
 
-
-    // println!("How many rounds?");
-    // let mut rounds_input = String::new();
-    // io::stdin()
-    //     .read_line(&mut rounds_input)
-    //     .expect("Not a valid input!");
-    // let rounds = rounds_input.trim().parse::<usize>().expect("Not a usize");
     let start_seed: u64 = 1000;
-    let trials: usize = 100;
+    let trials: usize = 10;
     let rounds: usize = 10000;
     let mut results: Vec<Vec<Vec<Student>>> = vec![];
     let mut times: Vec<Duration> = vec![];

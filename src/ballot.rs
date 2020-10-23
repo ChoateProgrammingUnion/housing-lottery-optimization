@@ -50,6 +50,7 @@ impl Ballot {
 }
 
 // scaled the max rating to 1, and everything else scaled proportionally
+#[allow(dead_code)]
 pub fn scale(student: Student) -> Student {
     // find max
     let mut max: f64 = 0.0;
@@ -69,6 +70,7 @@ pub fn scale(student: Student) -> Student {
 }
 
 // normalize the sum of the ratings to 1
+#[allow(dead_code)]
 pub fn normalize(student: Student) -> Student {
     // finds sum
     let sum: f64 = student.ballot.iter().sum();
@@ -82,6 +84,7 @@ pub fn normalize(student: Student) -> Student {
     normalized
 }
 
+#[allow(dead_code)]
 pub fn identity(student: Student) -> Student {
     return student;
 }

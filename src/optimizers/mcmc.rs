@@ -3,21 +3,13 @@ pub mod minimax;
 pub mod mcmc_swap;
 
 use optimizers::Optimizer;
-use super::rand::{thread_rng, Rng};
+use rand::{thread_rng, Rng};
 use ballot::Student;
 
 #[derive(Debug, Clone)]
 pub(self) struct Proposal {
     pub(self) student_location: (usize, usize),
     pub(self) proposed_house: usize
-}
-
-impl Proposal {
-    fn new(student_location: (usize, usize), proposed_house: usize) -> Self {
-        Self {
-            student_location, proposed_house
-        }
-    }
 }
 
 pub(self) trait MCMCOptimizer: Optimizer {
@@ -48,7 +40,7 @@ pub(self) trait MCMCOptimizer: Optimizer {
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house].push(student);
         }
 
@@ -60,14 +52,6 @@ pub(self) trait MCMCOptimizer: Optimizer {
 pub(self) struct ProposalSWAP {
     pub(self) student_location: (usize, usize),
     pub(self) proposed_house: (usize,usize)
-}
-
-impl ProposalSWAP {
-    fn new(student_location: (usize, usize), proposed_house: (usize,usize)) -> Self {
-        Self {
-            student_location, proposed_house
-        }
-    }
 }
 
 pub(self) trait MCMCOptimizerSWAP: Optimizer {
@@ -98,8 +82,8 @@ pub(self) trait MCMCOptimizerSWAP: Optimizer {
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
-            let mut student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            let student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
             schedule[proposed_change.proposed_house.0].push(student);
             schedule[proposed_change.student_location.0].push(student2);
         }
