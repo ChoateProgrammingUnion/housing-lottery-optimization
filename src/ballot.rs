@@ -95,16 +95,16 @@ mod tests {
 
     #[test]
     fn test_ballot_normalize() {
-        let ballot = input::load_input(ballot::normalize);
+        let _ballot = input::load_input(ballot::normalize);
     }
 
     #[test]
     fn test_ballot_identity() {
-        let ballot = input::load_input(ballot::identity);
+        let _ballot = input::load_input(ballot::identity);
     }
 
     #[test]
     fn test_ballot_scale() {
-        let ballot = input::load_input(ballot::scale);
+        let _ballot = input::load_input(ballot::scale);
     }
 }

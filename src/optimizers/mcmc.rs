@@ -97,7 +97,7 @@ mod tests {
     use ballot::Ballot;
 
     fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<ballot::Student>>) -> bool{
-        let students_total = ballot.students.len();
+        let _students_total = ballot.students.len();
         let mut students = Vec::new();
 
         assert_eq!(ballot.houses.len(), schedule.len());
@@ -109,8 +109,8 @@ mod tests {
             }
         }
 
-        for student in 0..students.len() {
-            let mut student = students.pop().expect("Empty datatype").clone();
+        for _ in 0..students.len() {
+            let student = students.pop().expect("Empty datatype").clone();
             for other_student in &students {
                 assert_ne!(student.name, other_student.name);
             }
@@ -156,7 +156,7 @@ mod tests {
     fn test_multi_dist(){
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0, 10.0);
+        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0);
 
         assert!(validate_ballot(&input_ballot, multi.optimize(0)));
         assert!(validate_ballot(&input_ballot, multi.optimize(1)));
