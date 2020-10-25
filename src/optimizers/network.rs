@@ -210,7 +210,7 @@ mod tests {
         let mut exclude: HashMap<optimizers::network::NodeIndex, bool> = HashMap::new();
         let mut graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0);
 
-        graph.optimize();
+        graph.optimize(0);
     }
 
     // #[test]
@@ -227,7 +227,7 @@ mod tests {
     fn test_mcmc_naive() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut naive = optimizers::network::NetworkOptimizer::new(&input_ballot, 10.0);
-        assert!(optimizers::validate_ballot(&input_ballot, naive.optimize()));
+        let mut graph = optimizers::network::NetworkOptimizer::new(&input_ballot, 10.0);
+        assert!(optimizers::validate_ballot(&input_ballot, graph.optimize(0)));
     }
 }
