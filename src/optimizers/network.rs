@@ -130,13 +130,13 @@ impl NetworkOptimizer {
             student_nodes.push(graph.add_node(student_node));
 
             for (house_num, housing_pref) in student.ballot.iter().enumerate() {
-                graph.add_edge(house_nodes[house_num], *student_nodes.last().unwrap(), friend_ratio*(1.0/housing_pref));
+                graph.add_edge(house_nodes[house_num], *student_nodes.last().unwrap(), friend_ratio*(1.0/(1.0-housing_pref)));
             }
 
             for friend_pref in &student.friends { // here we assume that it is reciprocated
                 if friend_pref < &count { // we've already added the student
                     let mut friend_node = student_nodes[*friend_pref];
-                    graph.add_edge(*student_nodes.last().unwrap(), friend_node, 1.0);
+                    graph.add_edge(*student_nodes.last().unwrap(), friend_node, 1.0/friend_ratio);
                 } // we have not added the student, so we skip
                 // Since all friendships must be reciprocated, we'll see this friendship later
             }
@@ -150,7 +150,7 @@ impl NetworkOptimizer {
         }
     }
 
-    pub fn optimize(self) -> Vec<Vec<Student>> {
+    pub fn generate(self) -> Vec<Vec<Student>> {
         let mut contraction_graph = self.graph.clone(); // for leaf contraction
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
         let mut exclude: HashMap<NodeIndex, bool> = HashMap::new();
@@ -175,6 +175,12 @@ impl NetworkOptimizer {
 
         return schedule
     }
+}
+
+impl Optimizer for NetworkOptimizer {
+    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {self.clone().generate()}
+    fn reseed(&mut self, new_seed: u64) {}
+    fn objective(&self) -> f64 {0.0}
 }
 
 #[cfg(test)]
