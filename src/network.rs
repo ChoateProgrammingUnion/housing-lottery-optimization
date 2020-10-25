@@ -1,12 +1,12 @@
-use optimizers::Optimizer;
 use ballot::{Ballot, Student};
 use std;
 
 use petgraph::graph::{Graph, NodeIndex};
 
+#[allow(dead_code)]
 pub struct NetworkOptimizer {
     ballots: Ballot,
-    graph: Graph::<Node, f64>
+    graph: Graph<Node, f64>
 }
 
 #[derive(Debug, Clone)]
@@ -17,6 +17,7 @@ pub struct Node {
 }
 
 impl Node {
+    #[allow(dead_code)]
     pub fn new(name: String, student: std::option::Option<Student>) -> Self{
         Self {
             name: name,
@@ -26,26 +27,28 @@ impl Node {
 }
 
 impl NetworkOptimizer {
+    #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
-        let mut null_graph = Graph::<Node, f64>::new();
+        let null_graph = Graph::<Node, f64>::new();
         Self {
             ballots: ballots.clone(),
             graph: null_graph
         }
     }
 
+    #[allow(dead_code)]
     pub fn instantiate(mut self, friend_ratio: f64) {
         // friend_weight is the fixed weight assigned to each friendship pair
 
         let mut house_nodes = Vec::<NodeIndex>::new();
         for house in &self.ballots.houses {
-            let mut house_node = Node::new(house.name.clone(), None).clone();
+            let house_node = Node::new(house.name.clone(), None).clone();
             house_nodes.push(self.graph.add_node(house_node));
         }
 
         let mut student_nodes = Vec::<NodeIndex>::new();
         for (count, student) in self.ballots.students.iter().enumerate() {
-            let mut student_node = Node::new(student.name.clone(), Some(student.clone()));
+            let student_node = Node::new(student.name.clone(), Some(student.clone()));
             student_nodes.push(self.graph.add_node(student_node));
 
             for (house_num, housing_pref) in student.ballot.iter().enumerate() {
@@ -54,7 +57,7 @@ impl NetworkOptimizer {
 
             for friend_pref in &student.friends { // here we assume that it is reciprocated
                 if friend_pref < &count { // we've already added the student
-                    let mut friend_node = student_nodes[*friend_pref];
+                    let friend_node = student_nodes[*friend_pref];
                     self.graph.add_edge(*student_nodes.last().unwrap(), friend_node, 1.0);
                 } // we have not added the student, so we skip
                 // Since all friendships must be reciprocated, we'll see this friendship later
