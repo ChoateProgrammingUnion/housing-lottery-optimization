@@ -2,8 +2,7 @@ pub mod minimax_swap;
 
 
 use optimizers::Optimizer;
-use optimizers::rand::Rng;
-use super::rand::{thread_rng};
+use rand::{Rng, thread_rng};
 use ballot::{Student, Ballot};
 
 
@@ -29,7 +28,7 @@ pub(self) trait MCMCOptimizer_polyswap: Optimizer {
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64;
     // A proposal function samples from all the house-student pairs and returns a students random change ((house, student), new_house).
 
-    fn propose(&self, schedule: &Vec<Vec<Student>>, required_house : isize) -> Proposal;
+    fn propose(&self, schedule: &Vec<Vec<Student>>, required_houses: Vec<isize>) -> Proposal;
 
     fn gen_bool(&self, prob: f64) -> bool {
         // let mut rng = rand::rngs::StdRng::seed_from_u64(0);
@@ -46,17 +45,19 @@ pub(self) trait MCMCOptimizer_polyswap: Optimizer {
         return dice;
     }
 
-    fn step(&self, mut schedule: Vec<Vec<Student>>, required_house: isize) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
-        let proposed_change: Proposal = self.propose(&schedule, required_house);
+    fn step(&self, mut schedule: Vec<Vec<Student>>, required_houses: Vec<isize>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
+        let proposed_change: Proposal = self.propose(&schedule, required_houses.clone());
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
-        if self.gen_bool(acceptance_prob) { // proposal accepted
+        if self.gen_bool(acceptance_prob) || required_houses != vec![-1,-1] { // proposal accepted
             let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house].push(student);
-            if self.ballots().houses[proposed_change.proposed_house].capacity > schedule[proposed_change.proposed_house].len() {
-                schedule = self.step(schedule, proposed_change.proposed_house as isize);
+
+          if  schedule[proposed_change.proposed_house].len() > self.ballots().houses[proposed_change.proposed_house].capacity {
+                schedule = self.step(schedule, vec![proposed_change.proposed_house as isize, proposed_change.student_location.0 as isize]);
             }
         }
+
 
         return schedule
     }

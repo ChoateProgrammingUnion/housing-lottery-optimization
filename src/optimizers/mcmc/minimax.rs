@@ -28,6 +28,7 @@ impl MCMCOptimizer for Minimax{
     // if current house is worse, chance of staying is current rank^(-2)
     // if current house is better, chance of moving is new rank^(-2)
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
+        
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
 
         let mut current_house_rank = 1;
@@ -39,6 +40,7 @@ impl MCMCOptimizer for Minimax{
         if schedule[proposal.proposed_house].len() >= self.ballots.houses[proposal.proposed_house].capacity {
             return 0.0;
         }
+
         // finds how many houses are higher scored than the house in question so the rank can be determined
         for house in &student.ballot{
             if house > current_house_score {
