@@ -3,6 +3,7 @@ pub mod mcmc;
 pub mod mcmc_polyswap;
 pub mod deans_algorithm;
 pub mod multi_dist;
+pub mod network;
 
 
 use ballot::Ballot;
@@ -30,4 +31,27 @@ pub fn generate_random_allocation(ballot: &Ballot, seed: u64) -> Vec<Vec<Student
         }
     }
     schedule
+}
+
+fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<Student>>) -> bool{
+    let students_total = ballot.students.len();
+    let mut students = Vec::new();
+
+    assert_eq!(ballot.houses.len(), schedule.len());
+
+    for (count, house) in schedule.iter().enumerate() {
+        assert!(ballot.houses[count].capacity >= house.len());
+        for student in house {
+            students.push(student.clone());
+        }
+    }
+
+    for student in 0..students.len() {
+        let mut student = students.pop().expect("Empty datatype").clone();
+        for other_student in &students {
+            assert_ne!(student.name, other_student.name);
+        }
+    }
+
+    true
 }

@@ -4,7 +4,6 @@ mod output;
 mod data_output;
 mod optimizers;
 mod logger;
-mod network;
 
 use optimizers::Optimizer;
 
