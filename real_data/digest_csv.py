@@ -53,7 +53,7 @@ for student in students:
 for classifier, lottery in lotteries.items():
     filename = f"yaml/{classifier[2]}_{classifier[0]}_{classifier[1]}.yaml"
 
-    house_list: List[House] = houses[classifier[0], classifier[1], room_type]
+    house_list: List[House] = houses[classifier]
 
     def house_weight(student: LotteryStudent, house_id: int) -> float:
         if house_id in student.ballot:

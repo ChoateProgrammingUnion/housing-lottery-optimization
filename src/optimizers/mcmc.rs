@@ -142,6 +142,17 @@ mod tests {
     }
 
     #[test]
+    fn test_minimax() {
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut minimax = optimizers::mcmc::minimax::Minimax::new(&input_ballot);
+
+        assert!(validate_ballot(&input_ballot, minimax.optimize(0)));
+        assert!(validate_ballot(&input_ballot, minimax.optimize(1)));
+        assert!(validate_ballot(&input_ballot, minimax.optimize(100)));
+    }
+
+    #[test]
     fn test_deans_algo(){
         let input_ballot = input::load_input(ballot::normalize);
 

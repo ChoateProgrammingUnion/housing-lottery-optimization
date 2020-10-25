@@ -1,56 +1,16 @@
 ballots:
 - name: Student 0
   ranking:
-  - name: Tenney
-    weight: 2.0
-  - name: Logan
-    weight: 1.0
-  - name: Hill
-    weight: 1.0
-  - name: CK
-    weight: 1.0
-  - name: Spencer
-    weight: 1.0
   - name: Quantrell
-    weight: 1.0
+    weight: 2.0
 - name: Student 1
   ranking:
-  - name: Tenney
-    weight: 2.0
-  - name: Logan
-    weight: 1.0
-  - name: Hill
-    weight: 1.0
-  - name: CK
-    weight: 1.0
-  - name: Spencer
-    weight: 1.0
   - name: Quantrell
-    weight: 1.0
+    weight: 2.0
 - name: Student 2
   ranking:
-  - name: Tenney
-    weight: 2.0
-  - name: Logan
-    weight: 1.0
-  - name: Hill
-    weight: 1.0
-  - name: CK
-    weight: 1.0
-  - name: Spencer
-    weight: 1.0
   - name: Quantrell
-    weight: 1.0
+    weight: 2.0
 houses:
-- capacity: 7
-  name: Tenney
-- capacity: 5
-  name: Logan
-- capacity: 6
-  name: Hill
-- capacity: 5
-  name: CK
-- capacity: 4
-  name: Spencer
-- capacity: 3
+- capacity: 10
   name: Quantrell

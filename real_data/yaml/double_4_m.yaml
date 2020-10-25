@@ -7,11 +7,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 5.0
-  - name: CK
-    weight: 4.0
   - name: Spencer
-    weight: 3.0
+    weight: 4.0
   - name: Quantrell
+    weight: 3.0
+  - name: CK
     weight: 2.0
 - name: Student 1
   ranking:
@@ -21,11 +21,11 @@ ballots:
     weight: 3.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 4.0
 - name: Student 2
   ranking:
@@ -35,11 +35,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 5.0
-  - name: CK
-    weight: 3.0
   - name: Spencer
-    weight: 4.0
+    weight: 3.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 2.0
 - name: Student 3
   ranking:
@@ -49,11 +49,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 5.0
-  - name: CK
-    weight: 4.0
   - name: Spencer
-    weight: 3.0
+    weight: 4.0
   - name: Quantrell
+    weight: 3.0
+  - name: CK
     weight: 2.0
 - name: Student 4
   ranking:
@@ -63,11 +63,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 5.0
+    weight: 7.0
   - name: Quantrell
+    weight: 5.0
+  - name: CK
     weight: 3.0
 - name: Student 5
   ranking:
@@ -77,11 +77,11 @@ ballots:
     weight: 3.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 4.0
 - name: Student 6
   ranking:
@@ -91,11 +91,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 - name: Student 7
   ranking:
@@ -105,11 +105,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 5.0
+    weight: 7.0
   - name: Quantrell
+    weight: 5.0
+  - name: CK
     weight: 3.0
 - name: Student 8
   ranking:
@@ -119,11 +119,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 2.0
 - name: Student 9
   ranking:
@@ -133,11 +133,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 10
   ranking:
@@ -147,11 +147,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 5.0
-  - name: CK
-    weight: 3.0
   - name: Spencer
-    weight: 4.0
+    weight: 3.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 2.0
 - name: Student 11
   ranking:
@@ -161,11 +161,11 @@ ballots:
     weight: 3.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 6.0
+    weight: 7.0
   - name: Quantrell
+    weight: 6.0
+  - name: CK
     weight: 2.0
 - name: Student 12
   ranking:
@@ -175,11 +175,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 13
   ranking:
@@ -189,11 +189,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 14
   ranking:
@@ -203,11 +203,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 15
   ranking:
@@ -217,11 +217,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 16
   ranking:
@@ -231,11 +231,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 6.0
+    weight: 7.0
   - name: Quantrell
+    weight: 6.0
+  - name: CK
     weight: 2.0
 - name: Student 17
   ranking:
@@ -245,11 +245,11 @@ ballots:
     weight: 3.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 6.0
+    weight: 7.0
   - name: Quantrell
+    weight: 6.0
+  - name: CK
     weight: 2.0
 - name: Student 18
   ranking:
@@ -259,11 +259,11 @@ ballots:
     weight: 7.0
   - name: Hill
     weight: 6.0
-  - name: CK
-    weight: 3.0
   - name: Spencer
-    weight: 2.0
+    weight: 3.0
   - name: Quantrell
+    weight: 2.0
+  - name: CK
     weight: 5.0
 - name: Student 19
   ranking:
@@ -273,11 +273,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 3.0
 - name: Student 20
   ranking:
@@ -287,11 +287,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 3.0
 - name: Student 21
   ranking:
@@ -301,11 +301,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 4.0
   - name: Spencer
-    weight: 5.0
+    weight: 4.0
   - name: Quantrell
+    weight: 5.0
+  - name: CK
     weight: 2.0
 - name: Student 22
   ranking:
@@ -315,11 +315,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 - name: Student 23
   ranking:
@@ -329,11 +329,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 - name: Student 24
   ranking:
@@ -343,11 +343,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 - name: Student 25
   ranking:
@@ -357,11 +357,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 2.0
 - name: Student 26
   ranking:
@@ -371,11 +371,11 @@ ballots:
     weight: 5.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 - name: Student 27
   ranking:
@@ -385,11 +385,11 @@ ballots:
     weight: 5.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 2.0
   - name: Spencer
-    weight: 4.0
+    weight: 2.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 6.0
 - name: Student 28
   ranking:
@@ -399,11 +399,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 3.0
 - name: Student 29
   ranking:
@@ -413,11 +413,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 2.0
 - name: Student 30
   ranking:
@@ -427,11 +427,11 @@ ballots:
     weight: 7.0
   - name: Hill
     weight: 6.0
-  - name: CK
-    weight: 3.0
   - name: Spencer
-    weight: 2.0
+    weight: 3.0
   - name: Quantrell
+    weight: 2.0
+  - name: CK
     weight: 5.0
 - name: Student 31
   ranking:
@@ -441,11 +441,11 @@ ballots:
     weight: 4.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 7.0
   - name: Spencer
-    weight: 6.0
+    weight: 7.0
   - name: Quantrell
+    weight: 6.0
+  - name: CK
     weight: 2.0
 - name: Student 32
   ranking:
@@ -455,11 +455,11 @@ ballots:
     weight: 5.0
   - name: Hill
     weight: 3.0
-  - name: CK
-    weight: 2.0
   - name: Spencer
-    weight: 4.0
+    weight: 2.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 6.0
 - name: Student 33
   ranking:
@@ -469,11 +469,11 @@ ballots:
     weight: 6.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 5.0
   - name: Spencer
-    weight: 4.0
+    weight: 5.0
   - name: Quantrell
+    weight: 4.0
+  - name: CK
     weight: 3.0
 - name: Student 34
   ranking:
@@ -483,11 +483,11 @@ ballots:
     weight: 2.0
   - name: Hill
     weight: 4.0
-  - name: CK
-    weight: 3.0
   - name: Spencer
-    weight: 1.0
+    weight: 3.0
   - name: Quantrell
+    weight: 1.0
+  - name: CK
     weight: 1.0
 - name: Student 35
   ranking:
@@ -497,22 +497,22 @@ ballots:
     weight: 5.0
   - name: Hill
     weight: 2.0
-  - name: CK
-    weight: 6.0
   - name: Spencer
-    weight: 7.0
+    weight: 6.0
   - name: Quantrell
+    weight: 7.0
+  - name: CK
     weight: 3.0
 houses:
-- capacity: 7
+- capacity: 10
   name: Tenney
-- capacity: 5
+- capacity: 10
   name: Logan
-- capacity: 6
+- capacity: 10
   name: Hill
-- capacity: 5
-  name: CK
-- capacity: 4
+- capacity: 10
   name: Spencer
-- capacity: 3
+- capacity: 10
   name: Quantrell
+- capacity: 10
+  name: CK
