@@ -4,13 +4,16 @@ mod output;
 mod data_output;
 mod optimizers;
 mod logger;
+mod network;
 
 use optimizers::Optimizer;
+use network::NetworkOptimizer;
 
 use std::time::Instant;
 use std::process::Command;
 
 extern crate log;
+extern crate petgraph;
 use log::LevelFilter;
 //use cpython::{Python, PyDict, PyResult};
 
