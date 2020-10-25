@@ -23,7 +23,7 @@ impl Node {
 }
 
 // Credit: code modified from rust docs
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 pub struct OrderedNode {
     node: NodeIndex,
     distance: f64,
@@ -69,7 +69,7 @@ impl PartialOrd for OrderedNode {
     }
 }
 
-pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeIndex, k: usize, exclude: &HashMap<NodeIndex, bool>) -> Vec<OrderedNode> {
+pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeIndex, k: usize, exclude: &mut HashMap<NodeIndex, bool>) -> Vec<OrderedNode> {
     // Give the k nearest nodes from the starting node, excluding a list of nodes.
     // If there are no such k nodes, return the first n up to k nodes.
     // let mut nearest: Vec<&'a NodeIndex> = Vec::<NodeIndex>::new();
@@ -83,18 +83,37 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
 
     while result.len() <= k {
         if !heap.is_empty() {
-            let mut current_node = heap.peek().unwrap();
+            let mut current_node = heap.peek_mut().unwrap();
             let mut current_distance = current_node.distance.clone();
             let mut walker = contraction_graph.neighbors(current_node.node).detach();
+            drop(current_node);
 
             while let Some((edge, neighbor)) = walker.next(&contraction_graph) {
                 if !exclude.contains_key(&neighbor) {
-                    heap.push(OrderedNode::new(neighbor, current_distance + contraction_graph.edge_weight(edge).unwrap())); // might need orginal graph
-                    contraction_graph.remove_node(neighbor);
+                    heap.push(OrderedNode::new(neighbor, current_distance + contraction_graph.edge_weight(edge).unwrap())); // might need original graph
+                }
+
+                // Contraction
+                while let Some((other_edge, other_neighbor)) = walker.next(&contraction_graph) {
+                    let mut preexisting_edge = contraction_graph.find_edge(other_neighbor, neighbor);
+                    let mut max_distance = contraction_graph.edge_weight(edge).unwrap() + current_distance; // max possible distance for an edge
+                    if preexisting_edge.is_some() {
+                        if contraction_graph.edge_weight(preexisting_edge.unwrap()).unwrap() > &max_distance {
+                            contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
+                        }
+                    } else {
+                        contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
+                    }
                 }
             }
 
-            result.push(heap.pop().unwrap())
+            let mut nearest_neighbor = heap.pop().unwrap();
+            // if !exclude.contains_key(&nearest_neighbor.node) {
+            //     exclude.insert(nearest_neighbor.node, true);
+            if contraction_graph.contains_node(nearest_neighbor.node) {
+                contraction_graph.remove_node(nearest_neighbor.node);
+                result.push(nearest_neighbor);
+            }
         }
         // else {
         //     if result.len() <= k { // debug
@@ -115,7 +134,7 @@ pub struct NetworkOptimizer {
 }
 
 impl NetworkOptimizer {
-    pub fn new(ballots: &Ballot, friend_ratio: f64) -> Self {
+    pub fn new(ballots: &Ballot, friend_const: f64, friend_ratio: f64) -> Self {
         let mut graph = StableGraph::<Node, f64>::new();
 
         let mut house_nodes = Vec::<NodeIndex>::new();
@@ -136,7 +155,7 @@ impl NetworkOptimizer {
             for friend_pref in &student.friends { // here we assume that it is reciprocated
                 if friend_pref < &count { // we've already added the student
                     let mut friend_node = student_nodes[*friend_pref];
-                    graph.add_edge(*student_nodes.last().unwrap(), friend_node, 1.0/friend_ratio);
+                    graph.add_edge(*student_nodes.last().unwrap(), friend_node, friend_const);
                 } // we have not added the student, so we skip
                 // Since all friendships must be reciprocated, we'll see this friendship later
             }
@@ -164,7 +183,7 @@ impl NetworkOptimizer {
         for house in self.house_nodes {
             let mut max_cap = self.ballots.houses[counter].capacity.clone();
 
-            let mut student_nodes = k_nearest(&mut contraction_graph.clone(), house, max_cap, &exclude);
+            let mut student_nodes = k_nearest(&mut contraction_graph.clone(), house, max_cap, &mut exclude);
 
             for student in student_nodes {
                 schedule[counter].push(contraction_graph.remove_node(student.node).unwrap().student.unwrap());
@@ -191,24 +210,24 @@ mod tests {
     #[test]
     fn test_graph_init() {
         let ballot = input::load_input(ballot::normalize);
-        let graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0);
+        let graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0, 10.0);
     }
 
     #[test]
     fn test_graph_nearest() {
         let ballot = input::load_input(ballot::normalize);
         let mut exclude: HashMap<optimizers::network::NodeIndex, bool> = HashMap::new();
-        let mut graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0);
+        let mut graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0, 10.0);
 
         let test = graph.graph.node_indices().next();
-        assert_eq!(optimizers::network::k_nearest(&mut graph.graph.clone(), test.unwrap(), 3, &exclude).len(), 3);
+        assert_eq!(optimizers::network::k_nearest(&mut graph.graph.clone(), test.unwrap(), 3, &mut exclude).len(), 3);
     }
 
     #[test]
-    fn test_optimize() {
+    fn test_network_optimize() {
         let ballot = input::load_input(ballot::normalize);
         let mut exclude: HashMap<optimizers::network::NodeIndex, bool> = HashMap::new();
-        let mut graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0);
+        let mut graph = optimizers::network::NetworkOptimizer::new(&ballot, 10.0, 10.0);
 
         graph.optimize(0);
     }
@@ -224,10 +243,10 @@ mod tests {
     // }
 
     #[test]
-    fn test_mcmc_naive() {
+    fn test_network_output() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut graph = optimizers::network::NetworkOptimizer::new(&input_ballot, 10.0);
+        let mut graph = optimizers::network::NetworkOptimizer::new(&input_ballot, 10.0, 10.0);
         assert!(optimizers::validate_ballot(&input_ballot, graph.optimize(0)));
     }
 }
