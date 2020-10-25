@@ -7,7 +7,6 @@ mod logger;
 mod network;
 
 use optimizers::Optimizer;
-use network::NetworkOptimizer;
 
 use std::time::{Instant, Duration};
 
