@@ -4,10 +4,8 @@ mod output;
 mod data_output;
 mod optimizers;
 mod logger;
-mod network;
 
 use optimizers::Optimizer;
-use network::NetworkOptimizer;
 
 use std::time::Instant;
 use std::process::Command;
