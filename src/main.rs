@@ -4,8 +4,10 @@ mod output;
 mod data_output;
 mod optimizers;
 mod logger;
+mod network;
 
 use optimizers::Optimizer;
+use network::NetworkOptimizer;
 
 use std::time::{Instant, Duration};
 
@@ -13,11 +15,13 @@ extern crate log;
 extern crate chrono;
 extern crate array2d;
 extern crate rand;
+extern crate petgraph;
 
 use log::LevelFilter;
 use ballot::Student;
 
 fn main() {
+
     // Change this to set the log level
     // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
     // LevelFilter::Error - Print errors (nonfatal errors that are logged)
