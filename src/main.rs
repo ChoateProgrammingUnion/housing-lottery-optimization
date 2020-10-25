@@ -4,7 +4,6 @@ mod output;
 mod data_output;
 mod optimizers;
 mod logger;
-mod network;
 
 use optimizers::Optimizer;
 
@@ -37,11 +36,12 @@ fn main() {
     );
     crate::log_info!("successfully processed", "input");
 
-    let optimizer = optimizers::multi_dist::MultiDist::new(&ballot, 0);
+    // let optimizer = optimizers::multi_dist::MultiDist::new(&ballot, 0);
     // let optimizer = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&ballot);
     // let optimizer = optimizers::mcmc::minimax::Minimax::new(&ballot);
     // let optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     // let optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
+    let optimizer = optimizers::network::NetworkOptimizer::new(&ballot, 10.0); // use with normalize or scale; expects 0-1 range
 
     let start_seed: u64 = 0;
     let trials: usize = 100;
