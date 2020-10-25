@@ -4,18 +4,18 @@ implementation of the algorithm the deans use
 
 use ballot::{Ballot, Student};
 use optimizers::Optimizer;
-use optimizers::rand::SeedableRng;
-use optimizers::rand::Rng;
-use optimizers::rand::seq::IteratorRandom;
+use rand::Rng;
 
+#[derive(Clone)]
 pub struct DeansAlgorithm {
     pub ballots: Ballot
 }
 
-impl DeansAlgorithm{
-    pub fn new(ballots: Ballot) -> Self {
+impl DeansAlgorithm {
+    #[allow(dead_code)]
+    pub fn new(ballots: &Ballot) -> Self {
         Self {
-            ballots
+            ballots: ballots.clone()
         }
     }
 
@@ -43,14 +43,14 @@ impl DeansAlgorithm{
 }
 
 impl Optimizer for DeansAlgorithm{
-    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
+    fn optimize(&mut self, _rounds: usize) -> Vec<Vec<Student>> {
         // create a vector that includes a vector for each house
         let mut schedule: Vec<Vec<Student>> = vec![vec![]; self.ballots.houses.len()];
 
         let mut input = self.ballots.students.clone();
 
         // chooses a student at random, finds their most prefered available house, and places that student into the respective house
-        for i in 0..input.len() {
+        for _ in 0..input.len() {
             let mut rng = rand::thread_rng();
             let len: f64 = input.len() as f64;
             let rand_num: f64 = rng.gen();
@@ -61,6 +61,10 @@ impl Optimizer for DeansAlgorithm{
             schedule[preference].push(choice.clone());
         }
         schedule
+    }
+
+    fn reseed(&mut self, _new_seed: u64) {
+
     }
 
     // doesn't use objective function, so it just returns 0.0

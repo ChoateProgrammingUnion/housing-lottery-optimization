@@ -8,12 +8,12 @@ pub mod multi_dist;
 use ballot::Ballot;
 use ballot::Student;
 
-extern crate rand;
-use self::rand::rngs::StdRng;
-use self::rand::{SeedableRng, Rng};
+use rand::rngs::StdRng;
+use rand::{SeedableRng, Rng};
 
 pub trait Optimizer {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>>;
+    fn reseed(&mut self, new_seed: u64);
     fn objective(&self) -> f64; // the objective function
 }
 
