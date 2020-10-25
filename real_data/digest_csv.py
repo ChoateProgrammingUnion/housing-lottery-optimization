@@ -4,7 +4,7 @@ from typing import List, Set, Dict, Tuple
 
 import yaml
 
-from real_data.house_map import house_map, House, LotteryStudent, Student
+from real_data.utils import house_map, House, LotteryStudent, Student
 
 header = None  # ['Form', 'M/F', 'B/D', 'House', 'Room/Bed', 'Rm Type', '1', '2', '3', '4', '5', '6', '']
 
