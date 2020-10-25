@@ -2,24 +2,26 @@ use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizerSWAP, ProposalSWAP};
 use optimizers::{Optimizer, generate_random_allocation};
 
-
+#[derive(Clone)]
 pub struct MCMCSWAP{
     ballots: Ballot
 }
 
 impl MCMCSWAP {
+    #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
         Self {
             ballots: ballots.clone()
         }
     }
-    fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-        let mut counter = 0;
-        for house in &schedule {
-            counter += house.len();
-        }
-        return (schedule, counter);
-    }
+
+    // fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
+    //     let mut counter = 0;
+    //     for house in &schedule {
+    //         counter += house.len();
+    //     }
+    //     return (schedule, counter);
+    // }
 }
 
 impl MCMCOptimizerSWAP for MCMCSWAP{
@@ -71,10 +73,14 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 impl Optimizer for MCMCSWAP {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
-        for round in 0..rounds{
+        for _round in 0..rounds{
             schedule = self.step(schedule);
         }
         return schedule;
+    }
+
+    fn reseed(&mut self, _new_seed: u64) {
+
     }
 
     fn objective(&self) -> f64 {

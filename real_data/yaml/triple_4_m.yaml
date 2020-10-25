@@ -1,0 +1,16 @@
+ballots:
+- name: Student 0
+  ranking:
+  - name: Quantrell
+    weight: 2.0
+- name: Student 1
+  ranking:
+  - name: Quantrell
+    weight: 2.0
+- name: Student 2
+  ranking:
+  - name: Quantrell
+    weight: 2.0
+houses:
+- capacity: 10
+  name: Quantrell
