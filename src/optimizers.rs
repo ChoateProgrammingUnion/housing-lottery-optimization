@@ -3,6 +3,7 @@ pub mod mcmc;
 pub mod deans_algorithm;
 pub mod multi_dist;
 pub mod network;
+pub mod swap_naive;
 
 
 use ballot::Ballot;

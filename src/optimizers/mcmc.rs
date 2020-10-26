@@ -139,4 +139,15 @@ mod tests {
         assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(1)));
         assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(100)));
     }
+
+    #[test]
+    fn test_swap_naive(){
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut swap_naive = optimizers::swap_naive::SwapNaive::new(&input_ballot, 0);
+
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(100)));
+    }
 }
