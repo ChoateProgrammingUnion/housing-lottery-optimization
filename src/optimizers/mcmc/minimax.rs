@@ -37,7 +37,7 @@ impl MCMCOptimizer for Minimax{
         let mut new_house_rank = 1;
         let new_house_score = &student.ballot[proposal.proposed_house];
         
-        if schedule[proposal.proposed_house].len() >= self.ballots.houses[proposal.proposed_house].capacity {
+        if schedule[proposal.proposed_house].len() >= self.ballots.houses[proposal.proposed_house].capacity+3 {
             return 0.0;
         }
 
@@ -96,6 +96,7 @@ impl MCMCOptimizer for Minimax{
 
         return proposed_change
     }
+    
 }
 
 impl Optimizer for Minimax {
@@ -103,6 +104,15 @@ impl Optimizer for Minimax {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
         for _round in 0..rounds{
             schedule = self.step(schedule);
+        }
+        for house in 0..schedule.len(){
+            while schedule[house].len()>self.ballots.houses[house].capacity {
+                let student_location = self.gen_range(0, schedule[house].len());
+                let student = schedule[house][student_location].clone();
+                let choice = find_max(&self.ballots, &schedule, &student);
+                schedule[house].remove(student_location);
+                schedule[choice].push(student.clone());
+            }
         }
         return schedule;
     }
@@ -117,3 +127,23 @@ impl Optimizer for Minimax {
 }
 
 
+fn find_max(ballots: &Ballot, schedule: &Vec<Vec<Student>>, student: &Student) -> usize {
+
+    // finds highest ranked choice
+    let mut max: Vec<f64> = vec![0.0,0.0];
+    for i in 0..student.ballot.len() {
+        if student.ballot[i] > max[0] {
+            max[0] = student.ballot[i];
+            max[1] = i as f64;
+        }
+    }
+
+    // if there is space in the house, return that house
+    if ballots.houses[max[1] as usize].capacity  > schedule[max[1] as usize].len(){
+        return max[1] as usize;
+    }
+    // if there is no space in the highest ranked house, sets the highest ranking to 0.0, and tries again
+    let mut new_ballot = student.clone();
+    new_ballot.ballot[max[1] as usize] = 0.0;
+    return find_max(ballots, schedule, &new_ballot);
+}
