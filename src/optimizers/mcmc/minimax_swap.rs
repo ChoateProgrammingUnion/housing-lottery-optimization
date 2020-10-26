@@ -1,8 +1,8 @@
 use ballot::{Ballot, Student};
-use optimizers::mcmc_polyswap::{MCMCOptimizer_polyswap, Proposal};
+use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::{Optimizer, generate_random_allocation};
-#[derive(Clone)]
 
+#[derive(Clone)]
 pub struct Minimax_swap{
     ballots: Ballot
 }
@@ -22,7 +22,7 @@ impl Minimax_swap {
     }
 }
 
-impl MCMCOptimizer_polyswap for Minimax_swap{
+impl MCMCOptimizer for Minimax_swap{
     // if current house is worse, chance of staying is current rank^(-2)
     // if current house is better, chance of moving is new rank^(-2)
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
@@ -55,64 +55,58 @@ impl MCMCOptimizer_polyswap for Minimax_swap{
         }
     }
 
-    fn propose(&self, schedule: &Vec<Vec<Student>>, required_houses: Vec<isize>) -> Proposal {
-        let mut student_location = 0;
-        let mut new_house = 0;
+    fn propose(&self, schedule: &Vec<Vec<Student>>) -> Proposal {
+       // Uniform, random sampling
+       let size = self.ballots.students.len();
+
+       let student_location = self.gen_range(0, size);
+       let mut new_house = self.gen_range(0, schedule.len() -1);
 
 
-        let mut current_house: usize = 0;
-        let mut current_index: usize = 0;
-        if required_houses[0] == -1 {
-            // Uniform, random sampling
-            let size = self.ballots.students.len();
+       let mut counter: usize = 0;
+       let mut current_house: usize = 0;
+       let mut current_index: usize = 0;
 
-            student_location = self.gen_range(0, size);
-            new_house = self.gen_range(0, schedule.len() -1);
+       for house in schedule {
+           counter += house.len();
 
+           if counter > student_location {
+               counter -= house.len();
+               current_index = student_location - counter;
+               break;
+           }
 
-            let mut counter: usize = 0;
+           current_house += 1;
+       }
 
-            'house: for house in schedule {
-                for student in house {
-                    if counter == student_location {
-                        break 'house;
-                    }
-                    counter += 1;
-                    current_index += 1;
-                }
-                current_index = 0;
-                current_house += 1;
-            }
+       if new_house >= current_house { // ensure we don't get the same house
+           new_house += 1;
+       }
 
-            if new_house >= current_house { // ensure we don't get the same house
-                new_house += 1;
-            }
-        } else {
-            let size = schedule[required_houses[0] as usize].len();
-            student_location = self.gen_range(0,size);
-            current_house = required_houses[0] as usize;
-            current_index = student_location;
-            new_house = required_houses[1] as usize;
-        }
-        let proposed_change = Proposal{
-            student_location: (current_house, current_index),
-            proposed_house: new_house
-        };
+       let proposed_change = Proposal{
+           student_location: (current_house, current_index),
+           proposed_house: new_house
+       };
 
-        return proposed_change
+       return proposed_change
     }
 
-    fn ballots(&self) -> &Ballot{
-        return &self.ballots;
-    }
 }
 
 impl Optimizer for Minimax_swap {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
         for round in 0..rounds{
-            schedule = self.step(schedule, vec![-1,-1]);
-
+            schedule = self.step(schedule);
+            for house in 0..schedule.len(){
+                while schedule[house].len()>self.ballots.houses[house].capacity {
+                    let student_location = self.gen_range(0, schedule[house].len());
+                    let student = schedule[house][student_location].clone();
+                    let choice = find_max(&self.ballots, &schedule, &student);
+                    schedule[house].remove(student_location);
+                    schedule[choice].push(student.clone());
+                }
+            }
         }
         return schedule;
     }
@@ -122,6 +116,28 @@ impl Optimizer for Minimax_swap {
     }
     fn reseed(&mut self, new_seed: u64) {}
 }
+
+fn find_max(ballots: &Ballot, schedule: &Vec<Vec<Student>>, student: &Student) -> usize {
+
+    // finds highest ranked choice
+    let mut max: Vec<f64> = vec![0.0,0.0];
+    for i in 0..student.ballot.len() {
+        if student.ballot[i] > max[0] {
+            max[0] = student.ballot[i];
+            max[1] = i as f64;
+        }
+    }
+
+    // if there is space in the house, return that house
+    if ballots.houses[max[1] as usize].capacity  > schedule[max[1] as usize].len(){
+        return max[1] as usize;
+    }
+    // if there is no space in the highest ranked house, sets the highest ranking to 0.0, and tries again
+    let mut new_ballot = student.clone();
+    new_ballot.ballot[max[1] as usize] = 0.0;
+    return find_max(ballots, schedule, &new_ballot);
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -133,7 +149,7 @@ mod tests {
     fn test_minimax_swap() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut minimax_swap = optimizers::mcmc_polyswap::minimax_swap::Minimax_swap::new(&input_ballot);
+        let mut minimax_swap = optimizers::mcmc::minimax_swap::Minimax_swap::new(&input_ballot);
 
         assert!(optimizers::validate_ballot(&input_ballot, minimax_swap.optimize(0)));
         assert!(optimizers::validate_ballot(&input_ballot, minimax_swap.optimize(1)));
