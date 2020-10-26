@@ -5,6 +5,7 @@ use std::ptr;
 use rand::rngs::StdRng;
 use rand::Rng;
 use array2d::Array2D;
+use optimizers::multi_dist::weight_functions::{student_swap_weight, house_move_weights};
 
 pub struct AllocatedStudent {
     pub name: String,
@@ -20,19 +21,15 @@ pub struct AllocatedStudent {
 impl AllocatedStudent {
     pub fn from_student(student: &Student, location: (usize, usize)) -> Self {
         let s = student.clone();
-        let mut house_preference_dists = vec![WeightedIndex::new(
-            student.ballot.iter().map(|x| {
-                x.powf(20.0)
-            }).collect::<Vec<f64>>()).unwrap(); student.ballot.len()];
+        let dist = WeightedIndex::new(house_move_weights(student)).unwrap();
+        let mut house_preference_dists = vec![dist; student.ballot.len()];
         for i in 0..student.ballot.len() {
             house_preference_dists[i].update_weights(&[(i, &0.0)]).expect("distribution update failed");
         }
         let mut swap_weights = Array2D::filled_with(0.0, student.ballot.len(), student.ballot.len());
         for current_house in 0..student.ballot.len() {
             for swap_house in 0..student.ballot.len() {
-                let mut a = student.ballot[swap_house] - 0.5 * student.ballot[current_house];
-                if a < 0.0 { a = 0.0 }
-                swap_weights[(current_house, swap_house)] = (a + 0.0001).powf(20.0);
+                swap_weights[(current_house, swap_house)] = student_swap_weight(student, swap_house, current_house)
             }
         }
         Self {

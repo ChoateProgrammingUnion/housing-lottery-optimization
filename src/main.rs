@@ -19,7 +19,6 @@ use log::LevelFilter;
 use ballot::Student;
 
 fn main() {
-
     // Change this to set the log level
     // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
     // LevelFilter::Error - Print errors (nonfatal errors that are logged)
@@ -59,7 +58,7 @@ fn main() {
             let mut durations: Vec<Duration> = vec![];
             let mut allocations: Vec<Vec<Vec<Student>>> = vec![];
             for trial_num in (t..trials).step_by(threads) {
-                let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, &mut optimizer);
+                let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, &mut optimizer, t);
                 durations.push(optimized_time);
                 allocations.push(result);
             }
@@ -78,12 +77,12 @@ fn main() {
     crate::log_info!("finished", "output");
 }
 
-fn run_trial<O: Optimizer>(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut O) -> (Duration, Vec<Vec<Student>>) {
-    crate::log_info!(format!("starting trial {} with {} rounds", trial, rounds), "optimizer");
+fn run_trial<O: Optimizer>(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut O, thread_num: usize) -> (Duration, Vec<Vec<Student>>) {
+    crate::log_info!(format!("starting trial {} with {} rounds", trial, rounds), format!("optimizer-{}", thread_num));
     let time_before_optimize = Instant::now();
     let result = optimizer.optimize(rounds);
     let optimized_time = time_before_optimize.elapsed();
-    crate::log_info!(format!("finished trial {} in {} nanos", trial, optimized_time.as_nanos()), "optimizer");
+    crate::log_info!(format!("finished trial {} in {} nanos", trial, optimized_time.as_nanos()), format!("optimizer-{}", thread_num));
     optimizer.reseed(start_seed + (trial + 1) as u64);
     (optimized_time, result)
 }
