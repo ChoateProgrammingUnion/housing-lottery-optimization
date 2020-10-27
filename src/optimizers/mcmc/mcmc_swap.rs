@@ -8,20 +8,18 @@ pub struct MCMCSWAP{
 }
 
 impl MCMCSWAP {
-    #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
         Self {
             ballots: ballots.clone()
         }
     }
-
-    // fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-    //     let mut counter = 0;
-    //     for house in &schedule {
-    //         counter += house.len();
-    //     }
-    //     return (schedule, counter);
-    // }
+    fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
+        let mut counter = 0;
+        for house in &schedule {
+            counter += house.len();
+        }
+        return (schedule, counter);
+    }
 }
 
 impl MCMCOptimizerSWAP for MCMCSWAP{
@@ -63,15 +61,37 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> ProposalSWAP {
         // same as other mcmc code
-        //let size = self.ballots.students.len();
-        //let student_number = self.gen_range(0, size);
-
-        let current_house = self.gen_range(0,schedule.len());
+        let size = self.ballots.students.len();
+        let student_number = self.gen_range(0, size);
+        let mut current_house = 0;
+        let mut current_index = 0;
+        let mut counter = 0;
+        'house: for house in 0..schedule.len(){
+            current_index = 0;
+            current_house = house;
+            for student in 0..schedule[house].len(){
+                if counter as f64 == student_number as f64{
+                    break 'house
+                }
+                current_index += 1;
+                counter += 1;
+            }
+        }
+        
+        //let current_house = self.gen_range(0,schedule.len());
+        /**
+        let student_number2 = self.gen_range(0, size);
+        let mut current_house2 = 0;
+        while true{
+            for house in 0..schedule.len(){
+            }
+        }
+        **/
         let mut current_house2 = self.gen_range(0,schedule.len());
         while current_house2 == current_house{
             current_house2 = self.gen_range(0,schedule.len());
         }
-        let current_index = self.gen_range(0,schedule[current_house].len());
+        //let current_index = self.gen_range(0,schedule[current_house].len());
 
         // if house is not full, no swap (only if there's more capacity than people)
         if self.ballots.houses[current_house2].capacity > schedule[current_house2].len(){
@@ -97,17 +117,17 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 impl Optimizer for MCMCSWAP {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
-        for _round in 0..rounds{
+        for round in 0..rounds{
             schedule = self.step(schedule);
         }
         return schedule;
     }
 
-    fn reseed(&mut self, _new_seed: u64) {
-
-    }
-
     fn objective(&self) -> f64 {
         return 0.0;
+    }
+
+    fn reseed(&mut self, _new_seed: u64) {
+
     }
 }
