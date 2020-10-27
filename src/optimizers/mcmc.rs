@@ -38,6 +38,7 @@ pub(self) trait MCMCOptimizer: Optimizer {
     fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
         let proposed_change: Proposal = self.propose(&schedule);
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
+        // println!("{:?}", acceptance_prob);
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
             let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
@@ -82,10 +83,12 @@ pub(self) trait MCMCOptimizerSWAP: Optimizer {
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
-            let student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
+            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house.0].push(student);
-            schedule[proposed_change.student_location.0].push(student2);
+            if proposed_change.proposed_house.1 != 1000{
+                let mut student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
+                schedule[proposed_change.student_location.0].push(student2);
+            }
         }
 
         return schedule
