@@ -1,6 +1,7 @@
 pub mod mcmc_naive;
 pub mod minimax;
 pub mod mcmc_swap;
+pub mod mcmc_gibbs;
 
 use optimizers::Optimizer;
 use rand::{thread_rng, Rng};
