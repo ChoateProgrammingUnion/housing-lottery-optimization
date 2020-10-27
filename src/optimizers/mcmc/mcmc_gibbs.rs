@@ -32,8 +32,8 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let proposed_house1 = &student.ballot[proposal.proposed_house.0];
 
         //friends
-        let mut friend_weight_current = 0.0;
-        let mut friend_weight_proposed = 0.0;
+        let mut friend_weight_current = 1.0;
+        let mut friend_weight_proposed = 1.0;
         let friends_list = &student.friends;
         for friend in friends_list{
             for i in 0..schedule[proposal.student_location.0].len(){
@@ -62,8 +62,8 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
 
         //Person 2 friends
-        let mut friend_weight_current2 = 0.0;
-        let mut friend_weight_proposed2 = 0.0;
+        let mut friend_weight_current2 = 1.0;
+        let mut friend_weight_proposed2 = 1.0;
         let friends_list2 = &student2.friends;
         for friend in friends_list2{
             for i in 0..schedule[proposal.student_location.0].len(){
