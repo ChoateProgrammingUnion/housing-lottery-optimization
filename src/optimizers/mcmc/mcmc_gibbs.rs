@@ -38,18 +38,18 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         for friend in friends_list{
             for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_current = 1.0;
+                    friend_weight_current = 1.2;
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_proposed = 1.0;
+                    friend_weight_proposed = 1.2;
                 }
             }
         }
         }
         //current number of students is less than overall capacity
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
-            if current_house1 + friend_weight_current <= proposed_house1 + friend_weight_proposed{
+            if current_house1 * friend_weight_current <= proposed_house1 * friend_weight_proposed{
                     return (current_house1/proposed_house1) as f64;
                     //return 1 as f64;
                 }else{
@@ -68,19 +68,19 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         for friend in friends_list2{
             for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_current2 = 1.0;
+                    friend_weight_current2 = 1.2;
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_proposed2 = 1.0;
+                    friend_weight_proposed2 = 1.2;
                 }
             }
         }
         }
         
         if current_house1 + current_house2 <= proposed_house1 + proposed_house2 {
-            return (proposed_house1 + proposed_house2 + friend_weight_proposed + friend_weight_proposed2)/
-            (current_house1 + current_house2 + friend_weight_current + friend_weight_current2) % 1 as f64;
+            return ((proposed_house1 + proposed_house2) * friend_weight_proposed * friend_weight_proposed2)/
+            ((current_house1 + current_house2) * friend_weight_current * friend_weight_current2) % 1 as f64;
             //return 1 as f64;
         } else {
             return 0 as f64;
