@@ -2,6 +2,7 @@ pub mod mcmc_naive;
 pub mod minimax;
 pub mod mcmc_swap;
 pub mod minimax_swap;
+pub mod minimax_friends;
 
 use optimizers::Optimizer;
 use rand::{thread_rng, Rng};
@@ -141,4 +142,30 @@ mod tests {
         assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(1)));
         assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(100)));
     }
+
+    #[test]
+    fn test_minimax_swap() {
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut minimax_swap = optimizers::mcmc::minimax_swap::MinimaxSwap::new(&input_ballot);
+
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_swap.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_swap.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_swap.optimize(100)));
+    }
+
+    #[test]
+    fn test_minimax_friends() {
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut minimax_friends = optimizers::mcmc::minimax_friends::MinimaxFriends::new(&input_ballot);
+
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(100)));
+    }
+
+
 }
+
+
