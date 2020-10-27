@@ -27,6 +27,7 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
         let student2: &Student = &schedule[proposal.proposed_house.0][proposal.proposed_house.1];
 
+        //Person 1 current and proposed houses
         let current_house1 = &student.ballot[proposal.student_location.0];
         let proposed_house1 = &student.ballot[proposal.proposed_house.0];
 
@@ -34,16 +35,19 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
             if current_house1 <= proposed_house1{
                     return (current_house1/proposed_house1) as f64;
+                    //return 1 as f64;
                 }else{
                     return 0 as f64;
                 }
         }
 
+        //Person 2 current and proposed houses
         let current_house2 = &student2.ballot[proposal.proposed_house.0];
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
         
         if current_house1 + current_house2 <= proposed_house1 + proposed_house2 {
             return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
+            //return 1 as f64;
         } else {
             return 0 as f64;
         }
