@@ -3,22 +3,13 @@ pub mod minimax;
 pub mod mcmc_swap;
 
 use optimizers::Optimizer;
-use optimizers::rand::Rng;
-use super::rand::{thread_rng};
+use rand::{thread_rng, Rng};
 use ballot::Student;
 
 #[derive(Debug, Clone)]
 pub(self) struct Proposal {
     pub(self) student_location: (usize, usize),
     pub(self) proposed_house: usize
-}
-
-impl Proposal {
-    fn new(student_location: (usize, usize), proposed_house: usize) -> Self {
-        Self {
-            student_location, proposed_house
-        }
-    }
 }
 
 pub(self) trait MCMCOptimizer: Optimizer {
@@ -47,9 +38,10 @@ pub(self) trait MCMCOptimizer: Optimizer {
     fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
         let proposed_change: Proposal = self.propose(&schedule);
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
+        // println!("{:?}", acceptance_prob);
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house].push(student);
         }
 
@@ -61,14 +53,6 @@ pub(self) trait MCMCOptimizer: Optimizer {
 pub(self) struct ProposalSWAP {
     pub(self) student_location: (usize, usize),
     pub(self) proposed_house: (usize,usize)
-}
-
-impl ProposalSWAP {
-    fn new(student_location: (usize, usize), proposed_house: (usize,usize)) -> Self {
-        Self {
-            student_location, proposed_house
-        }
-    }
 }
 
 pub(self) trait MCMCOptimizerSWAP: Optimizer {
@@ -115,49 +99,26 @@ mod tests {
     use crate::*;
     use ballot::Ballot;
 
-    fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<ballot::Student>>) -> bool{
-        let students_total = ballot.students.len();
-        let mut students = Vec::new();
-
-        assert_eq!(ballot.houses.len(), schedule.len());
-
-        for (count, house) in schedule.iter().enumerate() {
-            assert!(ballot.houses[count].capacity >= house.len());
-            for student in house {
-                students.push(student.clone());
-            }
-        }
-
-        for student in 0..students.len() {
-            let mut student = students.pop().expect("Empty datatype").clone();
-            for other_student in &students {
-                assert_ne!(student.name, other_student.name);
-            }
-        }
-
-        true
-    }
-
     #[test]
     fn test_mcmc_swap() {
         let input_ballot = input::load_input(ballot::normalize);
 
         let mut naive = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&input_ballot);
 
-        assert!(validate_ballot(&input_ballot, naive.optimize(0)));
-        assert!(validate_ballot(&input_ballot, naive.optimize(1)));
-        assert!(validate_ballot(&input_ballot, naive.optimize(100)));
+        assert!(optimizers::validate_ballot(&input_ballot, naive.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, naive.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, naive.optimize(100)));
     }
 
     #[test]
-    fn test_mcmc_naive() {
+    fn test_minimax() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut naive = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&input_ballot);
+        let mut minimax = optimizers::mcmc::minimax::Minimax::new(&input_ballot);
 
-        assert!(validate_ballot(&input_ballot, naive.optimize(0)));
-        assert!(validate_ballot(&input_ballot, naive.optimize(1)));
-        assert!(validate_ballot(&input_ballot, naive.optimize(100)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, minimax.optimize(100)));
     }
 
     #[test]
@@ -166,19 +127,19 @@ mod tests {
 
         let mut dean = optimizers::deans_algorithm::DeansAlgorithm::new(&input_ballot);
 
-        assert!(validate_ballot(&input_ballot, dean.optimize(0)));
-        assert!(validate_ballot(&input_ballot, dean.optimize(1)));
-        assert!(validate_ballot(&input_ballot, dean.optimize(100)));
+        assert!(optimizers::validate_ballot(&input_ballot, dean.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, dean.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, dean.optimize(100)));
     }
 
     #[test]
     fn test_multi_dist(){
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0, 10.0);
+        let mut multi = optimizers::multi_dist::MultiDist::new(&input_ballot, 0);
 
-        assert!(validate_ballot(&input_ballot, multi.optimize(0)));
-        assert!(validate_ballot(&input_ballot, multi.optimize(1)));
-        assert!(validate_ballot(&input_ballot, multi.optimize(100)));
+        assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(0)));
+        assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, multi.optimize(100)));
     }
 }

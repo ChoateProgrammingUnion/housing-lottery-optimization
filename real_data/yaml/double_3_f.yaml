@@ -1,0 +1,546 @@
+ballots:
+- name: Student 0
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 1
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 2
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 3
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 7.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 5.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 4
+  ranking:
+  - name: Archbold
+    weight: 2.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 5
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 6.0
+- name: Student 6
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 7.0
+- name: Student 7
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 6.0
+- name: Student 8
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 5.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 2.0
+- name: Student 9
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 5.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 10
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 11
+  ranking:
+  - name: Archbold
+    weight: 7.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 6.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 12
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 1.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 2.0
+- name: Student 13
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 1.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 2.0
+- name: Student 14
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 5.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 15
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 6.0
+- name: Student 16
+  ranking:
+  - name: Archbold
+    weight: 2.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 17
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 18
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 19
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 6.0
+  - name: Library
+    weight: 7.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 20
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 21
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 22
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 23
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 1.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 5.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 2.0
+- name: Student 24
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 4.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 1.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 25
+  ranking:
+  - name: Archbold
+    weight: 7.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 6.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 26
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 27
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 1.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 28
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 29
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 1.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 1.0
+- name: Student 30
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 6.0
+  - name: Library
+    weight: 7.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 31
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 32
+  ranking:
+  - name: Archbold
+    weight: 4.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 6.0
+  - name: Bernhard
+    weight: 3.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 5.0
+- name: Student 33
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 2.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 4.0
+- name: Student 34
+  ranking:
+  - name: Archbold
+    weight: 5.0
+  - name: Hall
+    weight: 7.0
+  - name: Library
+    weight: 3.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 4.0
+  - name: West Wing
+    weight: 6.0
+- name: Student 35
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 7.0
+  - name: McCook
+    weight: 2.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 36
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 7.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 5.0
+  - name: West Wing
+    weight: 3.0
+- name: Student 37
+  ranking:
+  - name: Archbold
+    weight: 6.0
+  - name: Hall
+    weight: 4.0
+  - name: Library
+    weight: 5.0
+  - name: Bernhard
+    weight: 2.0
+  - name: McCook
+    weight: 3.0
+  - name: West Wing
+    weight: 7.0
+houses:
+- capacity: 7
+  name: Archbold
+- capacity: 7
+  name: Hall
+- capacity: 6
+  name: Library
+- capacity: 6
+  name: Bernhard
+- capacity: 6
+  name: McCook
+- capacity: 6
+  name: West Wing
