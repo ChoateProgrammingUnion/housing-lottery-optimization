@@ -1,5 +1,5 @@
 use ballot::{Ballot, Student};
-use optimizers::mcmc::{MCMCOptimizerSWAP, ProposalSWAP};
+use optimizers::mcmcswap::{MCMCOptimizerSWAP, ProposalSWAP};
 use optimizers::{Optimizer, generate_random_allocation};
 
 #[derive(Clone)]

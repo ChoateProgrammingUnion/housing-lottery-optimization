@@ -8,8 +8,8 @@ use std::collections::HashMap;
 
 pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     // Load file&    
-    let mut input_file = std::fs::File::open("real_data/yaml/single_4_m.yaml").expect("yaml file not found");
-    // let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
+    // let mut input_file = std::fs::File::open("real_data/yaml/single_4_m.yaml").expect("yaml file not found");
+    let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
     let mut input_str: String = String::new();
     input_file.read_to_string(&mut input_str).expect("input file read failed");
     let input = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
@@ -41,6 +41,7 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     for ballot in ballots {
         let student_name = ballot["name"].as_str().expect("student name is not a string");
         let rankings = ballot["ranking"].clone().into_vec().expect("student rankings is not an array");
+        //let friend_group = ballot["friends"].clone().into_vec().expect("student friends is not an array");
 
         let mut student = Student::new(String::from(student_name), num_houses, new_ballot.students.len());
 
