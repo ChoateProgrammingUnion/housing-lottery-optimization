@@ -5,6 +5,10 @@ on: [push]
 jobs:
   codecov-generate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        rust: [nightly]
     steps:
     - uses: hecrj/setup-rust-action@v1
       with:
