@@ -25,15 +25,31 @@ impl MCMCGibbs {
 impl MCMCOptimizerSWAP for MCMCGibbs{
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: ProposalSWAP) -> f64 {
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
-        let student2: &Student = &schedule[proposal.proposed_house.0][proposal.proposed_house.1];
-
+        let student2: &Student = &schedule[proposal.proposed_house.0][proposal.proposed_house.1];  
+        
         //Person 1 current and proposed houses
         let current_house1 = &student.ballot[proposal.student_location.0];
         let proposed_house1 = &student.ballot[proposal.proposed_house.0];
 
+        //friends
+        let mut friend_weight_current = 0.0;
+        let mut friend_weight_proposed = 0.0;
+        let friends_list = &student.friends;
+        for friend in friends_list{
+            for i in 0..schedule[proposal.student_location.0].len(){
+                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                    friend_weight_current = 1.0;
+                }
+            for i in 0..schedule[proposal.proposed_house.0].len(){
+                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                    friend_weight_proposed = 1.0;
+                }
+            }
+        }
+        }
         //current number of students is less than overall capacity
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
-            if current_house1 <= proposed_house1{
+            if current_house1 + friend_weight_current <= proposed_house1 + friend_weight_proposed{
                     return (current_house1/proposed_house1) as f64;
                     //return 1 as f64;
                 }else{
@@ -44,9 +60,27 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         //Person 2 current and proposed houses
         let current_house2 = &student2.ballot[proposal.proposed_house.0];
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
+
+        //Person 2 friends
+        let mut friend_weight_current2 = 0.0;
+        let mut friend_weight_proposed2 = 0.0;
+        let friends_list2 = &student2.friends;
+        for friend in friends_list2{
+            for i in 0..schedule[proposal.student_location.0].len(){
+                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                    friend_weight_current2 = 1.0;
+                }
+            for i in 0..schedule[proposal.proposed_house.0].len(){
+                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                    friend_weight_proposed2 = 1.0;
+                }
+            }
+        }
+        }
         
         if current_house1 + current_house2 <= proposed_house1 + proposed_house2 {
-            return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
+            return (proposed_house1 + proposed_house2 + friend_weight_proposed + friend_weight_proposed2)/
+            (current_house1 + current_house2 + friend_weight_current + friend_weight_current2) % 1 as f64;
             //return 1 as f64;
         } else {
             return 0 as f64;
