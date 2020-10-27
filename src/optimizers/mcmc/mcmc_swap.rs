@@ -34,12 +34,12 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
         for friend in friends{
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                if schedule[proposal.student_location.0][i].name == self.ballots.students[i].name{
                     friend_weight_current += 1.0;
                 }
             }
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                if schedule[proposal.proposed_house.0][i].name == self.ballots.students[i].name{
                     friend_weight_proposed += 1.0;
                 }
             }
@@ -69,12 +69,12 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
         for friend in friends{
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                if schedule[proposal.student_location.0][i].name == self.ballots.students[i].name{
                     friend_weight_proposed2 += 1.0;
                 }
             }
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
+                if schedule[proposal.proposed_house.0][i].name == self.ballots.students[i].name{
                     friend_weight_current2 += 1.0;
                 }
             }
