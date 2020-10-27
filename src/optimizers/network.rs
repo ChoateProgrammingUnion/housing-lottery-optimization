@@ -94,15 +94,17 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
                 }
 
                 // Contraction
-                while let Some((other_edge, other_neighbor)) = walker.next(&contraction_graph) {
-                    let mut preexisting_edge = contraction_graph.find_edge(other_neighbor, neighbor);
-                    let mut max_distance = contraction_graph.edge_weight(edge).unwrap() + current_distance; // max possible distance for an edge
-                    if preexisting_edge.is_some() {
-                        if contraction_graph.edge_weight(preexisting_edge.unwrap()).unwrap() > &max_distance {
+                if counter != 0 {
+                    while let Some((other_edge, other_neighbor)) = walker.next(&contraction_graph) {
+                        let mut preexisting_edge = contraction_graph.find_edge(other_neighbor, neighbor);
+                        let mut max_distance = contraction_graph.edge_weight(edge).unwrap() + current_distance; // max possible distance for an edge
+                        if preexisting_edge.is_some() {
+                            if contraction_graph.edge_weight(preexisting_edge.unwrap()).unwrap() > &max_distance {
+                                contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
+                            }
+                        } else {
                             contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
                         }
-                    } else {
-                        contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
                     }
                 }
             }
@@ -114,6 +116,7 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
                 contraction_graph.remove_node(nearest_neighbor.node);
                 result.push(nearest_neighbor);
             }
+            counter += 1;
         }
         // else {
         //     if result.len() <= k { // debug
