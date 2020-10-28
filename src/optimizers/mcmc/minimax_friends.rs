@@ -1,27 +1,37 @@
 use ballot::{Ballot, Student};
 use optimizers::mcmc::{MCMCOptimizer, Proposal};
 use optimizers::{Optimizer, generate_random_allocation};
+use std::collections::HashMap;
 
 #[derive(Clone)]
 pub struct MinimaxFriends{
-    ballots: Ballot
+    ballots: Ballot,
+    student_locations: HashMap<usize, usize>
 }
 
 impl MinimaxFriends {
     #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
+        let mut student_locations = HashMap::<usize, usize>::new();
         Self {
-            ballots: ballots.clone()
+            ballots: ballots.clone(),
+            student_locations: student_locations
         }
     }
 
-    // fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-    //     let mut counter = 0;
-    //     for house in &schedule {
-    //         counter += house.len();
-    //     }
-    //     return (schedule, counter);
-    // }
+    fn step(&self, mut schedule: Vec<Vec<Student>>, mut student_locations: HashMap<usize,usize>) -> (Vec<Vec<Student>>, HashMap<usize,usize>)  { // steps through one iteration of the MCMC chain
+        let proposed_change: Proposal = self.propose(&schedule);
+        let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
+
+        if self.gen_bool(acceptance_prob) { // proposal accepted
+            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            student_locations.remove(&student.id);
+            student_locations.insert(student.id, proposed_change.proposed_house);
+            schedule[proposed_change.proposed_house].push(student);
+        }
+
+        return (schedule, student_locations);
+    }
 }
 
 impl MCMCOptimizer for MinimaxFriends{
@@ -29,7 +39,7 @@ impl MCMCOptimizer for MinimaxFriends{
     // if current house is worse, chance of staying is current rank^(-2)
     // if current house is better, chance of moving is new rank^(-2)
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
-        let extra_room_constant: usize = 3;
+        let extra_room_constant: usize = 1;
         let power_constant: f64 = -2.0;
         let friends_constant: f64 = 1.1;
         
@@ -47,10 +57,9 @@ impl MCMCOptimizer for MinimaxFriends{
         let mut ballot_with_friends = student.ballot.clone();
         for house in 0..ballot_with_friends.len() {
             for friend in &student.friends {
-                // if self.ballots.students[friend].location == house {
-                    // ballot_with_friend[house] *= friends_constant;
-                // }
-
+                if self.student_locations[friend] == house {
+                    ballot_with_friends[house] *= friends_constant;
+                }
             }
         }
 
@@ -109,14 +118,23 @@ impl MCMCOptimizer for MinimaxFriends{
 
         return proposed_change
     }
-    
+
+
 }
+
 
 impl Optimizer for MinimaxFriends {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
+        for house in 0..schedule.len() {
+            for student in &schedule[house] {
+                self.student_locations.insert(student.id, house);
+            }
+        }
+
         for _round in 0..rounds{
-            schedule = self.step(schedule);
+            let step_returns = self.step(schedule, self.student_locations.clone());
+            schedule = step_returns.0;
         }
         for house in 0..schedule.len(){
             while schedule[house].len()>self.ballots.houses[house].capacity {
@@ -138,6 +156,7 @@ impl Optimizer for MinimaxFriends {
         return 0.0;
     }
 }
+
 
 
 fn find_max(ballots: &Ballot, schedule: &Vec<Vec<Student>>, student: &Student) -> usize {

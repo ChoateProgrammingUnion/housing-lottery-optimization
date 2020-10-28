@@ -15,13 +15,18 @@ impl Minimax {
         }
     }
 
-    // fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-    //     let mut counter = 0;
-    //     for house in &schedule {
-    //         counter += house.len();
-    //     }
-    //     return (schedule, counter);
-    // }
+    fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
+        let proposed_change: Proposal = self.propose(&schedule);
+        let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
+        // println!("{:?}", acceptance_prob);
+
+        if self.gen_bool(acceptance_prob) { // proposal accepted
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            schedule[proposed_change.proposed_house].push(student);
+        }
+
+        return schedule
+    }
 }
 
 impl MCMCOptimizer for Minimax{
@@ -98,8 +103,7 @@ impl MCMCOptimizer for Minimax{
         };
 
         return proposed_change
-    }
-    
+    }    
 }
 
 impl Optimizer for Minimax {

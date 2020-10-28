@@ -14,14 +14,6 @@ impl MCMCSWAP {
             ballots: ballots.clone()
         }
     }
-
-    // fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-    //     let mut counter = 0;
-    //     for house in &schedule {
-    //         counter += house.len();
-    //     }
-    //     return (schedule, counter);
-    // }
 }
 
 impl MCMCOptimizerSWAP for MCMCSWAP{
