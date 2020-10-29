@@ -34,7 +34,7 @@ impl MCMCOptimizer for Minimax{
     // if current house is worse, chance of staying is current rank^(-2)
     // if current house is better, chance of moving is new rank^(-2)
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
-        let extra_room_constant: usize = 3;
+        let extra_room_constant: usize = 1;
         let power_constant: f64 = -2.0;
         
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
