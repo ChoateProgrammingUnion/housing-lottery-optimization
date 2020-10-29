@@ -69,7 +69,7 @@ mod tests {
     fn test_gibbs() {
         let input_ballot = input::load_input(ballot::normalize);
 
-        let mut minimax = optimizers::mcmc::mcmc_gibbs::MCMCGibbs::new(&input_ballot);
+        let mut minimax = optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(&input_ballot);
 
         assert!(optimizers::validate_ballot(&input_ballot, minimax.optimize(0)));
         assert!(optimizers::validate_ballot(&input_ballot, minimax.optimize(1)));
