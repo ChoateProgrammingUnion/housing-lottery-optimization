@@ -42,8 +42,10 @@ fn main() {
     // let optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     // let optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
     // let optimizer = optimizers::network::NetworkOptimizer::new(&ballot, 10.0); // use with normalize or scale; expects 0-1 range
-    //let optimizer = optimizers::mcmc::minimax::Minimax::new(&ballot);
-    let optimizer = optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(&ballot);
+    // let optimizer = optimizers::mcmc::minimax_swap::Minimax_swap::new(&ballot);
+    let optimizer = optimizers::mcmc::minimax_friends::MinimaxFriends::new(&ballot);
+    // let optimizer = optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(&ballot);
+
 
     let start_seed: u64 = 0;
     let trials: usize = 100;
