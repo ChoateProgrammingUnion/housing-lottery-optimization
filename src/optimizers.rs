@@ -1,7 +1,6 @@
 pub mod identity;
 pub mod mcmc;
 pub mod mcmcswap;
-pub mod mcmc_polyswap;
 pub mod deans_algorithm;
 pub mod multi_dist;
 pub mod network;
