@@ -125,7 +125,6 @@ impl Optimizer for Minimax {
     }
 
     fn reseed(&mut self, _new_seed: u64) {
-
     }
 
     fn objective(&self) -> f64 {
