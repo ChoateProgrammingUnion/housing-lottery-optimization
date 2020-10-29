@@ -37,7 +37,7 @@ fn main() {
     crate::log_info!("successfully processed", "input");
 
     // let optimizer = optimizers::multi_dist::MultiDist::new(&ballot, 0);
-    // let optimizer = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&ballot);
+    // let optimizer = optimizers::mcmcswap::mcmc_swap::MCMCSWAP::new(&ballot)
     // let optimizer = optimizers::mcmc::minimax::Minimax::new(&ballot);
     // let optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     // let optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
