@@ -94,6 +94,10 @@ fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimi
         return Box::new(optimizers::deans_algorithm::DeansAlgorithm::new(ballot));
     } else if trial_name == "network" {
         return Box::new(optimizers::network::NetworkOptimizer::new(ballot, 10.0, 10.0)); // use with normalize or scale; expects 0-1 range
+    } else if trial_name == "swap"{
+        return Box::new(optimizers::mcmcswap::mcmc_swap::MCMCSWAP::new(ballot));
+    } else if trial_name == "gibb"{
+        return Box::new(optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(ballot));
     } else {
         return Box::new(optimizers::mcmc::mcmc_naive::MCMCNaive::new(ballot));
     }

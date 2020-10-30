@@ -1,3 +1,4 @@
 run:
   - multi
   - network
+  - swap
