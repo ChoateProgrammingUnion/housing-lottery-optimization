@@ -4,3 +4,4 @@ run:
   - swap
   - minimax
   - minimax-friends
+  - deans
