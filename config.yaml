@@ -2,3 +2,5 @@ run:
   - multi
   - network
   - swap
+  - minimax
+  - minimax-friends
