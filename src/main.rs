@@ -86,8 +86,8 @@ fn main() {
 fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimizer>{
     if trial_name == "multi" {
         return Box::new(optimizers::multi_dist::MultiDist::new(ballot, 0));
-    } else if trial_name == "swap" {
-        return Box::new(optimizers::mcmc::mcmc_swap::MCMCSWAP::new(ballot));
+    } else if trial_name == "minimax-friends" {
+        return Box::new(optimizers::mcmc::minimax_friends::MinimaxFriends::new(ballot));
     } else if trial_name ==  "minimax" {
         return Box::new(optimizers::mcmc::minimax::Minimax::new(ballot));
     } else if trial_name == "deans" {
