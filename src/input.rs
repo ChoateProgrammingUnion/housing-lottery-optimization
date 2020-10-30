@@ -6,6 +6,30 @@ use crate::ballot::{Ballot, Student, House};
 use std::io::Read;
 use std::collections::HashMap;
 
+pub fn load_trials() -> Vec<String> {
+    let mut trials = Vec::<String>::new();
+    let mut input_str: String = String::new();
+
+    let mut trial_file = std::fs::File::open("config.yaml").expect("yaml file not found");
+    trial_file.read_to_string(&mut input_str).expect("input file read failed");
+    let trial_runs = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
+
+    // let trials_yaml = trial_runs[0]["run"].clone().into_str().expect("trial is not an string");
+    println!("{:?}", input_str);
+    println!("{:?}", trial_runs[0]["run"].clone());
+
+    for trial in trial_runs[0]["run"].clone() {
+        println!("{:?}", trial);
+    // for trial in trial_runs[0]["run"].clone() {
+        // trials.push(trial.into_string());
+        crate::log_debug!(format!("trial {} ran", trial.as_str().unwrap()), "input");
+        trials.push(trial.into_string().unwrap());
+    }
+    println!("{:?}", trials);
+
+    return trials
+}
+
 pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     // Load file&    
     let mut input_file = std::fs::File::open("real_data/yaml/single_4_m.yaml").expect("yaml file not found");

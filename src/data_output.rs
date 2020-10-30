@@ -60,11 +60,15 @@ fn average_data(data: &Vec<TrialData>) -> TrialData {
     TrialData::new(average_choice_nums, average_run_time)
 }
 
-pub fn write_output(allocations: &Vec<Vec<Vec<Student>>>, ballot: &Ballot, run_times: &Vec<Duration>) {
+pub fn write_output(allocations: &Vec<Vec<Vec<Student>>>, ballot: &Ballot, run_times: &Vec<Duration>, data_file: &mut File, algo: String) {
     assert_eq!(allocations.len(), run_times.len());
 
-    // Open output file
-    let mut data_file = File::create("data_output.yaml").expect("file creation failed");
+    // // Open output file
+    // if data_file_option.is_none() {
+    //     let mut data_file = File::create("data_output.yaml").expect("file creation failed");
+    // } else {
+    //     let mut data_file = data_file_option.unwrap();
+    // }
 
     // Get data
     let mut data: Vec<TrialData> = vec![];
@@ -79,11 +83,11 @@ pub fn write_output(allocations: &Vec<Vec<Vec<Student>>>, ballot: &Ballot, run_t
     let mut yaml_string = format!("run_time_nanos: {}\n", average_data.run_time_nanos);
 
     // Write Choice Numbers
-    yaml_string += "\nchoice_distribution:\n";
+    yaml_string += "    choice_distribution:\n";
     for i in 0..average_data.choice_nums.len() {
-        yaml_string += &*format!("  - {}: {}\n", i + 1, average_data.choice_nums[i]);
+        yaml_string += &*format!("      - {}: {}\n", i + 1, average_data.choice_nums[i]);
     }
 
-    data_file.write(yaml_string.as_ref()).unwrap();
+    data_file.write(format!("\n  - name: {}\n    {}", algo, yaml_string).as_ref()).unwrap();
 }
 
