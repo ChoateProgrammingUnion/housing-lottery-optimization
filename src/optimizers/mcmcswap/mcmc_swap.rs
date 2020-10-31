@@ -1,5 +1,5 @@
 use ballot::{Ballot, Student};
-use optimizers::mcmc::{MCMCOptimizerSWAP, ProposalSWAP};
+use optimizers::mcmcswap::{MCMCOptimizerSWAP, ProposalSWAP};
 use optimizers::{Optimizer, generate_random_allocation};
 
 #[derive(Clone)]
@@ -13,33 +13,33 @@ impl MCMCSWAP {
             ballots: ballots.clone()
         }
     }
-    fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
-        let mut counter = 0;
-        for house in &schedule {
-            counter += house.len();
-        }
-        return (schedule, counter);
-    }
 }
 
 impl MCMCOptimizerSWAP for MCMCSWAP{
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: ProposalSWAP) -> f64 {
+        // variables with 1 or nothing refers to the first student
+        // variable with 2 refers to the second student 
+
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
+
         let current_house1 = &student.ballot[proposal.student_location.0];
         let proposed_house1 = &student.ballot[proposal.proposed_house.0];
+
+        let friends = &student.friends;
         let mut friend_weight_current = 0.0;
         let mut friend_weight_proposed = 0.0;
 
-        let friends = &student.friends;
-
         for friend in friends{
+            let name = self.ballots.students[*friend].name.clone();
+            // find friends in current house
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == self.ballots.students[i].name{
+                if schedule[proposal.student_location.0][i].name == name{
                     friend_weight_current += 1.0;
                 }
             }
+            // find friends in proposed house
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == self.ballots.students[i].name{
+                if schedule[proposal.proposed_house.0][i].name == name{
                     friend_weight_proposed += 1.0;
                 }
             }
@@ -50,11 +50,12 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         
         // if proposal function found a empty house (only if there's more capacity than people)
         if proposal.proposed_house.1 == 1000{
-            println!("happened");
+            // metropolis hasting algorithm
             if total_weight_current <= total_weight_proposed{
                 return 1 as f64;
             }else{
                 return 0 as f64;
+                // return total_weight_proposed / total_weight_current as f64;
             }
         }
 
@@ -67,14 +68,16 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         let mut friend_weight_current2 = 0.0;
         let mut friend_weight_proposed2 = 0.0;
 
+        // same like the friend checking for first student
         for friend in friends{
+            let name2 = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == self.ballots.students[i].name{
+                if schedule[proposal.student_location.0][i].name == name2{
                     friend_weight_proposed2 += 1.0;
                 }
             }
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == self.ballots.students[i].name{
+                if schedule[proposal.proposed_house.0][i].name == name2{
                     friend_weight_current2 += 1.0;
                 }
             }
@@ -88,6 +91,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
             return 1 as f64;
         } else {
             return 0 as f64
+            // return (total_weight_proposed + total_weight_proposed2) / (total_weight_current + total_weight_current2) as f64
         }
     }
 
@@ -110,15 +114,15 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
             }
         }
         
-        //let current_house = self.gen_range(0,schedule.len());
+
 
         let mut current_house2 = self.gen_range(0,schedule.len());
         while current_house2 == current_house{
             current_house2 = self.gen_range(0,schedule.len());
         }
-        //let current_index = self.gen_range(0,schedule[current_house].len());
 
-        // if house is not full, no swap (only if there's more capacity than people)
+
+        // if house is not full, no swap (this only happens if there's more capacity than people)
         if self.ballots.houses[current_house2].capacity > schedule[current_house2].len(){
             let proposed_change = ProposalSWAP{
                 student_location: (current_house, current_index),
