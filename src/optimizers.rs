@@ -34,8 +34,9 @@ pub fn generate_random_allocation(ballot: &Ballot, seed: u64) -> Vec<Vec<Student
     schedule
 }
 
+#[allow(dead_code)]
 fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<Student>>) -> bool{
-    let students_total = ballot.students.len();
+    // let students_total = ballot.students.len();
     let mut students = Vec::new();
 
     assert_eq!(ballot.houses.len(), schedule.len());
@@ -47,8 +48,8 @@ fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<Student>>) -> bool{
         }
     }
 
-    for student in 0..students.len() {
-        let mut student = students.pop().expect("Empty datatype").clone();
+    for _ in 0..students.len() {
+        let student = students.pop().expect("Empty datatype").clone();
         for other_student in &students {
             assert_ne!(student.name, other_student.name);
         }

@@ -36,15 +36,15 @@ fn main() {
     crate::log_info!("successfully processed", "input");
 
     // let optimizer = optimizers::multi_dist::MultiDist::new(&ballot, 0);
-    let optimizer = optimizers::swap_naive::SwapNaive::new(&ballot, 0);
+    let optimizer = optimizers::swap_naive::SwapNaive::new(&ballot, 10);
     // let optimizer = optimizers::mcmc::mcmc_swap::MCMCSWAP::new(&ballot);
     // let optimizer = optimizers::mcmc::minimax::Minimax::new(&ballot);
     // let optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     // let optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
-    // let optimizer = optimizers::network::NetworkOptimizer::new(&ballot, 10.0); // use with normalize or scale; expects 0-1 range
+    // let optimizer = optimizers::network::NetworkOptimizer::new(&ballot, 10.0, 10.0); // use with normalize or scale; expects 0-1 range
 
     let start_seed: u64 = 0;
-    let trials: usize = 100;
+    let trials: usize = 1;
     let rounds: usize = 10000;
     let threads: usize = 8;
     let mut results: Vec<Vec<Vec<Student>>> = vec![];
