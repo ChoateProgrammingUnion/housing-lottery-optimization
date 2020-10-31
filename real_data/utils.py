@@ -39,6 +39,23 @@ class House:
         return o.name == self.name
 
 
+house_name_map: Dict[str, str] = {
+    "arch": "Archbold",
+    "hall": "Hall",
+    "lbry": "Library",
+    "bernhs": "Bernhard",
+    "mccook": "McCook",
+    "wwing": "West Wing",
+    "chaphs": "Chapel",
+    "ck": "CK",
+    "tennhs": "Tenney",
+    "logan": "Logan",
+    "spencr": "Spencer",
+    "quan": "Quantrell",
+    "hill": "Hill",
+}
+
+
 house_map: Dict[Tuple[str, str, str], Dict[str, Tuple[str, int]]] = {
     ("double", "3", "f"): {
         "arch": ("Archbold", 10),

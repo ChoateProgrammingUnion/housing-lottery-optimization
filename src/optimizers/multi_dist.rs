@@ -4,8 +4,10 @@ use optimizers::multi_dist::distribution::{AllocatedStudent, DistAllocations, Di
 
 use rand::{Rng, SeedableRng};
 use rand::rngs::StdRng;
+use optimizers::multi_dist::weight_functions::student_pick_weight;
 
 mod distribution;
+mod weight_functions;
 
 #[derive(Clone)]
 pub struct MultiDist {
@@ -79,11 +81,6 @@ impl MultiDist {
 
         (house_index_2, student_index_2)
     }
-
-    /* Weight Function */
-    fn student_inverse_weight(student: &AllocatedStudent) -> f64 {
-        1.0 - student.ballot[student.location.0] / student.ballot_sum
-    }
 }
 
 impl Optimizer for MultiDist {
@@ -97,7 +94,7 @@ impl Optimizer for MultiDist {
                 AllocatedStudent::from_student(x.1, (index, x.0))
             }).collect();
             weighted_houses.push(DistHouse::new(allocated_students, |_, student| {
-                Self::student_inverse_weight(student)
+                student_pick_weight(student)
             }))
         }
 

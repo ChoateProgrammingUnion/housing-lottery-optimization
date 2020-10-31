@@ -21,7 +21,6 @@ use log::LevelFilter;
 use ballot::Student;
 
 fn main() {
-
     // Change this to set the log level
     // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
     // LevelFilter::Error - Print errors (nonfatal errors that are logged)
@@ -40,13 +39,13 @@ fn main() {
 
     let trials = input::load_trials();
     let mut data_file = File::create("data_output.yaml").expect("file creation failed");
-    data_file.write("\nalgo:".as_ref());
+    data_file.write("\nalgo:".as_ref()).expect("unable to write to file");
 
     for trial in trials {
         let start_seed: u64 = 0;
-        let trials: usize = 100;
+        let trials: usize = 20;
         let rounds: usize = 10000;
-        let threads: usize = 8;
+        let threads: usize = 10;
         let mut results: Vec<Vec<Vec<Student>>> = vec![];
         let mut times: Vec<Duration> = vec![];
         let write_first_allocation_vector = false;
@@ -63,7 +62,7 @@ fn main() {
                 let mut durations: Vec<Duration> = vec![];
                 let mut allocations: Vec<Vec<Vec<Student>>> = vec![];
                 for trial_num in (t..trials).step_by(threads) {
-                    let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, &mut optimizer);
+                    let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, &mut optimizer, t);
                     durations.push(optimized_time);
                     allocations.push(result);
                 }
@@ -83,49 +82,26 @@ fn main() {
     }
 }
 
-fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimizer>{
-    if trial_name == "multi" {
-        return Box::new(optimizers::multi_dist::MultiDist::new(ballot, 0));
-    } else if trial_name == "minimax-friends" {
-        return Box::new(optimizers::mcmc::minimax_friends::MinimaxFriends::new(ballot));
-    } else if trial_name ==  "minimax" {
-        return Box::new(optimizers::mcmc::minimax::Minimax::new(ballot));
-    } else if trial_name == "deans" {
-        return Box::new(optimizers::deans_algorithm::DeansAlgorithm::new(ballot));
-    } else if trial_name == "network" {
-        return Box::new(optimizers::network::NetworkOptimizer::new(ballot, 10.0, 10.0)); // use with normalize or scale; expects 0-1 range
-    } else if trial_name == "swap"{
-        return Box::new(optimizers::mcmcswap::mcmc_swap::MCMCSWAP::new(ballot));
-    } else if trial_name == "gibb"{
-        return Box::new(optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(ballot));
-    } else {
-        return Box::new(optimizers::mcmc::mcmc_naive::MCMCNaive::new(ballot));
+fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimizer> {
+    match trial_name {
+        "swap-naive" => { Box::new(optimizers::swap_naive::SwapNaive::new(ballot, 0)) }
+        "multi" => { Box::new(optimizers::multi_dist::MultiDist::new(ballot, 0)) }
+        "minimax-friends" => { Box::new(optimizers::mcmc::minimax_friends::MinimaxFriends::new(ballot)) }
+        "minimax" => { Box::new(optimizers::mcmc::minimax::Minimax::new(ballot)) }
+        "deans" => { Box::new(optimizers::deans_algorithm::DeansAlgorithm::new(ballot)) }
+        "network" => { Box::new(optimizers::network::NetworkOptimizer::new(ballot, 10.0, 10.0)) }
+        "swap" => { Box::new(optimizers::mcmcswap::mcmc_swap::MCMCSWAP::new(ballot)) }
+        "gibb" => { Box::new(optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(ballot)) }
+        _ => { Box::new(optimizers::mcmc::mcmc_naive::MCMCNaive::new(ballot)) }
     }
 }
 
-// fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Option<dyn Optimizer>{
-//     if trial_name == "multi" {
-//         return Some(optimizers::multi_dist::MultiDist::new(ballot, 0));
-//     } else if trial_name == "swap" {
-//         return Some(optimizers::mcmc::mcmc_swap::MCMCSWAP::new(ballot));
-//     } else if trial_name ==  "minimax" {
-//         return Some(optimizers::mcmc::minimax::Minimax::new(ballot));
-//     } else if trial_name == "deans" {
-//         return Some(optimizers::deans_algorithm::DeansAlgorithm::new(ballot));
-//     } else if trial_name == "network" {
-//         return Some(optimizers::network::NetworkOptimizer::new(ballot, 10.0, 10.0)); // use with normalize or scale; expects 0-1 range
-//     } else {
-//         return Some(optimizers::mcmc::mcmc_naive::MCMCNaive::new(ballot));
-//     }
-// }
-
-// fn run_trial<O: Optimizer>(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut O) -> (Duration, Vec<Vec<Student>>) {
-fn run_trial(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut Box<dyn Optimizer>) -> (Duration, Vec<Vec<Student>>) {
-    crate::log_info!(format!("starting trial {} with {} rounds", trial, rounds), "optimizer");
+fn run_trial(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut Box<dyn Optimizer>, thread_num: usize) -> (Duration, Vec<Vec<Student>>) {
+    crate::log_info!(format!("starting trial {} with {} rounds", trial, rounds), format!("optimizer-{}", thread_num));
     let time_before_optimize = Instant::now();
     let result = optimizer.optimize(rounds);
     let optimized_time = time_before_optimize.elapsed();
-    crate::log_info!(format!("finished trial {} in {} nanos", trial, optimized_time.as_nanos()), "optimizer");
+    crate::log_info!(format!("finished trial {} in {} nanos", trial, optimized_time.as_nanos()), format!("optimizer-{}", thread_num));
     optimizer.reseed(start_seed + (trial + 1) as u64);
     (optimized_time, result)
 }
