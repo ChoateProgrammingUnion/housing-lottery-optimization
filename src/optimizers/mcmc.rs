@@ -107,7 +107,6 @@ mod tests {
         assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(1)));
         assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(100)));
     }
-}
 
     #[test]
     fn test_minimax_swap() {
@@ -130,8 +129,4 @@ mod tests {
         assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(1)));
         assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(100)));
     }
-
-
 }
-
-
