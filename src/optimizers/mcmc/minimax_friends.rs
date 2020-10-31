@@ -12,7 +12,7 @@ pub struct MinimaxFriends{
 impl MinimaxFriends {
     #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
-        let mut student_locations = HashMap::<usize, usize>::new();
+        let student_locations = HashMap::<usize, usize>::new();
         Self {
             ballots: ballots.clone(),
             student_locations: student_locations
@@ -24,7 +24,7 @@ impl MinimaxFriends {
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             student_locations.remove(&student.id);
             student_locations.insert(student.id, proposed_change.proposed_house);
             schedule[proposed_change.proposed_house].push(student);

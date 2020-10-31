@@ -8,11 +8,13 @@ pub struct MinimaxSwap{
 }
 
 impl MinimaxSwap {
+    #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Self {
         Self {
             ballots: ballots.clone()
         }
     }
+    #[allow(dead_code)]
     fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
         let mut counter = 0;
         for house in &schedule {
@@ -108,7 +110,7 @@ impl MCMCOptimizer for MinimaxSwap{
 impl Optimizer for MinimaxSwap {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
-        for round in 0..rounds{
+        for _ in 0..rounds{
             schedule = self.step(schedule);
             for house in 0..schedule.len(){
                 while schedule[house].len()>self.ballots.houses[house].capacity {
@@ -126,7 +128,7 @@ impl Optimizer for MinimaxSwap {
     fn objective(&self) -> f64 {
         return 0.0;
     }
-    fn reseed(&mut self, new_seed: u64) {}
+    fn reseed(&mut self, _new_seed: u64) {}
 }
 
 fn find_max(ballots: &Ballot, schedule: &Vec<Vec<Student>>, student: &Student) -> usize {

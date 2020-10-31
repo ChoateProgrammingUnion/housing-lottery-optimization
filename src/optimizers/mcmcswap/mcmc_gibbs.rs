@@ -13,6 +13,7 @@ impl MCMCGibbs {
             ballots: ballots.clone()
         }
     }
+    #[allow(dead_code)]
     fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
         let mut counter = 0;
         for house in &schedule {
@@ -109,7 +110,7 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
 impl Optimizer for MCMCGibbs {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
-        for round in 0..rounds{
+        for _round in 0..rounds{
             schedule = self.step(schedule);
         }
         return schedule;

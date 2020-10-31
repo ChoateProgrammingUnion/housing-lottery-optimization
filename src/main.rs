@@ -21,7 +21,6 @@ use log::LevelFilter;
 use ballot::Student;
 
 fn main() {
-
     // Change this to set the log level
     // LevelFilter::Off   - No logging (USE THIS FOR BENCHMARKS AS LOGS TAKE TIME TO PRINT)
     // LevelFilter::Error - Print errors (nonfatal errors that are logged)
@@ -40,12 +39,12 @@ fn main() {
 
     let trials = input::load_trials();
     let mut data_file = File::create("data_output.yaml").expect("file creation failed");
-    data_file.write("\nalgo:".as_ref());
+    data_file.write("\nalgo:".as_ref()).expect("unable to write to file");
 
     for trial in trials {
         let start_seed: u64 = 0;
         let trials: usize = 8;
-        let rounds: usize = 1000;
+        let rounds: usize = 10000;
         let threads: usize = 8;
         let mut results: Vec<Vec<Vec<Student>>> = vec![];
         let mut times: Vec<Duration> = vec![];
