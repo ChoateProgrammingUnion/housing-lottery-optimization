@@ -44,8 +44,8 @@ fn main() {
 
     for trial in trials {
         let start_seed: u64 = 0;
-        let trials: usize = 100;
-        let rounds: usize = 10000;
+        let trials: usize = 8;
+        let rounds: usize = 1000;
         let threads: usize = 8;
         let mut results: Vec<Vec<Vec<Student>>> = vec![];
         let mut times: Vec<Duration> = vec![];
@@ -63,7 +63,7 @@ fn main() {
                 let mut durations: Vec<Duration> = vec![];
                 let mut allocations: Vec<Vec<Vec<Student>>> = vec![];
                 for trial_num in (t..trials).step_by(threads) {
-                    let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, optimizer.as_mut(), t);
+                    let (optimized_time, result) = run_trial(trial_num, rounds, start_seed, &mut optimizer, t);
                     durations.push(optimized_time);
                     allocations.push(result);
                 }
@@ -85,6 +85,7 @@ fn main() {
 
 fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimizer> {
     match trial_name {
+        "swap-naive" => { Box::new(optimizers::swap_naive::SwapNaive::new(ballot, 0)) }
         "multi" => { Box::new(optimizers::multi_dist::MultiDist::new(ballot, 0)) }
         "minimax-friends" => { Box::new(optimizers::mcmc::minimax_friends::MinimaxFriends::new(ballot)) }
         "minimax" => { Box::new(optimizers::mcmc::minimax::Minimax::new(ballot)) }
@@ -96,7 +97,7 @@ fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimi
     }
 }
 
-fn run_trial<O: Optimizer + ?Sized>(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut O, thread_num: usize) -> (Duration, Vec<Vec<Student>>) {
+fn run_trial(trial: usize, rounds: usize, start_seed: u64, optimizer: &mut Box<dyn Optimizer>, thread_num: usize) -> (Duration, Vec<Vec<Student>>) {
     crate::log_info!(format!("starting trial {} with {} rounds", trial, rounds), format!("optimizer-{}", thread_num));
     let time_before_optimize = Instant::now();
     let result = optimizer.optimize(rounds);

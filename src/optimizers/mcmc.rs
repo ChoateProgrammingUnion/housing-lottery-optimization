@@ -103,8 +103,8 @@ mod tests {
 
         let mut swap_naive = optimizers::swap_naive::SwapNaive::new(&input_ballot, 0);
 
-        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(0)));
         assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(10)));
         assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(100)));
     }
 
