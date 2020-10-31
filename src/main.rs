@@ -43,9 +43,9 @@ fn main() {
 
     for trial in trials {
         let start_seed: u64 = 0;
-        let trials: usize = 8;
+        let trials: usize = 20;
         let rounds: usize = 10000;
-        let threads: usize = 8;
+        let threads: usize = 10;
         let mut results: Vec<Vec<Vec<Student>>> = vec![];
         let mut times: Vec<Duration> = vec![];
         let write_first_allocation_vector = false;
