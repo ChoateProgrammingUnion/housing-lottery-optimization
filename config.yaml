@@ -1,4 +1,9 @@
 run:
+  - swap-naive
   - multi
   - network
   - swap
+  - minimax
+  - minimax-friends
+  - deans
+  - random

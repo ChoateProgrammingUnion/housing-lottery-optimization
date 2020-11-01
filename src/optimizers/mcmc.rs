@@ -98,6 +98,17 @@ mod tests {
     }
 
     #[test]
+    fn test_swap_naive(){
+        let input_ballot = input::load_input(ballot::normalize);
+
+        let mut swap_naive = optimizers::swap_naive::SwapNaive::new(&input_ballot, 0);
+
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(1)));
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(10)));
+        assert!(optimizers::validate_ballot(&input_ballot, swap_naive.optimize(100)));
+    }
+
+    #[test]
     fn test_minimax_swap() {
         let input_ballot = input::load_input(ballot::normalize);
 
@@ -118,8 +129,4 @@ mod tests {
         assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(1)));
         assert!(optimizers::validate_ballot(&input_ballot, minimax_friends.optimize(100)));
     }
-
-
 }
-
-

@@ -1,10 +1,11 @@
 import csv
-from collections import defaultdict, OrderedDict
-from typing import List, Set, Dict, Tuple
+from collections import defaultdict
+from typing import List, Dict, Tuple
 
 import yaml
 
-from real_data.utils import house_map, House, LotteryStudent, Student
+from real_data.utils import house_name_map, House, LotteryStudent, Student
+from real_data.capacities import capacities
 
 header = None  # ['Form', 'M/F', 'B/D', 'House', 'Room/Bed', 'Rm Type', '1', '2', '3', '4', '5', '6', '']
 
@@ -12,7 +13,7 @@ header = None  # ['Form', 'M/F', 'B/D', 'House', 'Room/Bed', 'Rm Type', '1', '2'
 houses: Dict[Tuple[str, str, str], List[House]] = defaultdict(lambda: [])  # (form,gender) -> [houses]
 students: List[Student] = []
 
-with open('data.csv', newline='') as csv_file:
+with open('preferences.csv', newline='') as csv_file:
     reader = csv.reader(csv_file, delimiter=',', quotechar='"')
     for row in reader:
         if header is None:
@@ -23,6 +24,7 @@ with open('data.csv', newline='') as csv_file:
         if form not in ["3", "4"]:
             print("row not valid (form):", str(row))
             continue
+        form = {"3": "4", "4": "5"}[form]
 
         gender = row[1].lower()
         if gender not in ["m", "f"]:
@@ -39,7 +41,8 @@ with open('data.csv', newline='') as csv_file:
             house_raw_name = row[6 + i].lower()
             if house_raw_name == '':
                 break
-            house_object = House.from_tuple(house_map[room_type, form, gender][house_raw_name])
+            house_name = house_name_map[house_raw_name]
+            house_object = House(house_name, capacities[gender, form, room_type][house_name])
             if house_object not in houses[form, gender, room_type]:
                 houses[form, gender, room_type].append(house_object)
             ballot.append(houses[form, gender, room_type].index(house_object))

@@ -19,7 +19,7 @@ use std::io::Write;
 #[macro_export]
 macro_rules! log_error {
     ($text:expr) => {
-        log::error!($text)
+        log::error!("{}", $text)
     };
     ($text:expr, $header:expr) => {
         log::error!("{}[{}]{} {}", "\x1B[93m", $header, "\x1B[0m", $text)
@@ -29,7 +29,7 @@ macro_rules! log_error {
 #[macro_export]
 macro_rules! log_info {
     ($text:expr) => {
-        log::info!($text)
+        log::info!("{}", $text)
     };
     ($text:expr, $header:expr) => {
         log::info!("{}[{}]{} {}", "\x1B[93m", $header, "\x1B[0m", $text)
@@ -39,7 +39,7 @@ macro_rules! log_info {
 #[macro_export]
 macro_rules! log_debug {
     ($text:expr) => {
-        log::debug!($text)
+        log::debug!("{}", $text)
     };
     ($text:expr, $header:expr) => {
         log::debug!("{}[{}]{} {}", "\x1B[93m", $header, "\x1B[0m", $text)
@@ -49,7 +49,7 @@ macro_rules! log_debug {
 #[macro_export]
 macro_rules! log_trace {
     ($text:expr) => {
-        log::trace!($text)
+        log::trace!("{}", $text)
     };
     ($text:expr, $header:expr) => {
         log::trace!("{}[{}]{} {}", "\x1B[93m", $header, "\x1B[0m", $text)

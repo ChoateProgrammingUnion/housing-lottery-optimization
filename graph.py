@@ -1,34 +1,78 @@
-import numpy as np
+import sys
+
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 import yaml
 
+"""
+Graphs and displays the choice and friend distributions in data_output.yaml in a bar chart.
 
-filename = "data_output.yaml"
-color = ['b', 'g', 'r', 'y']
-with open(filename, "r") as f:
-    file = yaml.load(f, Loader=yaml.FullLoader)
-
-
-def algorithm(house,n_house):
-    algorithmz = []
-    for i in range(0,n_house):
-        algorithmz.append(file['choice_distribution' + str(house)][i][i+1])
-    return algorithmz
+Usage:
+    python3 graph.py [show]
+"""
 
 
-def graph_create(n_house):
-    fig, ax = plt.subplots()
-    index = np.arange(n_house)
-    bar_width = 0.2
-    
-    for i in range(1,n_house):
-        bars = plt.bar(index + (i-1)*bar_width, algorithm(i,n_house), bar_width, color = color[(i-1)%4], label = str(1*10**(i-1)) + " Trials")
+def load_data(filename: str) -> dict:
+    """
+    Loads data from YAML file
 
-    plt.ylabel('People')
-    plt.title('Housing Allocation')
-    plt.xticks(index + bar_width, ("Choice "+str(i+1) for i in range(n_house)))
-    plt.legend()
-    plt.show()
+    Args:
+        filename (str): The YAML file to read from.
+
+    Returns:
+        The data in the YAML file, parsed using pyyaml's defaults.
+    """
+    with open(filename) as f:
+        data = yaml.safe_load(f)
+
+    return data
 
 
-graph_create(len(file['choice_distribution1']))
+def fetch_distribution(
+    data: dict, distribution_key: str, independent_label: str
+) -> pd.DataFrame:
+    """
+    Fetches distribution from nested dictionary format.
+
+    Args:
+        data (dict): The data, as a dictionary, directly read from the data output file.
+        distribution_key (str): The name of the distribution to fetch from the dictionary.
+        independent_label (str): The name/label of the independent variable. The dependent variable always represents frequency.
+
+    Returns:
+        A Pandas DataFrame of the distribution, ready for graphing by Seaborn.
+    """
+    distribution = []
+
+    for algo in data.get("algo"):
+        for count, choice in enumerate(algo.get(distribution_key)):
+            distribution.append((algo.get("name"), count + 1, list(choice.values())[0]))
+
+    return pd.DataFrame(
+        distribution, columns=["Algorithm", independent_label, "Frequency"]
+    )
+
+
+if __name__ == "__main__":
+    data = load_data("data_output.yaml")
+    distributions = [
+        ("Number of friends in same house", "friend_distribution"),
+        ("House rank", "choice_distribution"),
+    ] # distribution label for graph, distribution dictionary key
+
+    for label, distribution_key in distributions:
+        distribution = fetch_distribution(
+            data, distribution_key, independent_label=label
+        )
+
+        # Graph/plot figure
+        plot = sns.barplot(x=label, y="Frequency", hue="Algorithm", data=distribution)
+        plot.figure.get_axes()[0].legend(loc="upper right") # snap legend to upper right
+
+        # Save/show figure
+        plot.figure.savefig(f"{distribution_key}.png")
+        if len(sys.argv) > 1 and sys.argv[1] == "show":
+            plt.show()
+
+        plot.clear()
