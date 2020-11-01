@@ -50,7 +50,6 @@ fn main() {
         let mut times: Vec<Duration> = vec![];
         let write_first_allocation_vector = false;
 
-
         let mut handles: Vec<std::thread::JoinHandle<(Vec<Duration>, Vec<Vec<Vec<Student>>>)>> = vec![];
         for t in 0..threads {
             let trial_name = trial.clone();
@@ -92,6 +91,7 @@ fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimi
         "network" => { Box::new(optimizers::network::NetworkOptimizer::new(ballot, 10.0, 10.0)) }
         "swap" => { Box::new(optimizers::mcmcswap::mcmc_swap::MCMCSWAP::new(ballot)) }
         "gibb" => { Box::new(optimizers::mcmcswap::mcmc_gibbs::MCMCGibbs::new(ballot)) }
+        "random" => { Box::new(optimizers::random::RandomOptimizer::new(ballot, 0)) }
         _ => { Box::new(optimizers::mcmc::mcmc_naive::MCMCNaive::new(ballot)) }
     }
 }

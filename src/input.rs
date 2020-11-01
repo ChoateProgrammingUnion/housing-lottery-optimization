@@ -40,6 +40,9 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     // Hash map for changing house name into id
     let mut house_name_map: HashMap<String, f64> = HashMap::new();
 
+    // Hash map for changing friend name into id
+    let mut student_name_map: HashMap<String, usize> = HashMap::new();
+
     // Set up Ballot object
     let mut new_ballot = Ballot::new();
     let num_houses = houses.len();
@@ -58,12 +61,13 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     }
 
     // Add ballots
-    for ballot in ballots {
+    for ballot in &ballots {
         let student_name = ballot["name"].as_str().expect("student name is not a string");
         let rankings = ballot["ranking"].clone().into_vec().expect("student rankings is not an array");
-        //let friend_group = ballot["friends"].clone().into_vec().expect("student friends is not an array");
 
         let mut student = Student::new(String::from(student_name), num_houses, new_ballot.students.len());
+
+        student_name_map.insert(student.name.clone(), student.id);
 
         for ranking in rankings {
             let house_name = ranking["name"].as_str().expect("house name is not a string");
@@ -79,10 +83,23 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
             processed_student.ballot_sum += n;
         }
 
-        crate::log_trace!(format!("processed ballot: {}({:?}, sum={})",
-            processed_student.name, processed_student.ballot, processed_student.ballot_sum), "input");
+        crate::log_trace!(format!("processed ballot: {}({:?}, sum={})", processed_student.name, processed_student.ballot, processed_student.ballot_sum), "input");
 
         new_ballot.students.push(processed_student);
+    }
+
+    // Add friends
+    for ballot in &ballots {
+        let student_name = ballot["name"].as_str().expect("student name is not a string");
+        let friends = ballot["friends"].clone().into_vec().unwrap_or(vec![]);
+
+        let student_index = student_name_map[student_name];
+
+        for friend in friends {
+            let friend_name = friend.as_str().expect("friend name is not string");
+            let friend_id = student_name_map[friend_name];
+            new_ballot.students[student_index].friends.push(friend_id);
+        }
     }
 
     new_ballot
