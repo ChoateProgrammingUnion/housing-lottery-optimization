@@ -33,14 +33,14 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         for friend in friends{
             let name = self.ballots.students[*friend].name.clone();
             // find friends in current house
-            'current1: for i in 0..schedule[proposal.student_location.0].len(){
+            for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == name{
                     friend_weight_current += 0.1;
                     //break 'current1
                 }
             }
             // find friends in proposed house
-            'proposed1: for i in 0..schedule[proposal.proposed_house.0].len(){
+            for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == name{
                     friend_weight_proposed += 0.1;
                     //break 'proposed1
@@ -75,13 +75,13 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         // same like the friend checking for first student
         for friend in friends{
             let name2 = self.ballots.students[*friend].name.clone();
-            'proposed2: for i in 0..schedule[proposal.student_location.0].len(){
+            for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == name2{
                     friend_weight_proposed2 += 0.1;
                     //break 'proposed2
                 }
             }
-            'current2: for i in 0..schedule[proposal.proposed_house.0].len(){
+            for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == name2{
                     friend_weight_current2 += 0.1;
                     //break 'current2
