@@ -57,8 +57,8 @@ def fetch_distribution(
 if __name__ == "__main__":
     data = load_data("data_output.yaml")
     distributions = [
-        ("House rank", "choice_distribution"),
         ("Number of friends in same house", "friend_distribution"),
+        ("House rank", "choice_distribution"),
     ]
 
     for name, each_distribution in distributions:
@@ -68,8 +68,11 @@ if __name__ == "__main__":
 
         # Graph/plot figure
         plot = sns.barplot(x=name, y="Frequency", hue="Algorithm", data=distribution)
+        plot.figure.get_axes()[0].legend(loc="upper right") # snap legend to upper right
 
         # Save/show figure
         plot.figure.savefig(f"{each_distribution}.png")
         if len(sys.argv) > 1 and sys.argv[1] == "show":
             plt.show()
+
+        plot.clear()
