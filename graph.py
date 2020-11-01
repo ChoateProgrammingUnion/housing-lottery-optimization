@@ -24,7 +24,7 @@ def load_data(filename: str) -> dict:
         The data in the YAML file, parsed using pyyaml's defaults.
     """
     with open(filename) as f:
-        data = yaml.load(f)
+        data = yaml.safe_load(f)
 
     return data
 
@@ -70,6 +70,6 @@ if __name__ == "__main__":
         plot = sns.barplot(x=name, y="Frequency", hue="Algorithm", data=distribution)
 
         # Save/show figure
-        plot.figure.savefig("results.png")
+        plot.figure.savefig(f"{each_distribution}.png")
         if len(sys.argv) > 1 and sys.argv[1] == "show":
             plt.show()
