@@ -29,21 +29,25 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         let mut friend_weight_current = 0.0;
         let mut friend_weight_proposed = 0.0;
 
+        
         for friend in friends{
             let name = self.ballots.students[*friend].name.clone();
             // find friends in current house
-            for i in 0..schedule[proposal.student_location.0].len(){
+            'current1: for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == name{
-                    friend_weight_current += 1.0;
+                    friend_weight_current += 0.1;
+                    //break 'current1
                 }
             }
             // find friends in proposed house
-            for i in 0..schedule[proposal.proposed_house.0].len(){
+            'proposed1: for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == name{
-                    friend_weight_proposed += 1.0;
+                    friend_weight_proposed += 0.1;
+                    //break 'proposed1
                 }
             }
         }
+        
 
         let total_weight_current = current_house1 * (1.0 + friend_weight_current);
         let total_weight_proposed = proposed_house1 * (1.0 + friend_weight_proposed);
@@ -67,21 +71,24 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         let friends = &student2.friends;
         let mut friend_weight_current2 = 0.0;
         let mut friend_weight_proposed2 = 0.0;
-
+        
         // same like the friend checking for first student
         for friend in friends{
             let name2 = self.ballots.students[*friend].name.clone();
-            for i in 0..schedule[proposal.student_location.0].len(){
+            'proposed2: for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == name2{
-                    friend_weight_proposed2 += 1.0;
+                    friend_weight_proposed2 += 0.1;
+                    //break 'proposed2
                 }
             }
-            for i in 0..schedule[proposal.proposed_house.0].len(){
+            'current2: for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == name2{
-                    friend_weight_current2 += 1.0;
+                    friend_weight_current2 += 0.1;
+                    //break 'current2
                 }
             }
         }
+        
         
         let total_weight_current2 = current_house2 * (1.0 + friend_weight_current2);
         let total_weight_proposed2 = proposed_house2 * (1.0 + friend_weight_proposed2);
