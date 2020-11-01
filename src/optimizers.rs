@@ -5,7 +5,7 @@ pub mod deans_algorithm;
 pub mod multi_dist;
 pub mod network;
 pub mod swap_naive;
-
+pub mod random;
 
 use ballot::Ballot;
 use ballot::Student;

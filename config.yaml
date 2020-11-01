@@ -6,3 +6,4 @@ run:
   - minimax
   - minimax-friends
   - deans
+  - random
