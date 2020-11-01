@@ -9,7 +9,7 @@ import yaml
 Graphs and displays the choice and friend distributions in data_output.yaml in a bar chart.
 
 Usage:
-    python3 graph.py
+    python3 graph.py [show]
 """
 
 
@@ -61,17 +61,17 @@ if __name__ == "__main__":
         ("House rank", "choice_distribution"),
     ] # distribution label for graph, distribution dictionary key
 
-    for name, each_distribution in distributions:
+    for label, distribution_key in distributions:
         distribution = fetch_distribution(
-            data, each_distribution, independent_label=name
+            data, distribution_key, independent_label=label
         )
 
         # Graph/plot figure
-        plot = sns.barplot(x=name, y="Frequency", hue="Algorithm", data=distribution)
+        plot = sns.barplot(x=label, y="Frequency", hue="Algorithm", data=distribution)
         plot.figure.get_axes()[0].legend(loc="upper right") # snap legend to upper right
 
         # Save/show figure
-        plot.figure.savefig(f"{each_distribution}.png")
+        plot.figure.savefig(f"{distribution_key}.png")
         if len(sys.argv) > 1 and sys.argv[1] == "show":
             plt.show()
 
