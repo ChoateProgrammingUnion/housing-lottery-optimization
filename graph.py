@@ -6,7 +6,7 @@ import seaborn as sns
 import yaml
 
 """
-Graphs and displays the choice and friend distributions in data_output.yaml in a bar chart
+Graphs and displays the choice and friend distributions in data_output.yaml in a bar chart.
 
 Usage:
     python3 graph.py
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     distributions = [
         ("Number of friends in same house", "friend_distribution"),
         ("House rank", "choice_distribution"),
-    ]
+    ] # distribution label for graph, distribution dictionary key
 
     for name, each_distribution in distributions:
         distribution = fetch_distribution(
