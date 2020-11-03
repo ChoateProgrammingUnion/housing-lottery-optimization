@@ -27,9 +27,9 @@ def create():
     num_friends = 5
     people_list = [person_num for person_num in range(people)]
 
-    capacity = [int(people / len(houses))] * (len(houses) - 1) + [
-        people - int(people / len(houses)) * (len(houses) - 1)
-    ] * 1
+    capacity = [int(people / len(houses)) + 1] * (people % len(houses)) + [
+        int(people / len(houses))
+    ] * (len(houses) - (people % len(houses)))
     for i in range(people):
         name = "Person " + str(i)
         ranking = []
@@ -38,20 +38,20 @@ def create():
         users.append({"name": name, "ranking": ranking, "friends": []})
 
     # times of loop is the number of possible friend pair
-    for friend_pairs in range(int(people * num_friends / 2)): 
+    for friend_pairs in range(int(people * num_friends / 2)):
         # pick two student
-        person1 = random.choice(people_list) 
+        person1 = random.choice(people_list)
         people_list.remove(person1)
         person2 = random.choice(people_list)
 
-        stuck = 0 # variable to use to quit if loop becomes infinite
+        stuck = 0  # variable to use to quit if loop becomes infinite
 
         # repick friend pair: cap number of friends for each person, and don't allow duplicate friend pairs
         while (
             (len(users[person1]["friends"]) >= num_friends)
             or (len(users[person2]["friends"]) >= num_friends)
             or "Person " + str(person2) in users[person1]["friends"]
-        ):  
+        ):
             stuck += 1
             people_list = [person_num for person_num in range(people)]
             person1 = random.choice(people_list)
@@ -59,9 +59,7 @@ def create():
             person2 = random.choice(people_list)
 
             # break in case the loop becomes infinite for some unforseen reason, quiting after people*(people-1)/2 since this is the number of 2 pair combinations possible
-            if (
-                stuck >= people * (people - 1) / 2
-            ):  
+            if stuck >= people * (people - 1) / 2:
                 break
 
         if stuck < people * (people - 1) / 2:
@@ -73,7 +71,7 @@ def create():
     for i in range(len(houses)):
         house.append({"name": houses[i], "capacity": capacity[i]})
 
-    return [{"houses": house}, {"ballots": users},num_friends]
+    return [{"houses": house}, {"ballots": users}, num_friends]
 
 
 name = "input.yaml"
