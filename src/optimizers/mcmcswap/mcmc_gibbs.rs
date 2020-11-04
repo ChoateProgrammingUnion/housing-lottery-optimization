@@ -35,10 +35,10 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         
 
         //Prioritizes friend
-        let mut friend_weight_current = 1.0;
-        let mut friend_weight_proposed = 1.0;
+        let mut friend_weight_current = 0.0;
+        let mut friend_weight_proposed = 0.0;
         let friends_list = &student.friends;
-        let friend_constant = 1.1;
+        let friend_constant = 1.0;
 
         
         for friend in friends_list{
@@ -46,12 +46,12 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
             for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == friend_name{
                     friend_weight_current = friend_constant;
-                    break
+
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == friend_name{
                     friend_weight_proposed = friend_constant;
-                    break
+
                 }
             }           
         }
@@ -64,8 +64,8 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
 
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
             if current_total_weight <= proposed_total_weight{
-                    return (current_house1/proposed_house1) as f64;
-                    //return 1 as f64;
+                    //return (current_house1/proposed_house1) as f64;
+                    return 1 as f64;
                 }else{
                     return 0 as f64;
                 }
@@ -75,9 +75,9 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let current_house2 = &student2.ballot[proposal.proposed_house.0];
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
 
-        //Person 2 friends
-        let mut friend_weight_current2 = 1.0;
-        let mut friend_weight_proposed2 = 1.0;
+        //Person 2 friend weight calculations
+        let mut friend_weight_current2 = 0.0;
+        let mut friend_weight_proposed2 = 0.0;
         let friends_list2 = &student2.friends;
         
         for friend in friends_list2{
@@ -100,8 +100,11 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let current_total_weight2 = (current_house2) * friend_weight_current2;
         let proposed_total_weight2 = (proposed_house2) * friend_weight_proposed2;
         
-        if current_total_weight<= proposed_total_weight && current_total_weight2 <= proposed_total_weight2{
-            return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
+        // swapping
+        if current_house1<=proposed_house1 && current_house2 <= proposed_house2 &&(
+        current_total_weight<= proposed_total_weight || current_total_weight2 <= proposed_total_weight2){
+            return 1 as f64;
+            //return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
         } else {
             return 0 as f64;
         }
