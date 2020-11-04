@@ -1,9 +1,10 @@
 run:
-  - swap-naive
-  - multi
-  - network
-  - swap
-  - minimax
-  - minimax-friends
+  #- swap-naive
+  #- multi
+  #- network
+  #- swap
+  #- minimax
+  #- minimax-friends
+  - gibb
   - deans
   - random

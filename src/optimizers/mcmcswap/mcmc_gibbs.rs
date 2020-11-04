@@ -23,6 +23,7 @@ impl MCMCGibbs {
     }
 }
 
+
 impl MCMCOptimizerSWAP for MCMCGibbs{
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: ProposalSWAP) -> f64 {
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
@@ -31,26 +32,38 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         //Person 1 current and proposed houses
         let current_house1 = &student.ballot[proposal.student_location.0];
         let proposed_house1 = &student.ballot[proposal.proposed_house.0];
+        
 
-        //friends
-        let mut friend_weight_current = 0.1;
-        let mut friend_weight_proposed = 0.1;
+        //Prioritizes friend
+        let mut friend_weight_current = 1.0;
+        let mut friend_weight_proposed = 1.0;
         let friends_list = &student.friends;
+        let friend_constant = 1.1;
+
+        
         for friend in friends_list{
+            let friend_name = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_current = 1.0;
+                if schedule[proposal.student_location.0][i].name == friend_name{
+                    friend_weight_current = friend_constant;
+                    break
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_proposed = 1.0;
+                if schedule[proposal.proposed_house.0][i].name == friend_name{
+                    friend_weight_proposed = friend_constant;
+                    break
                 }
-            }
+            }           
         }
         }
+        
+        
         //current number of students is less than overall capacity
+        let current_total_weight = current_house1 * friend_weight_current;
+        let proposed_total_weight = proposed_house1 * friend_weight_proposed;
+
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
-            if current_house1 * friend_weight_current <= proposed_house1 * friend_weight_proposed{
+            if current_total_weight <= proposed_total_weight{
                     return (current_house1/proposed_house1) as f64;
                     //return 1 as f64;
                 }else{
@@ -63,38 +76,82 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let proposed_house2 = &student2.ballot[proposal.student_location.0];
 
         //Person 2 friends
-        let mut friend_weight_current2 = 0.1;
-        let mut friend_weight_proposed2 = 0.1;
+        let mut friend_weight_current2 = 1.0;
+        let mut friend_weight_proposed2 = 1.0;
         let friends_list2 = &student2.friends;
+        
         for friend in friends_list2{
+            let friend_name2 = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
-                if schedule[proposal.student_location.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_current2 = 1.0;
+                if schedule[proposal.student_location.0][i].name == friend_name2{
+                    friend_weight_current2 = friend_constant;
+                    break
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
-                if schedule[proposal.proposed_house.0][i].name == format!("{} {}", "Student", friend).to_string(){
-                    friend_weight_proposed2 = 1.0;
+                if schedule[proposal.proposed_house.0][i].name == friend_name2{
+                    friend_weight_proposed2 = friend_constant;
+                    break
                 }
             }
         }
         }
         
-        if current_house1 + current_house2 <= proposed_house1 + proposed_house2 {
-            return ((proposed_house1 + proposed_house2) * friend_weight_proposed * friend_weight_proposed2)/
-            ((current_house1 + current_house2) * friend_weight_current * friend_weight_current2) % 1 as f64;
-            //return 1 as f64;
+        
+        let current_total_weight2 = (current_house2) * friend_weight_current2;
+        let proposed_total_weight2 = (proposed_house2) * friend_weight_proposed2;
+        
+        if current_total_weight<= proposed_total_weight && current_total_weight2 <= proposed_total_weight2{
+            return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
         } else {
             return 0 as f64;
         }
+
+        /*
+        if current_total_weight <= proposed_total_weight{
+            if current_total_weight2 <= proposed_total_weight2{
+                return ( proposed_house1 + proposed_house2)/(current_house1+current_house2) % 1 as f64
+            } else{
+                return 0 as f64;
+            }*/ 
+        
     }
 
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> ProposalSWAP {
-        let current_house = self.gen_range(0,schedule.len());
+        // same as other mcmc code
+        let size = self.ballots.students.len();
+        let student_number = self.gen_range(0, size);
+        let mut current_house = 0;
+        let mut current_index = 0;
+        let mut counter = 0;
+        'house: for house in 0..schedule.len(){
+            current_index = 0;
+            current_house = house;
+            for _student in 0..schedule[house].len(){
+                if counter as f64 == student_number as f64{
+                    break 'house
+                }
+                current_index += 1;
+                counter += 1;
+            }
+        }
+        
+
+
         let mut current_house2 = self.gen_range(0,schedule.len());
         while current_house2 == current_house{
             current_house2 = self.gen_range(0,schedule.len());
         }
-        let current_index = self.gen_range(0,schedule[current_house].len());
+
+
+        // if house is not full, no swap (this only happens if there's more capacity than people)
+        if self.ballots.houses[current_house2].capacity > schedule[current_house2].len(){
+            let proposed_change = ProposalSWAP{
+                student_location: (current_house, current_index),
+                proposed_house: (current_house2, 1000)
+            };
+            return proposed_change
+        }
+
         let current_index2 = self.gen_range(0,schedule[current_house2].len());
 
         let proposed_change = ProposalSWAP{
@@ -105,7 +162,6 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         return proposed_change
     }
 }
-
 
 impl Optimizer for MCMCGibbs {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
