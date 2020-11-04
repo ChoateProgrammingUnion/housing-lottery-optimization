@@ -45,12 +45,12 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
             let friend_name = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == friend_name{
-                    friend_weight_current = friend_constant;
+                    friend_weight_current += friend_constant;
 
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == friend_name{
-                    friend_weight_proposed = friend_constant;
+                    friend_weight_proposed += friend_constant;
 
                 }
             }           
@@ -84,13 +84,13 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
             let friend_name2 = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
                 if schedule[proposal.student_location.0][i].name == friend_name2{
-                    friend_weight_current2 = friend_constant;
-                    break
+                    friend_weight_current2 += friend_constant;
+
                 }
             for i in 0..schedule[proposal.proposed_house.0].len(){
                 if schedule[proposal.proposed_house.0][i].name == friend_name2{
-                    friend_weight_proposed2 = friend_constant;
-                    break
+                    friend_weight_proposed2 += friend_constant;
+                    
                 }
             }
         }
@@ -102,7 +102,7 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         
         // swapping
         if current_house1<=proposed_house1 && current_house2 <= proposed_house2 &&(
-        current_total_weight<= proposed_total_weight || current_total_weight2 <= proposed_total_weight2){
+        current_total_weight <= proposed_total_weight || current_total_weight2 <= proposed_total_weight2){
             return 1 as f64;
             //return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
         } else {
