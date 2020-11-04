@@ -145,16 +145,6 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
             current_house2 = self.gen_range(0,schedule.len());
         }
 
-
-        // if house is not full, no swap (this only happens if there's more capacity than people)
-        if self.ballots.houses[current_house2].capacity > schedule[current_house2].len(){
-            let proposed_change = ProposalSWAP{
-                student_location: (current_house, current_index),
-                proposed_house: (current_house2, 1000)
-            };
-            return proposed_change
-        }
-
         let current_index2 = self.gen_range(0,schedule[current_house2].len());
 
         let proposed_change = ProposalSWAP{
