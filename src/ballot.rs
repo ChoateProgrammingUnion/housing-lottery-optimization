@@ -12,7 +12,7 @@ impl Student {
         Self {
             name,
             ballot: vec![0.0; num_houses],
-            friends: vec![0],
+            friends: vec![],
             ballot_sum: 0.0,
             id
         }

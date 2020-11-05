@@ -73,7 +73,7 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
     // Give the k nearest nodes from the starting node, excluding a list of nodes.
     // If there are no such k nodes, return the first n up to k nodes.
     // let mut nearest: Vec<&'a NodeIndex> = Vec::<NodeIndex>::new();
-    let mut nearest = Vec::<NodeIndex>::new();
+    // let mut nearest = Vec::<NodeIndex>::new();
     let mut result = Vec::<OrderedNode>::new();
     let mut heap = BinaryHeap::<OrderedNode>::new();
 
@@ -83,8 +83,8 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
 
     while result.len() <= k {
         if !heap.is_empty() {
-            let mut current_node = heap.peek_mut().unwrap();
-            let mut current_distance = current_node.distance.clone();
+            let current_node = heap.peek_mut().unwrap();
+            let current_distance = current_node.distance.clone();
             let mut walker = contraction_graph.neighbors(current_node.node).detach();
             drop(current_node);
 
@@ -95,9 +95,9 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
 
                 // Contraction
                 if counter != 0 {
-                    while let Some((other_edge, other_neighbor)) = walker.next(&contraction_graph) {
-                        let mut preexisting_edge = contraction_graph.find_edge(other_neighbor, neighbor);
-                        let mut max_distance = contraction_graph.edge_weight(edge).unwrap() + current_distance; // max possible distance for an edge
+                    while let Some((_other_edge, other_neighbor)) = walker.next(&contraction_graph) {
+                        let preexisting_edge = contraction_graph.find_edge(other_neighbor, neighbor);
+                        let max_distance = contraction_graph.edge_weight(edge).unwrap() + current_distance; // max possible distance for an edge
                         if preexisting_edge.is_some() {
                             if contraction_graph.edge_weight(preexisting_edge.unwrap()).unwrap() > &max_distance {
                                 contraction_graph.update_edge(other_neighbor, neighbor, max_distance);
@@ -109,7 +109,7 @@ pub fn k_nearest(contraction_graph: &mut StableGraph<Node, f64>, start: NodeInde
                 }
             }
 
-            let mut nearest_neighbor = heap.pop().unwrap();
+            let nearest_neighbor = heap.pop().unwrap();
             // if !exclude.contains_key(&nearest_neighbor.node) {
             //     exclude.insert(nearest_neighbor.node, true);
             if contraction_graph.contains_node(nearest_neighbor.node) {
@@ -142,13 +142,13 @@ impl NetworkOptimizer {
 
         let mut house_nodes = Vec::<NodeIndex>::new();
         for house in &ballots.houses {
-            let mut house_node = Node::new(house.name.clone(), None).clone();
+            let house_node = Node::new(house.name.clone(), None).clone();
             house_nodes.push(graph.add_node(house_node));
         }
 
         let mut student_nodes = Vec::<NodeIndex>::new();
         for (count, student) in ballots.students.iter().enumerate() {
-            let mut student_node = Node::new(student.name.clone(), Some(student.clone()));
+            let student_node = Node::new(student.name.clone(), Some(student.clone()));
             student_nodes.push(graph.add_node(student_node));
 
             for (house_num, housing_pref) in student.ballot.iter().enumerate() {
@@ -157,7 +157,7 @@ impl NetworkOptimizer {
 
             for friend_pref in &student.friends { // here we assume that it is reciprocated
                 if friend_pref < &count { // we've already added the student
-                    let mut friend_node = student_nodes[*friend_pref];
+                    let friend_node = student_nodes[*friend_pref];
                     graph.add_edge(*student_nodes.last().unwrap(), friend_node, friend_const);
                 } // we have not added the student, so we skip
                 // Since all friendships must be reciprocated, we'll see this friendship later
@@ -184,9 +184,9 @@ impl NetworkOptimizer {
 
         let mut counter = 0;
         for house in self.house_nodes {
-            let mut max_cap = self.ballots.houses[counter].capacity.clone();
+            let max_cap = self.ballots.houses[counter].capacity.clone();
 
-            let mut student_nodes = k_nearest(&mut contraction_graph.clone(), house, max_cap, &mut exclude);
+            let student_nodes = k_nearest(&mut contraction_graph.clone(), house, max_cap, &mut exclude);
 
             for student in student_nodes {
                 schedule[counter].push(contraction_graph.remove_node(student.node).unwrap().student.unwrap());
@@ -200,8 +200,8 @@ impl NetworkOptimizer {
 }
 
 impl Optimizer for NetworkOptimizer {
-    fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {self.clone().generate()}
-    fn reseed(&mut self, new_seed: u64) {}
+    fn optimize(&mut self, _rounds: usize) -> Vec<Vec<Student>> {self.clone().generate()}
+    fn reseed(&mut self, _new_seed: u64) {}
     fn objective(&self) -> f64 {0.0}
 }
 

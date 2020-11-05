@@ -6,10 +6,30 @@ use crate::ballot::{Ballot, Student, House};
 use std::io::Read;
 use std::collections::HashMap;
 
+pub fn load_trials() -> Vec<String> {
+    let mut trials = Vec::<String>::new();
+    let mut input_str: String = String::new();
+
+    let mut trial_file = std::fs::File::open("config.yaml").expect("yaml file not found");
+    trial_file.read_to_string(&mut input_str).expect("input file read failed");
+    let trial_runs = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
+
+    // let trials_yaml = trial_runs[0]["run"].clone().into_str().expect("trial is not an string");
+
+    for trial in trial_runs[0]["run"].clone() {
+    // for trial in trial_runs[0]["run"].clone() {
+        // trials.push(trial.into_string());
+        crate::log_debug!(format!("trial {} ran", trial.as_str().unwrap()), "input");
+        trials.push(trial.into_string().unwrap());
+    }
+
+    return trials
+}
+
 pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     // Load file&    
-    let mut input_file = std::fs::File::open("real_data/yaml/single_4_m.yaml").expect("yaml file not found");
-    // let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
+    // let mut input_file = std::fs::File::open("real_data/yaml/single_5_m.yaml").expect("yaml file not found");
+    let mut input_file = std::fs::File::open("input.yaml").expect("yaml file not found");
     let mut input_str: String = String::new();
     input_file.read_to_string(&mut input_str).expect("input file read failed");
     let input = YamlLoader::load_from_str(&*input_str).expect("yaml failed to load");
@@ -19,6 +39,9 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
 
     // Hash map for changing house name into id
     let mut house_name_map: HashMap<String, f64> = HashMap::new();
+
+    // Hash map for changing friend name into id
+    let mut student_name_map: HashMap<String, usize> = HashMap::new();
 
     // Set up Ballot object
     let mut new_ballot = Ballot::new();
@@ -38,12 +61,13 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
     }
 
     // Add ballots
-    for ballot in ballots {
+    for ballot in &ballots {
         let student_name = ballot["name"].as_str().expect("student name is not a string");
         let rankings = ballot["ranking"].clone().into_vec().expect("student rankings is not an array");
-        //let friend_group = ballot["friends"].clone().into_vec().expect("student friends is not an array");
 
         let mut student = Student::new(String::from(student_name), num_houses, new_ballot.students.len());
+
+        student_name_map.insert(student.name.clone(), student.id);
 
         for ranking in rankings {
             let house_name = ranking["name"].as_str().expect("house name is not a string");
@@ -59,10 +83,23 @@ pub fn load_input(process: fn(Student) -> Student) -> Ballot {
             processed_student.ballot_sum += n;
         }
 
-        crate::log_trace!(format!("processed ballot: {}({:?}, sum={})",
-            processed_student.name, processed_student.ballot, processed_student.ballot_sum), "input");
+        crate::log_trace!(format!("processed ballot: {}({:?}, sum={})", processed_student.name, processed_student.ballot, processed_student.ballot_sum), "input");
 
         new_ballot.students.push(processed_student);
+    }
+
+    // Add friends
+    for ballot in &ballots {
+        let student_name = ballot["name"].as_str().expect("student name is not a string");
+        let friends = ballot["friends"].clone().into_vec().unwrap_or(vec![]);
+
+        let student_index = student_name_map[student_name];
+
+        for friend in friends {
+            let friend_name = friend.as_str().expect("friend name is not string");
+            let friend_id = student_name_map[friend_name];
+            new_ballot.students[student_index].friends.push(friend_id);
+        }
     }
 
     new_ballot

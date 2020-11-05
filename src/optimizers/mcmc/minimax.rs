@@ -43,7 +43,7 @@ impl MCMCOptimizer for Minimax{
 
         let extra_room_constant: usize = 1;
         let power_constant: f64 = -2.0;
-        
+
         let student: &Student = &schedule[proposal.student_location.0][proposal.student_location.1];
 
         let mut current_house_rank = 1;
@@ -119,7 +119,7 @@ impl MCMCOptimizer for Minimax{
         };
 
         return proposed_change
-    }    
+    }
 }
 
 impl Optimizer for Minimax {
@@ -141,7 +141,6 @@ impl Optimizer for Minimax {
     }
 
     fn reseed(&mut self, _new_seed: u64) {
-
     }
 
     fn objective(&self) -> f64 {

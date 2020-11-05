@@ -1,4 +1,5 @@
 pub mod mcmc_swap;
+pub mod mcmc_gibbs;
 
 use optimizers::Optimizer;
 use rand::{thread_rng, Rng};
@@ -38,12 +39,12 @@ pub(self) trait MCMCOptimizerSWAP: Optimizer {
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
-            let mut student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
+            let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house.0].push(student);
-            
+
             // only swap second student if such student was selected
             if proposed_change.proposed_house.1 != 1000{
-                let mut student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
+                let student2 = schedule[proposed_change.proposed_house.0].remove(proposed_change.proposed_house.1);
                 schedule[proposed_change.student_location.0].push(student2);
             }
         }

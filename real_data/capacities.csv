@@ -1,0 +1,725 @@
+Dorm,Room,Bed,Gender,Form,Capacity
+Archbold,201,A,F,6,1
+Archbold,202,A,F,4,1
+Archbold,203,A,F,4,2
+Archbold,203,B,F,4,2
+Archbold,204,A,F,5,1
+Archbold,205,A,F,4,2
+Archbold,205,B,F,4,2
+Archbold,206,A,F,5,1
+Archbold,207,A,,,2
+Archbold,207,B,F,4,2
+Archbold,208,A,F,4,1
+Archbold,209,A,F,6,1
+Archbold,210,A,F,4,2
+Archbold,210,B,F,4,2
+Archbold,301,A,F,6,3
+Archbold,301,B,,,3
+Archbold,301,C,,,3
+Archbold,302,A,F,4,1
+Archbold,303,A,F,5,2
+Archbold,303,B,F,5,2
+Archbold,304,A,F,5,2
+Archbold,304,B,F,5,2
+Archbold,305,A,F,4,1
+Archbold,306,A,F,6,3
+Archbold,306,B,,,3
+Archbold,306,C,,,3
+Archbold,307,A,F,5,2
+Archbold,307,B,F,5,2
+Archbold,308,A,F,5,2
+Archbold,308,B,F,5,2
+Archbold,309,A,F,4,2
+Archbold,309,B,,,2
+Archbold,310,A,F,4,2
+Archbold,310,B,F,4,2
+Archbold,311,A,,,2
+Archbold,311,B,F,5,2
+Archbold,312,A,F,4,2
+Archbold,312,B,F,4,2
+Atwater,1,A,M,6,2
+Atwater,1,B,M,6,2
+Atwater,2,A,M,6,1
+Atwater,3,A,M,6,2
+Atwater,3,B,M,6,2
+Atwater,101,A,M,6,1
+Atwater,102,A,M,6,2
+Atwater,102,B,M,6,2
+Atwater,103,A,M,6,1
+Atwater,104,A,M,6,2
+Atwater,104,B,M,6,2
+Atwater,202,A,M,6,2
+Atwater,202,B,M,6,2
+Atwater,203,A,M,6,1
+Atwater,204,A,M,6,2
+Atwater,204,B,M,6,2
+Bernhard House,106,A,F,4,2
+Bernhard House,106,B,F,4,2
+Bernhard House,107,A,F,5,2
+Bernhard House,107,B,F,5,2
+Bernhard House,108,A,F,4,3
+Bernhard House,108,B,F,4,3
+Bernhard House,108,C,,,3
+Bernhard House,109,A,F,5,1
+Bernhard House,110,A,F,5,1
+Bernhard House,111,A,F,5,1
+Bernhard House,112,A,F,5,1
+Bernhard House,113,A,F,6,1
+Bernhard House,122,A,F,4,1
+Bernhard House,123,A,F,4,1
+Bernhard House,124,A,F,6,1
+Bernhard House,125,A,F,5,3
+Bernhard House,125,B,F,5,3
+Bernhard House,125,C,,,3
+Bernhard House,127,A,F,4,1
+Bernhard House,128,A,,,2
+Bernhard House,128,B,F,4,2
+Bernhard House,129,A,F,4,1
+Bernhard House,130,A,F,6,1
+Bernhard House,205,A,F,4,2
+Bernhard House,205,B,F,4,2
+Bernhard House,206,A,F,5,2
+Bernhard House,206,B,F,5,2
+Bernhard House,208,A,F,5,2
+Bernhard House,208,B,F,5,2
+Bernhard House,209,A,F,5,1
+Bernhard House,210,A,F,5,1
+Bernhard House,211,A,F,4,1
+Bernhard House,212,A,F,4,1
+Bernhard House,213,A,F,6,1
+Bernhard House,223,A,F,4,1
+Bernhard House,224,A,F,5,1
+Bernhard House,225,A,F,4,1
+Bernhard House,226,A,F,5,3
+Bernhard House,226,B,F,5,3
+Bernhard House,226,C,,,3
+Bernhard House,227,A,F,5,1
+Bernhard House,228,A,F,4,2
+Bernhard House,228,B,F,4,2
+Bernhard House,229,A,F,6,1
+Bernhard House,230,A,F,4,1
+Bungalow,101,A,F,6,2
+Bungalow,101,B,F,6,2
+Bungalow,102,A,F,6,2
+Bungalow,102,B,F,6,2
+Bungalow,103,A,F,6,2
+Bungalow,103,B,F,6,2
+Bungalow,201,A,F,6,2
+Bungalow,201,B,F,6,2
+Bungalow,202,A,F,6,4
+Bungalow,202,B,F,6,4
+Bungalow,202,C,F,6,4
+Bungalow,202,D,F,6,4
+Bungalow,204,A,F,6,1
+Bungalow,205,A,F,6,1
+Chapel House,101,A,F,6,2
+Chapel House,101,B,F,6,2
+Chapel House,102,A,F,6,2
+Chapel House,102,B,F,6,2
+Chapel House,201,A,F,6,1
+Chapel House,202,A,F,6,1
+Chapel House,203,A,F,6,1
+Term Abroad Program - China,1,A,,,1
+Term Abroad Program - China,2,A,,,1
+Term Abroad Program - China,3,A,,,1
+Term Abroad Program - China,4,A,,,1
+Term Abroad Program - China,5,A,,,1
+Term Abroad Program - China,6,A,,,1
+Term Abroad Program - China,7,A,,,1
+Term Abroad Program - China,8,A,,,1
+Term Abroad Program - China,9,A,,,1
+Term Abroad Program - China,10,A,,,1
+Term Abroad Program - China,11,A,,,1
+Term Abroad Program - China,12,A,,,1
+Term Abroad Program - China,13,A,,,1
+Term Abroad Program - China,14,A,,,1
+Clinton Knight,100,A,M,5,3
+Clinton Knight,100,B,M,5,3
+Clinton Knight,100,C,,,3
+Clinton Knight,101,A,M,6,1
+Clinton Knight,102,A,M,5,1
+Clinton Knight,103,A,M,5,1
+Clinton Knight,104,A,M,5,1
+Clinton Knight,105,A,M,5,1
+Clinton Knight,106,A,M,5,1
+Clinton Knight,107,A,M,5,3
+Clinton Knight,107,B,M,5,3
+Clinton Knight,107,C,,,3
+Clinton Knight,108,A,M,5,1
+Clinton Knight,109,A,M,5,1
+Clinton Knight,110,A,M,6,1
+Clinton Knight,200,A,M,4,2
+Clinton Knight,200,B,M,4,2
+Clinton Knight,201,A,M,6,1
+Clinton Knight,202,A,M,4,1
+Clinton Knight,203,A,M,5,1
+Clinton Knight,204,A,M,4,1
+Clinton Knight,205,A,M,4,1
+Clinton Knight,207,A,M,4,1
+Clinton Knight,208,A,M,4,2
+Clinton Knight,208,B,M,4,2
+Clinton Knight,209,A,M,6,1
+Clinton Knight,210,A,M,4,1
+Clinton Knight,211,A,M,4,1
+Clinton Knight,212,A,M,4,1
+Clinton Knight,213,A,M,4,1
+Clinton Knight,214A,A,,,1
+Combination,101,A,,,1
+Combination,102,A,M,6,2
+Combination,102,B,M,6,2
+Combination,103,A,M,6,2
+Combination,103,B,M,6,2
+Combination,201,A,M,6,3
+Combination,201,B,M,6,3
+Combination,201,C,M,6,3
+Combination,202,A,M,6,2
+Combination,202,B,M,6,2
+Edsall,201,A,,,2
+Edsall,201,B,,,2
+Edsall,203,A,M,6,2
+Edsall,203,B,M,6,2
+Edsall,204,A,M,6,1
+Edsall,301,A,M,6,2
+Edsall,301,B,M,6,2
+Edsall,302,A,M,6,1
+Edsall,303,A,M,6,1
+Edsall,304,A,M,6,2
+Edsall,304,B,,,2
+Edsall,305,A,M,6,2
+Edsall,305,B,M,6,2
+Edsall,306,A,M,6,1
+East Cottage,101,A,M,6,1
+East Cottage,102,A,,,2
+East Cottage,102,B,,,2
+East Cottage,201,A,M,6,2
+East Cottage,201,B,M,6,2
+East Cottage,202,A,M,6,1
+East Cottage,203,A,M,6,1
+East Cottage,204,A,,,2
+East Cottage,204,B,M,6,2
+East Cottage,205,A,,,1
+East Cottage,301,A,M,6,1
+East Cottage,302,A,M,6,1
+East Cottage,303,A,M,6,2
+East Cottage,303,B,,,2
+East Cottage,304,A,,,2
+East Cottage,304,B,,,2
+Term Abroad Program - France,1,A,M,5,1
+Term Abroad Program - France,2,A,M,5,1
+Term Abroad Program - France,3,A,F,5,1
+Term Abroad Program - France,4,A,F,4,1
+Term Abroad Program - France,5,A,F,5,1
+Term Abroad Program - France,6,A,,,1
+Term Abroad Program - France,7,A,,,1
+Term Abroad Program - France,8,A,,,1
+Term Abroad Program - France,9,A,,,1
+Term Abroad Program - France,10,A,,,1
+Term Abroad Program - France,11,A,,,1
+Term Abroad Program - France,12,A,,,1
+Term Abroad Program - France,13,A,,,1
+Term Abroad Program - France,14,A,,,1
+Term Abroad Program - France,15,A,,,1
+Term Abroad Program - France,16,A,,,1
+Term Abroad Program - France,17,A,,,1
+Term Abroad Program - France,18,A,,,1
+Term Abroad Program - France,19,A,,,1
+Term Abroad Program - France,20,A,,,1
+Hall,201,A,F,6,1
+Hall,203,A,F,5,2
+Hall,203,B,F,5,2
+Hall,205,A,F,6,1
+Hall,206,A,F,5,2
+Hall,206,B,F,5,2
+Hall,207,A,F,5,2
+Hall,207,B,F,5,2
+Hall,208,A,F,4,2
+Hall,208,B,F,4,2
+Hall,209,A,F,5,2
+Hall,209,B,F,5,2
+Hall,211,A,F,5,2
+Hall,211,B,F,5,2
+Hall,212,A,F,6,1
+Hall,305,A,F,4,3
+Hall,305,B,F,4,3
+Hall,305,C,F,4,3
+Hall,306,A,F,4,2
+Hall,306,B,F,4,2
+Hall,307,A,F,4,2
+Hall,307,B,F,4,2
+Homestead,102,A,F,6,2
+Homestead,102,B,F,6,2
+Homestead,103,A,F,6,3
+Homestead,103,B,F,6,3
+Homestead,103,C,F,6,3
+Homestead,201,A,F,6,1
+Homestead,202,A,F,6,2
+Homestead,202,B,,,2
+Homestead,204,A,F,6,4
+Homestead,204,B,F,6,4
+Homestead,204,C,F,6,4
+Homestead,204,D,F,6,4
+Term Abroad Program - Italy,1,A,,,1
+Term Abroad Program - Italy,2,A,,,1
+Term Abroad Program - Italy,3,A,,,1
+Term Abroad Program - Italy,4,A,,,1
+Term Abroad Program - Italy,5,A,,,1
+Term Abroad Program - Italy,6,A,,,1
+Term Abroad Program - Italy,7,A,,,1
+Term Abroad Program - Italy,8,A,,,1
+Term Abroad Program-Jordan,1,A,,,1
+Term Abroad Program-Jordan,2,A,,,1
+Term Abroad Program-Jordan,3,A,,,1
+Kohler Environmental Center,127,A,,,3
+Kohler Environmental Center,127,B,,,3
+Kohler Environmental Center,127,C,,,3
+Kohler Environmental Center,140,A,,,1
+Kohler Environmental Center,141,A,M,5,2
+Kohler Environmental Center,141,B,M,5,2
+Kohler Environmental Center,142,A,M,6,2
+Kohler Environmental Center,142,B,,,2
+Kohler Environmental Center,143,A,M,5,1
+Kohler Environmental Center,144,A,M,6,1
+Kohler Environmental Center,145,A,M,5,1
+Kohler Environmental Center,146,A,M,6,2
+Kohler Environmental Center,146,B,,,2
+Kohler Environmental Center,205,A,F,5,1
+Kohler Environmental Center,206,A,F,5,2
+Kohler Environmental Center,206,B,F,5,2
+Kohler Environmental Center,207,A,F,5,2
+Kohler Environmental Center,207,B,F,5,2
+Kohler Environmental Center,208,A,F,5,1
+Kohler Environmental Center,209,A,F,5,1
+Kohler Environmental Center,210,A,F,6,1
+Kohler Environmental Center,211,A,F,5,2
+Kohler Environmental Center,211,B,F,5,2
+Lewis,101,A,F,6,2
+Lewis,101,B,F,6,2
+Lewis,102,A,F,6,1
+Lewis,103,A,F,6,1
+Lewis,104,A,F,6,2
+Lewis,104,B,F,6,2
+Library,300,A,F,6,1
+Library,301,A,F,4,2
+Library,301,B,F,4,2
+Library,302,A,F,4,2
+Library,302,B,F,4,2
+Library,303,A,F,4,2
+Library,303,B,F,4,2
+Library,304,A,F,4,2
+Library,304,B,F,4,2
+Library,305,A,F,4,2
+Library,305,B,F,4,2
+Library,306,A,F,4,2
+Library,306,B,F,4,2
+Library,307,A,F,5,3
+Library,307,B,F,5,3
+Library,307,C,F,5,3
+Library,309,A,F,5,2
+Library,309,B,F,5,2
+Library,311,A,F,6,1
+Library,312,A,F,6,1
+Library,313,A,F,5,1
+Library,314,A,F,5,2
+Library,314,B,F,5,2
+Library,315,A,F,5,2
+Library,315,B,F,5,2
+Library,316,A,F,5,2
+Library,316,B,F,5,2
+Logan Munroe,102,A,M,4,2
+Logan Munroe,102,B,M,4,2
+Logan Munroe,103,A,M,4,2
+Logan Munroe,103,B,M,4,2
+Logan Munroe,104,A,M,4,2
+Logan Munroe,104,B,M,4,2
+Logan Munroe,107,A,M,6,1
+Logan Munroe,108,A,M,4,1
+Logan Munroe,109,A,M,4,1
+Logan Munroe,110,A,M,4,2
+Logan Munroe,110,B,M,4,2
+Logan Munroe,111,A,M,4,2
+Logan Munroe,111,B,M,4,2
+Logan Munroe,201,A,M,5,2
+Logan Munroe,201,B,M,5,2
+Logan Munroe,202,A,M,5,2
+Logan Munroe,202,B,M,5,2
+Logan Munroe,205,A,M,5,1
+Logan Munroe,206,A,M,6,1
+Logan Munroe,207,A,M,5,1
+Logan Munroe,208,A,M,5,1
+Logan Munroe,209,A,,,2
+Logan Munroe,209,B,M,5,2
+Logan Munroe,210,A,M,6,2
+Logan Munroe,210,B,M,6,2
+Logan Munroe,211,A,M,5,1
+Logan Munroe,212,A,M,5,2
+Logan Munroe,212,B,M,5,2
+Logan Munroe,213,A,M,5,2
+Logan Munroe,213,B,M,5,2
+Lowndes,201,A,M,5,1
+Lowndes,302,A,M,5,2
+Lowndes,302,B,M,5,2
+Lowndes,303,A,M,5,2
+Lowndes,303,B,M,5,2
+McCook,100,A,F,4,3
+McCook,100,B,F,4,3
+McCook,100,C,,,3
+McCook,101,A,F,6,1
+McCook,102,A,F,4,1
+McCook,103,A,F,5,1
+McCook,104,A,F,4,1
+McCook,105,A,F,4,1
+McCook,106,A,F,4,1
+McCook,107,A,F,4,3
+McCook,107,B,F,4,3
+McCook,107,C,,,3
+McCook,108,A,F,6,1
+McCook,109,A,F,4,1
+McCook,110,A,F,4,1
+McCook,200,A,F,5,2
+McCook,200,B,F,5,2
+McCook,201,A,F,6,1
+McCook,202,A,F,5,1
+McCook,203,A,F,4,1
+McCook,204,A,F,4,1
+McCook,205,A,F,5,1
+McCook,208,A,F,5,2
+McCook,208,B,F,5,2
+McCook,209,A,F,5,1
+McCook,210,A,F,5,1
+McCook,211,A,F,5,1
+McCook,212,A,F,5,1
+McCook,213,A,F,5,1
+Mead,1,A,F,6,2
+Mead,1,B,F,6,2
+Mead,2,A,F,6,2
+Mead,2,B,F,6,2
+Mead,102,A,F,6,2
+Mead,102,B,F,6,2
+Mead,103,A,F,6,1
+Mead,104,A,F,6,2
+Mead,104,B,F,6,2
+Mead,202,A,F,6,2
+Mead,202,B,F,6,2
+Mead,203,A,F,6,1
+Mead,204,A,F,6,2
+Mead,204,B,F,6,2
+Mead,205,A,,,2
+Mead,205,B,,,2
+Memorial House,102,A,,,1
+Memorial House,103,A,,,1
+Memorial House,104,A,,,2
+Memorial House,104,B,,,2
+Memorial House,105,A,,,1
+Memorial House,106,A,,,1
+Memorial House,108,A,M,3,2
+Memorial House,108,B,M,3,2
+Memorial House,110,A,M,3,1
+Memorial House,117,A,M,3,1
+Memorial House,119,A,M,3,2
+Memorial House,119,B,M,3,2
+Memorial House,123,A,M,6,1
+Memorial House,125,A,M,3,2
+Memorial House,125,B,M,3,2
+Memorial House,200,A,M,3,1
+Memorial House,202,A,M,6,1
+Memorial House,204,A,M,3,2
+Memorial House,204,B,M,3,2
+Memorial House,207,A,,,1
+Memorial House,209,A,M,6,1
+Memorial House,210,A,M,3,2
+Memorial House,210,B,M,3,2
+Memorial House,211,A,M,3,2
+Memorial House,211,B,M,3,2
+Memorial House,212,A,M,3,1
+Memorial House,214,A,M,3,1
+Memorial House,215,A,M,3,2
+Memorial House,215,B,M,3,2
+Memorial House,216,A,M,3,2
+Memorial House,216,B,M,3,2
+Memorial House,217,A,M,6,1
+Memorial House,218,A,M,3,1
+Memorial House,300,A,M,3,1
+Memorial House,301,A,M,6,1
+Memorial House,302,A,M,3,2
+Memorial House,302,B,M,3,2
+Memorial House,303,A,M,3,2
+Memorial House,303,B,M,3,2
+Memorial House,304,A,M,3,1
+Memorial House,306,A,M,3,2
+Memorial House,306,B,M,3,2
+Memorial House,307,A,M,3,2
+Memorial House,307,B,M,3,2
+Memorial House,311,A,M,3,1
+Memorial House,313,A,M,3,1
+Memorial House,315,A,M,6,1
+Memorial House,317,A,M,3,2
+Memorial House,317,B,M,3,2
+Memorial House,318,A,M,3,2
+Memorial House,318,B,M,3,2
+Memorial House,320,A,M,3,2
+Memorial House,320,B,M,3,2
+Memorial House,321,A,M,3,2
+Memorial House,321,B,M,3,2
+Memorial House,322,A,M,6,1
+Memorial House,323,A,M,6,1
+Memorial House,401,A,M,3,1
+Memorial House,403,A,M,3,1
+Memorial House,404,A,M,3,2
+Memorial House,404,B,M,3,2
+Memorial House,406,A,M,3,2
+Memorial House,406,B,M,3,2
+Memorial House,G01,A,M,3,2
+Memorial House,G01,B,M,3,2
+Memorial House,G03,A,M,6,2
+Memorial House,G03,B,M,6,2
+Memorial House,G10,A,M,3,2
+Memorial House,G10,B,M,3,2
+Memorial House,G12,A,M,3,2
+Memorial House,G12,B,M,3,2
+Memorial House,G13,A,M,3,2
+Memorial House,G13,B,M,3,2
+Nichols,103,A,F,6,1
+Nichols,105,A,F,3,2
+Nichols,105,B,F,3,2
+Nichols,106,A,F,3,2
+Nichols,106,B,F,3,2
+Nichols,107,A,F,3,2
+Nichols,107,B,,,2
+Nichols,108,A,F,3,2
+Nichols,108,B,,,2
+Nichols,202,A,F,6,1
+Nichols,203,A,F,3,1
+Nichols,204,A,F,6,1
+Nichols,205,A,F,3,1
+Nichols,206,A,F,3,1
+Nichols,208,A,F,3,2
+Nichols,208,B,F,3,2
+Nichols,210,A,F,3,2
+Nichols,210,B,F,3,2
+Nichols,211,A,F,3,2
+Nichols,211,B,F,3,2
+Nichols,214,A,F,3,2
+Nichols,214,B,F,3,2
+Nichols,215,A,F,3,2
+Nichols,215,B,F,3,2
+Nichols,303,A,F,3,1
+Nichols,304,A,F,3,2
+Nichols,304,B,F,3,2
+Nichols,305,A,F,3,1
+Nichols,308,A,F,3,2
+Nichols,308,B,F,3,2
+Nichols,309,A,F,3,2
+Nichols,309,B,F,3,2
+Nichols,310,A,F,6,1
+Nichols,311,A,F,6,1
+Nichols,312,A,F,3,2
+Nichols,312,B,F,3,2
+Nichols,G01,A,F,3,2
+Nichols,G01,B,F,3,2
+Nichols,G02,A,F,3,2
+Nichols,G02,B,F,3,2
+Nichols,G03,A,F,6,1
+Nichols,G09,A,F,3,2
+Nichols,G09,B,F,3,2
+Nichols,G10,A,F,3,2
+Nichols,G10,B,F,3,2
+Nichols,G11,A,F,6,1
+Nichols,G12,A,F,3,2
+Nichols,G12,B,F,3,2
+Pierce House,201,A,F,5,1
+Pierce House,202,A,,,1
+Pierce House,301,A,F,5,3
+Pierce House,301,B,F,5,3
+Pierce House,301,C,,,3
+Pitman,1,A,,,2
+Pitman,1,B,,,2
+Pitman,101,A,F,3,2
+Pitman,101,B,F,3,2
+Pitman,102,A,F,3,2
+Pitman,102,B,F,3,2
+Pitman,103,A,F,6,1
+Pitman,104,A,F,3,2
+Pitman,104,B,F,3,2
+Pitman,202,A,F,3,2
+Pitman,202,B,F,3,2
+Pitman,203,A,F,6,1
+Pitman,204,A,F,3,2
+Pitman,204,B,F,3,2
+Pratt,101,A,,,2
+Pratt,101,B,,,2
+Pratt,102,A,,,2
+Pratt,102,B,,,2
+Pratt,103,A,,,1
+Pratt,104,A,,,2
+Pratt,104,B,,,2
+Pratt,201,A,,,2
+Pratt,201,B,,,2
+Pratt,202,A,,,2
+Pratt,202,B,,,2
+Pratt,203,A,,,3
+Pratt,203,B,,,3
+Pratt,203,C,,,3
+Pratt,204,A,,,1
+Quantrell,1,A,,,2
+Quantrell,1,B,M,5,2
+Quantrell,2,A,M,4,2
+Quantrell,2,B,M,4,2
+Quantrell,102,A,M,4,2
+Quantrell,102,B,M,4,2
+Quantrell,103,A,M,6,1
+Quantrell,104,A,M,5,1
+Quantrell,105,A,M,5,1
+Quantrell,201,A,M,4,2
+Quantrell,201,B,M,4,2
+Quantrell,202,A,M,4,2
+Quantrell,202,B,M,4,2
+Quantrell,203,A,M,6,1
+Quantrell,204,A,M,5,1
+Quantrell,205,A,M,4,1
+Term Abroad Program - Spain,1,A,,,1
+Term Abroad Program - Spain,2,A,,,1
+Term Abroad Program - Spain,3,A,,,1
+Term Abroad Program - Spain,4,A,,,1
+Term Abroad Program - Spain,5,A,,,1
+Term Abroad Program - Spain,6,A,,,1
+Term Abroad Program - Spain,7,A,,,1
+Term Abroad Program - Spain,8,A,,,1
+Term Abroad Program - Spain,9,A,,,1
+Term Abroad Program - Spain,10,A,,,1
+Term Abroad Program - Spain,11,A,,,1
+Term Abroad Program - Spain,12,A,,,1
+Term Abroad Program - Spain,13,A,,,1
+Term Abroad Program - Spain,14,A,,,1
+Term Abroad Program - Spain,15,A,,,1
+Term Abroad Program - Spain,16,A,,,1
+Term Abroad Program - Spain,17,A,,,1
+Term Abroad Program - Spain,18,A,,,1
+Term Abroad Program - Spain,19,A,,,1
+Term Abroad Program - Spain,20,A,,,1
+Term Abroad Program - Spain,21,A,,,1
+Spencer,1,A,,,3
+Spencer,1,B,,,3
+Spencer,1,C,,,3
+Spencer,102,A,M,5,2
+Spencer,102,B,M,5,2
+Spencer,103,A,M,4,1
+Spencer,104,A,M,6,1
+Spencer,105,A,M,4,2
+Spencer,105,B,M,4,2
+Spencer,115,A,M,5,2
+Spencer,115,B,M,5,2
+Spencer,116,A,M,5,1
+Spencer,117,A,M,4,1
+Spencer,118,A,M,4,2
+Spencer,118,B,M,4,2
+Spencer,202,A,M,4,2
+Spencer,202,B,M,4,2
+Spencer,203,A,M,5,1
+Spencer,204,A,M,6,1
+Spencer,205,A,,,2
+Spencer,205,B,M,5,2
+Spencer,219,A,M,4,2
+Spencer,219,B,M,4,2
+Spencer,220,A,M,6,1
+Spencer,221,A,M,5,1
+Spencer,222,A,M,5,2
+Spencer,222,B,M,5,2
+Squire Stanley,101,A,F,3,2
+Squire Stanley,101,B,F,3,2
+Squire Stanley,102,A,F,3,2
+Squire Stanley,102,B,F,3,2
+Squire Stanley,103,A,F,6,3
+Squire Stanley,103,B,F,6,3
+Squire Stanley,103,C,,,3
+Squire Stanley,104,A,F,3,1
+Squire Stanley,105,A,F,3,1
+Squire Stanley,106,A,F,3,2
+Squire Stanley,106,B,F,3,2
+Tenney House,106,A,M,4,2
+Tenney House,106,B,M,4,2
+Tenney House,107,A,M,4,2
+Tenney House,107,B,M,4,2
+Tenney House,108,A,M,5,3
+Tenney House,108,B,M,5,3
+Tenney House,108,C,,,3
+Tenney House,109,A,M,5,1
+Tenney House,110,A,M,6,1
+Tenney House,111,A,M,5,1
+Tenney House,112,A,M,5,1
+Tenney House,113,A,,,1
+Tenney House,122,A,M,4,1
+Tenney House,123,A,M,4,1
+Tenney House,124,A,M,5,1
+Tenney House,125,A,M,4,2
+Tenney House,125,B,M,4,2
+Tenney House,127,A,M,6,1
+Tenney House,128,A,M,5,3
+Tenney House,128,B,M,5,3
+Tenney House,128,C,,,3
+Tenney House,129,A,M,4,1
+Tenney House,130,A,M,5,1
+Tenney House,205,A,M,4,2
+Tenney House,205,B,M,4,2
+Tenney House,206,A,M,4,2
+Tenney House,206,B,M,4,2
+Tenney House,208,A,M,5,3
+Tenney House,208,B,M,5,3
+Tenney House,208,C,,,3
+Tenney House,209,A,M,4,1
+Tenney House,210,A,M,4,1
+Tenney House,211,A,M,6,1
+Tenney House,212,A,M,5,1
+Tenney House,213,A,M,6,1
+Tenney House,223,A,M,4,1
+Tenney House,224,A,M,4,1
+Tenney House,225,A,M,4,1
+Tenney House,226,A,M,5,2
+Tenney House,226,B,M,5,2
+Tenney House,227,A,M,5,1
+Tenney House,228,A,M,5,3
+Tenney House,228,B,M,5,3
+Tenney House,228,C,,,3
+Tenney House,229,A,M,5,1
+Tenney House,230,A,M,6,1
+Walsh House,100,A,F,6,2
+Walsh House,100,B,F,6,2
+Walsh House,101,A,F,6,2
+Walsh House,101,B,F,6,2
+Walsh House,102,A,F,6,2
+Walsh House,102,B,F,6,2
+Woodhouse,201,A,M,6,2
+Woodhouse,201,B,M,6,2
+Woodhouse,202,A,M,6,2
+Woodhouse,202,B,M,6,2
+Woodhouse,203,A,M,6,2
+Woodhouse,203,B,M,6,2
+Woodhouse,204,A,M,6,2
+Woodhouse,204,B,M,6,2
+Woodhouse,205,A,M,6,1
+Woodhouse,301,A,M,6,2
+Woodhouse,301,B,M,6,2
+Woodhouse,302,A,M,6,3
+Woodhouse,302,B,M,6,3
+Woodhouse,302,C,M,6,3
+Woodhouse,303,A,M,6,1
+West Wing,218,A,F,5,1
+West Wing,219,A,F,5,2
+West Wing,219,B,F,5,2
+West Wing,220,A,F,6,1
+West Wing,221,A,F,4,2
+West Wing,221,B,F,4,2
+West Wing,222,A,F,4,2
+West Wing,222,B,F,4,2
+West Wing,223,A,F,4,2
+West Wing,223,B,F,4,2
+West Wing,224,A,F,4,2
+West Wing,224,B,F,4,2
+West Wing,225,A,F,6,1
+West Wing,227,A,F,4,1
+West Wing,229,A,F,5,1
+West Wing,309,A,F,5,2
+West Wing,309,B,F,5,2
+West Wing,310,A,F,5,2
+West Wing,310,B,F,5,2
+West Wing,311,A,F,5,2
+West Wing,311,B,F,5,2
