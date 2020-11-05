@@ -4,6 +4,7 @@ pub mod mcmcswap;
 pub mod deans_algorithm;
 pub mod multi_dist;
 pub mod network;
+pub mod deans_algorithm_friends;
 
 
 use ballot::Ballot;

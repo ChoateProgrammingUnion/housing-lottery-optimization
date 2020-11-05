@@ -41,14 +41,15 @@ fn main() {
     // let optimizer = optimizers::mcmc::minimax::Minimax::new(&ballot);
     // let optimizer = optimizers::mcmc::mcmc_naive::MCMCNaive::new(&ballot);
     // let optimizer = optimizers::deans_algorithm::DeansAlgorithm::new(&ballot);
+    let optimizer = optimizers::deans_algorithm_friends::DeansAlgorithmFriends::new(&ballot);
     // let optimizer = optimizers::network::NetworkOptimizer::new(&ballot, 10.0); // use with normalize or scale; expects 0-1 range
     // let optimizer = optimizers::mcmc::minimax_swap::Minimax_swap::new(&ballot);
-    let optimizer = optimizers::mcmc::minimax_friends::MinimaxFriends::new(&ballot);
+    // let optimizer = optimizers::mcmc::minimax_friends::MinimaxFriends::new(&ballot);
 
 
     let start_seed: u64 = 0;
-    let trials: usize = 100;
-    let rounds: usize = 10000;
+    let trials: usize = 10;
+    let rounds: usize = 100000;
     let threads: usize = 8;
     let mut results: Vec<Vec<Vec<Student>>> = vec![];
     let mut times: Vec<Duration> = vec![];
