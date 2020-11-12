@@ -46,5 +46,6 @@ jobs:
         rust-version: ${{ matrix.rust }}
     - uses: actions/checkout@master
     - name: Run tests
-      run: cargo test --verbose
-
+      run: |
+        python3 generate_ballots.py
+        cargo test --verbose
