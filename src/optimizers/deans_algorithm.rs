@@ -54,9 +54,17 @@ impl Optimizer for DeansAlgorithm{
             let mut rng = rand::thread_rng();
             let len: f64 = input.len() as f64;
             let rand_num: f64 = rng.gen();
+
+            //random index for the student
             let index_choice: usize = (len*rand_num) as usize;
+
+            // student that was chosen
             let choice = input[index_choice].clone();
+
+            // index of most prefered house
             let preference = self.find_max(&self.ballots, &schedule, &choice);
+
+            // removes the student and adds them to the house
             input.remove(index_choice);
             schedule[preference].push(choice.clone());
         }

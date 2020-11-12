@@ -125,9 +125,11 @@ impl MCMCOptimizer for Minimax{
 impl Optimizer for Minimax {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
+        // runs the step function rounds number of times
         for _round in 0..rounds{
             schedule = self.step(schedule);
         }
+        // removes overfilled students from the houses, and places them in the best available house
         for house in 0..schedule.len(){
             while schedule[house].len()>self.ballots.houses[house].capacity {
                 let student_location = self.gen_range(0, schedule[house].len());
