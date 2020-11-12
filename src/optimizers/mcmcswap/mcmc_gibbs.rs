@@ -63,8 +63,7 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         let proposed_total_weight = proposed_house1 * friend_weight_proposed;
 
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
-            if current_total_weight <= proposed_total_weight{
-                    //return (current_house1/proposed_house1) as f64;
+            if current_house1 < proposed_house1 && current_total_weight <= proposed_total_weight{
                     return 1 as f64;
                 }else{
                     return 0 as f64;
@@ -104,7 +103,6 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         if current_house1<=proposed_house1 && current_house2 <= proposed_house2 &&(
         current_total_weight <= proposed_total_weight || current_total_weight2 <= proposed_total_weight2){
             return 1 as f64;
-            //return (proposed_house1 + proposed_house2)/(current_house1 + current_house2) % 1 as f64;
         } else {
             return 0 as f64;
         }
