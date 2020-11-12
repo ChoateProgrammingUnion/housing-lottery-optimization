@@ -58,12 +58,10 @@ impl MCMCOptimizerSWAP for MCMCGibbs{
         }
         }
         
-        
-        
+        //current number of students is less than overall capacity
         let current_total_weight = current_house1 * friend_weight_current;
         let proposed_total_weight = proposed_house1 * friend_weight_proposed;
 
-        //current number of students is less than overall capacity
         if schedule[proposal.proposed_house.0].len()<self.ballots.houses[proposal.proposed_house.0].capacity{
             // if current weight is less than the proposed weight
             if current_house1 < proposed_house1 && current_total_weight <= proposed_total_weight{
