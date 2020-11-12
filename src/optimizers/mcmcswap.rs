@@ -13,10 +13,10 @@ pub(self) struct ProposalSWAP {
 
 pub(self) trait MCMCOptimizerSWAP: Optimizer {
     // An acceptance function takes in a particular location of the student (house, student) and the new house and returns a probability between 0-1 of acceptance.
-    // 1 means a 100% probability of accepting
+    // 1 means a 100% probability of accepting, 0 means a 0% probablity of accepting
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: ProposalSWAP) -> f64;
+    
     // A proposal function samples from all the house-student pairs and returns a students random change ((house, student), new_house).
-
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> ProposalSWAP;
 
     fn gen_bool(&self, prob: f64) -> bool {
@@ -34,11 +34,13 @@ pub(self) trait MCMCOptimizerSWAP: Optimizer {
         return dice;
     }
 
-    fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
+    // steps through one iteration of the MCMC chain
+    fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> {
         let proposed_change: ProposalSWAP = self.propose(&schedule);
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
+            // move first student
             let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
             schedule[proposed_change.proposed_house.0].push(student);
 

@@ -4,13 +4,13 @@ use optimizers::{Optimizer, generate_random_allocation};
 
 #[derive(Clone)]
 pub struct MCMCSWAP{
-    ballots: Ballot
+    ballots: Ballot,
 }
 
 impl MCMCSWAP {
     pub fn new(ballots: &Ballot) -> Self {
         Self {
-            ballots: ballots.clone()
+            ballots: ballots.clone(),
         }
     }
 }
@@ -29,7 +29,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         let mut friend_weight_current = 0.0;
         let mut friend_weight_proposed = 0.0;
 
-        
+        // find friends in current and proposed houses for first student
         for friend in friends{
             let name = self.ballots.students[*friend].name.clone();
             // find friends in current house
@@ -48,7 +48,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
             }
         }
         
-
+        // weight is house ballot plus 10% times the number of friends in that house
         let total_weight_current = current_house1 * (1.0 + friend_weight_current);
         let total_weight_proposed = proposed_house1 * (1.0 + friend_weight_proposed);
         
@@ -72,7 +72,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         let mut friend_weight_current2 = 0.0;
         let mut friend_weight_proposed2 = 0.0;
         
-        // same like the friend checking for first student
+        // friend checking for second student, same like the friend checking for first student
         for friend in friends{
             let name2 = self.ballots.students[*friend].name.clone();
             for i in 0..schedule[proposal.student_location.0].len(){
@@ -104,6 +104,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> ProposalSWAP {
         // same as other mcmc code
+        // pick two sets of house and student index
         let size = self.ballots.students.len();
         let student_number = self.gen_range(0, size);
         let mut current_house = 0;
@@ -122,7 +123,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
         }
         
 
-
+        // ensure that second house is not the same as the first house
         let mut current_house2 = self.gen_range(0,schedule.len());
         while current_house2 == current_house{
             current_house2 = self.gen_range(0,schedule.len());
@@ -140,6 +141,7 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
         let current_index2 = self.gen_range(0,schedule[current_house2].len());
 
+
         let proposed_change = ProposalSWAP{
             student_location: (current_house, current_index),
             proposed_house: (current_house2, current_index2)
@@ -147,14 +149,16 @@ impl MCMCOptimizerSWAP for MCMCSWAP{
 
         return proposed_change
     }
+    
 }
 
 
 impl Optimizer for MCMCSWAP {
+    // generate random allocation, then iterate through the steps of mcmc
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
         for _round in 0..rounds{
-            schedule = self.step(schedule);
+            schedule = self.step(schedule); 
         }
         return schedule;
     }
@@ -163,7 +167,6 @@ impl Optimizer for MCMCSWAP {
         return 0.0;
     }
 
-    fn reseed(&mut self, _new_seed: u64) {
-
+    fn reseed(&mut self, new_seed: u64) {
     }
 }
