@@ -47,7 +47,10 @@ jobs:
     - uses: actions/checkout@master
     - name: Run tests
       run: |
-        sudo apt-get install python3-pip
+        sudo apt-get install python3-pip python3
         pip3 install numpy
+        echo "Python deps installed"
         python3 generate_ballots.py
+        ls
+        echo "Ballots generated"
         cargo test --verbose
