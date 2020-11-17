@@ -5,17 +5,6 @@ use self::chrono::Local;
 use self::env_logger::Builder;
 use std::io::Write;
 
-// PURPLE = "\x1B[95m";
-// CYAN = "\x1B[96m";
-// DARKCYAN = "\x1B[36m";
-// BLUE = "\x1B[94m";
-// GREEN = "\x1B[92m";
-// YELLOW = "\x1B[93m";
-// RED = "\x1B[91m";
-// BOLD = "\x1B[1m";
-// UNDERLINE = "\x1B[4m";
-// END = "\x1B[0m";
-
 #[macro_export]
 macro_rules! log_error {
     ($text:expr) => {

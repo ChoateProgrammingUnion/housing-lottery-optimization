@@ -29,6 +29,7 @@ fn main() {
     // LevelFilter::Trace - Print trace messages (and info, error, debug) (a lot of messages)
     logger::init(LevelFilter::Info);
 
+    // Load data
     crate::log_info!("processing...", "input");
     let ballot = input::load_input(
         // ballot::identity
@@ -37,13 +38,16 @@ fn main() {
     );
     crate::log_info!("successfully processed", "input");
 
+    // Setup trials
     let trials = input::load_trials();
     let mut data_file = File::create("data_output.yaml").expect("file creation failed");
     data_file
         .write("\nalgo:".as_ref())
         .expect("unable to write to file");
 
+    // Run trials
     for trial in trials {
+        // Setup each trial round
         let start_seed: u64 = 0;
         let trials: usize = 20;
         let rounds: usize = 10000;
@@ -52,6 +56,7 @@ fn main() {
         let mut times: Vec<Duration> = vec![];
         let write_first_allocation_vector = false;
 
+        // Run trials in separate threads
         let mut handles: Vec<std::thread::JoinHandle<(Vec<Duration>, Vec<Vec<Vec<Student>>>)>> =
             vec![];
         for t in 0..threads {
@@ -72,12 +77,15 @@ fn main() {
                 (durations, allocations)
             }));
         }
+
+        // Collect trial data
         for h in handles {
             let (mut t, mut r) = h.join().unwrap();
             times.append(&mut t);
             results.append(&mut r);
         }
 
+        // Write trial results
         crate::log_info!("writing", "output");
         if write_first_allocation_vector {
             output::write_output(&results[0], &ballot);
@@ -87,6 +95,7 @@ fn main() {
     }
 }
 
+// Define each implemented algo and give a corresponding name to match with
 fn select_optimizer(trial_name: &str, ballot: &ballot::Ballot) -> Box<dyn Optimizer> {
     match trial_name {
         "swap-naive" => Box::new(optimizers::swap_naive::SwapNaive::new(ballot, 0)),

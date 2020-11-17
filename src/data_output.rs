@@ -4,10 +4,11 @@ use std::fs::File;
 use std::io::Write;
 use std::time::Duration;
 
+// Struct to hold trial results and output distributions
 pub(self) struct TrialData {
-    pub(self) choice_nums: Vec<f64>,
-    pub(self) friend_nums: Vec<f64>,
-    pub(self) run_time_nanos: u128,
+    pub(self) choice_nums: Vec<f64>, // Choice distribution
+    pub(self) friend_nums: Vec<f64>, // Friend distribution
+    pub(self) run_time_nanos: u128, // Run time, in nanoseconds
 }
 
 impl TrialData {
@@ -103,13 +104,6 @@ pub fn write_output(
     algo: String,
 ) {
     assert_eq!(allocations.len(), run_times.len());
-
-    // // Open output file
-    // if data_file_option.is_none() {
-    //     let mut data_file = File::create("data_output.yaml").expect("file creation failed");
-    // } else {
-    //     let mut data_file = data_file_option.unwrap();
-    // }
 
     // Get data
     let mut data: Vec<TrialData> = vec![];

@@ -1,6 +1,5 @@
 #[derive(Debug, Clone)]
 pub struct Student {
-    // Perhaps rename because a double would count as 1 student
     pub name: String,
     pub ballot: Vec<f64>,
     pub friends: Vec<usize>,
