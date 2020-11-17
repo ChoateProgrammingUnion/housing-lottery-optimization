@@ -1,10 +1,11 @@
 #[derive(Debug, Clone)]
-pub struct Student {  // Perhaps rename because a double would count as 1 student
+pub struct Student {
+    // Perhaps rename because a double would count as 1 student
     pub name: String,
     pub ballot: Vec<f64>,
     pub friends: Vec<usize>,
     pub ballot_sum: f64,
-    pub id: usize
+    pub id: usize,
 }
 
 impl Student {
@@ -14,7 +15,7 @@ impl Student {
             ballot: vec![0.0; num_houses],
             friends: vec![],
             ballot_sum: 0.0,
-            id
+            id,
         }
     }
 }
@@ -22,29 +23,26 @@ impl Student {
 #[derive(Debug, Clone)]
 pub struct House {
     pub name: String,
-    pub capacity: usize
+    pub capacity: usize,
 }
 
 impl House {
     pub fn new(name: String, capacity: usize) -> Self {
-        Self {
-            name,
-            capacity
-        }
+        Self { name, capacity }
     }
 }
 
 #[derive(Debug, Clone)]
 pub struct Ballot {
     pub students: Vec<Student>,
-    pub houses: Vec<House>
+    pub houses: Vec<House>,
 }
 
 impl Ballot {
     pub fn new() -> Self {
         Self {
             students: vec![],
-            houses: vec![]
+            houses: vec![],
         }
     }
 }
@@ -54,16 +52,16 @@ impl Ballot {
 pub fn scale(student: Student) -> Student {
     // find max
     let mut max: f64 = 0.0;
-    for elm in &student.ballot{
-        if elm>&max {
+    for elm in &student.ballot {
+        if elm > &max {
             max = *elm;
         }
     }
 
     // scale ballot to maximum
     let mut scaled = student.clone();
-    for i in 0..student.ballot.len(){
-        scaled.ballot[i] = student.ballot[i]/max;
+    for i in 0..student.ballot.len() {
+        scaled.ballot[i] = student.ballot[i] / max;
     }
 
     scaled
@@ -77,8 +75,8 @@ pub fn normalize(student: Student) -> Student {
 
     // normalize ballot to sum
     let mut normalized = student.clone();
-    for i in 0..student.ballot.len(){
-        normalized.ballot[i] = student.ballot[i]/sum;
+    for i in 0..student.ballot.len() {
+        normalized.ballot[i] = student.ballot[i] / sum;
     }
 
     normalized

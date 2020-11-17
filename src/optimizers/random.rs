@@ -1,10 +1,10 @@
 use ballot::{Ballot, Student};
-use optimizers::{Optimizer, generate_random_allocation};
+use optimizers::{generate_random_allocation, Optimizer};
 
 #[derive(Clone)]
 pub struct RandomOptimizer {
     pub ballots: Ballot,
-    seed: u64
+    seed: u64,
 }
 
 impl RandomOptimizer {
@@ -12,7 +12,7 @@ impl RandomOptimizer {
     pub fn new(ballots: &Ballot, random_seed: u64) -> RandomOptimizer {
         RandomOptimizer {
             ballots: ballots.clone(),
-            seed: random_seed
+            seed: random_seed,
         }
     }
 }

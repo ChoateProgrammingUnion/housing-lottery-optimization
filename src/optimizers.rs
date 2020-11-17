@@ -1,19 +1,18 @@
+pub mod deans_algorithm;
+pub mod deans_algorithm_friends;
 pub mod identity;
 pub mod mcmc;
 pub mod mcmcswap;
-pub mod deans_algorithm;
 pub mod multi_dist;
 pub mod network;
-pub mod deans_algorithm_friends;
-pub mod swap_naive;
 pub mod random;
-
+pub mod swap_naive;
 
 use ballot::Ballot;
 use ballot::Student;
 
 use rand::rngs::StdRng;
-use rand::{SeedableRng, Rng};
+use rand::{Rng, SeedableRng};
 
 pub trait Optimizer {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>>;
@@ -37,7 +36,7 @@ pub fn generate_random_allocation(ballot: &Ballot, seed: u64) -> Vec<Vec<Student
 }
 
 #[allow(dead_code)]
-fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<Student>>) -> bool{
+fn validate_ballot(ballot: &Ballot, schedule: Vec<Vec<Student>>) -> bool {
     // let students_total = ballot.students.len();
     let mut students = Vec::new();
 

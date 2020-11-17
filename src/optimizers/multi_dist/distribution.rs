@@ -1,11 +1,11 @@
 use ballot::Student;
 
+use array2d::Array2D;
+use optimizers::multi_dist::weight_functions::{house_move_weights, student_swap_weight};
 use rand::distributions::WeightedIndex;
-use std::ptr;
 use rand::rngs::StdRng;
 use rand::Rng;
-use array2d::Array2D;
-use optimizers::multi_dist::weight_functions::{student_swap_weight, house_move_weights};
+use std::ptr;
 
 pub struct AllocatedStudent {
     pub name: String,
@@ -15,7 +15,7 @@ pub struct AllocatedStudent {
     pub friends: Vec<usize>,
     pub ballot_sum: f64,
     pub id: usize,
-    pub location: (usize, usize)
+    pub location: (usize, usize),
 }
 
 impl AllocatedStudent {
@@ -24,12 +24,16 @@ impl AllocatedStudent {
         let dist = WeightedIndex::new(house_move_weights(student)).unwrap();
         let mut house_preference_dists = vec![dist; student.ballot.len()];
         for i in 0..student.ballot.len() {
-            house_preference_dists[i].update_weights(&[(i, &0.0)]).expect("distribution update failed");
+            house_preference_dists[i]
+                .update_weights(&[(i, &0.0)])
+                .expect("distribution update failed");
         }
-        let mut swap_weights = Array2D::filled_with(0.0, student.ballot.len(), student.ballot.len());
+        let mut swap_weights =
+            Array2D::filled_with(0.0, student.ballot.len(), student.ballot.len());
         for current_house in 0..student.ballot.len() {
             for swap_house in 0..student.ballot.len() {
-                swap_weights[(current_house, swap_house)] = student_swap_weight(student, swap_house, current_house)
+                swap_weights[(current_house, swap_house)] =
+                    student_swap_weight(student, swap_house, current_house)
             }
         }
         Self {
@@ -40,7 +44,7 @@ impl AllocatedStudent {
             friends: s.friends,
             ballot_sum: s.ballot_sum,
             id: s.id,
-            location
+            location,
         }
     }
 
@@ -50,7 +54,7 @@ impl AllocatedStudent {
             ballot: self.ballot.clone(),
             friends: self.friends.clone(),
             ballot_sum: self.ballot_sum,
-            id: self.id
+            id: self.id,
         }
     }
 }
@@ -60,14 +64,16 @@ pub struct WeightedDistribution<I> {
     pub weights: Vec<f64>,
     pub weight_sum: f64,
     pub distribution: WeightedIndex<f64>,
-    pub weight_function: fn(index: usize, item: &I) -> f64
+    pub weight_function: fn(index: usize, item: &I) -> f64,
 }
 
 impl<I> WeightedDistribution<I> {
     pub fn new(items: Vec<I>, weight_function: fn(index: usize, item: &I) -> f64) -> Self {
-        let weights: Vec<f64> = items.iter().enumerate().map(|x| {
-            weight_function(x.0, x.1)
-        }).collect();
+        let weights: Vec<f64> = items
+            .iter()
+            .enumerate()
+            .map(|x| weight_function(x.0, x.1))
+            .collect();
         let distribution = WeightedIndex::new(&weights).unwrap();
         let weight_sum = weights.iter().sum();
         Self {
@@ -75,7 +81,7 @@ impl<I> WeightedDistribution<I> {
             weights,
             weight_sum,
             distribution,
-            weight_function
+            weight_function,
         }
     }
 
@@ -88,10 +94,18 @@ impl<I> WeightedDistribution<I> {
         let new_weight = (self.weight_function)(index, &self.items[index]);
         self.weights[index] = new_weight;
         self.weight_sum += self.weights[index];
-        self.distribution.update_weights(&[(index, &new_weight)]).expect("distribution update failed");
+        self.distribution
+            .update_weights(&[(index, &new_weight)])
+            .expect("distribution update failed");
     }
 
-    pub fn swap(vec: &mut Vec<WeightedDistribution<I>>, a_loc: usize, a_idx: usize, b_loc: usize, b_idx: usize) {
+    pub fn swap(
+        vec: &mut Vec<WeightedDistribution<I>>,
+        a_loc: usize,
+        a_idx: usize,
+        b_loc: usize,
+        b_idx: usize,
+    ) {
         unsafe {
             let pa: *mut I = &mut vec[a_loc].items[a_idx];
             let pb: *mut I = &mut vec[b_loc].items[b_idx];

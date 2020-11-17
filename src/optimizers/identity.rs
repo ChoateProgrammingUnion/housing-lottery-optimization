@@ -2,18 +2,18 @@
 The null/identity optimizer. Just here for testing. Returns an empty schedule. Just for testing.
  */
 use ballot::{Ballot, Student};
-use optimizers::{Optimizer, generate_random_allocation};
+use optimizers::{generate_random_allocation, Optimizer};
 
 #[derive(Clone)]
 pub struct Identity {
-    pub ballots: Ballot
+    pub ballots: Ballot,
 }
 
 impl Identity {
     #[allow(dead_code)]
     pub fn new(ballots: &Ballot) -> Identity {
         Identity {
-            ballots: ballots.clone()
+            ballots: ballots.clone(),
         }
     }
 }
@@ -24,9 +24,7 @@ impl Optimizer for Identity {
         return schedule;
     }
 
-    fn reseed(&mut self, _new_seed: u64) {
-
-    }
+    fn reseed(&mut self, _new_seed: u64) {}
 
     fn objective(&self) -> f64 {
         return 0.0;

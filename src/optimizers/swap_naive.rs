@@ -1,13 +1,13 @@
 use ballot::{Ballot, Student};
 use optimizers::Optimizer;
 
-use rand::{Rng, SeedableRng};
 use rand::rngs::StdRng;
+use rand::{Rng, SeedableRng};
 
 #[derive(Clone)]
 pub struct SwapNaive {
     pub ballots: Ballot,
-    rng: StdRng
+    rng: StdRng,
 }
 
 impl SwapNaive {
@@ -15,7 +15,7 @@ impl SwapNaive {
     pub fn new(ballots: &Ballot, random_seed: u64) -> SwapNaive {
         SwapNaive {
             ballots: ballots.clone(),
-            rng: StdRng::seed_from_u64(random_seed)
+            rng: StdRng::seed_from_u64(random_seed),
         }
     }
 
@@ -58,7 +58,9 @@ impl SwapNaive {
                 let mut found_open_house: bool = false;
 
                 for house_id_2 in 0..num_houses {
-                    if house_id == house_id_2 { continue }
+                    if house_id == house_id_2 {
+                        continue;
+                    }
 
                     let house_2 = &allocations[house_id_2];
 
@@ -83,17 +85,29 @@ impl SwapNaive {
 
     pub fn sort_allocations(allocations: &mut Vec<Vec<Student>>) {
         for house_id in 0..allocations.len() {
-            allocations[house_id].sort_by(|a, b| a.ballot[house_id].partial_cmp(&b.ballot[house_id]).unwrap().reverse());
+            allocations[house_id].sort_by(|a, b| {
+                a.ballot[house_id]
+                    .partial_cmp(&b.ballot[house_id])
+                    .unwrap()
+                    .reverse()
+            });
 
             crate::log_debug!(format!("Sorted house {}", house_id), "sort");
 
             for student in &allocations[house_id] {
-                crate::log_debug!(format!("{} - {}", student.name, student.ballot[house_id]), "sort");
+                crate::log_debug!(
+                    format!("{} - {}", student.name, student.ballot[house_id]),
+                    "sort"
+                );
             }
         }
     }
 
-    pub fn do_swap(&mut self, allocations: &mut Vec<Vec<Student>>, last_swap: Option<(usize, usize)>) -> Option<(usize, usize)> {
+    pub fn do_swap(
+        &mut self,
+        allocations: &mut Vec<Vec<Student>>,
+        last_swap: Option<(usize, usize)>,
+    ) -> Option<(usize, usize)> {
         // Find least satisfied student
         let mut least_satisfied_weight: f64 = f64::MAX;
         let mut least_satisfied_index: usize = 0;
@@ -110,10 +124,14 @@ impl SwapNaive {
         let mut highest_weight_increase: f64 = f64::MIN;
         let mut swap_position: (usize, usize) = (0, 0);
         for house_id in 0..allocations.len() {
-            if house_id == least_satisfied_index { continue }
+            if house_id == least_satisfied_index {
+                continue;
+            }
             for (student_loc, student) in allocations[house_id].iter().enumerate() {
-                let current_net_weight = least_satisfied_student.ballot[least_satisfied_index] + student.ballot[house_id];
-                let swap_net_weight = least_satisfied_student.ballot[house_id] + student.ballot[least_satisfied_index];
+                let current_net_weight = least_satisfied_student.ballot[least_satisfied_index]
+                    + student.ballot[house_id];
+                let swap_net_weight = least_satisfied_student.ballot[house_id]
+                    + student.ballot[least_satisfied_index];
                 let weight_diff = swap_net_weight - current_net_weight;
 
                 if weight_diff > highest_weight_increase {
@@ -123,7 +141,15 @@ impl SwapNaive {
             }
         }
 
-        crate::log_debug!(format!("Swapping {} and {} for a net weight diff of {}", least_satisfied_student.name, allocations[swap_position.0][swap_position.1].name, highest_weight_increase), "swap");
+        crate::log_debug!(
+            format!(
+                "Swapping {} and {} for a net weight diff of {}",
+                least_satisfied_student.name,
+                allocations[swap_position.0][swap_position.1].name,
+                highest_weight_increase
+            ),
+            "swap"
+        );
 
         let a_loc = least_satisfied_index;
         let a_idx = allocations[a_loc].len() - 1;
@@ -131,8 +157,9 @@ impl SwapNaive {
 
         match last_swap {
             Some((a, b)) => {
-                if (allocations[a_loc][a_idx].id == a && allocations[b_loc][b_idx].id == b) ||
-                    (allocations[a_loc][a_idx].id == b && allocations[b_loc][b_idx].id == a) {
+                if (allocations[a_loc][a_idx].id == a && allocations[b_loc][b_idx].id == b)
+                    || (allocations[a_loc][a_idx].id == b && allocations[b_loc][b_idx].id == a)
+                {
                     return None;
                 }
             }
@@ -146,8 +173,18 @@ impl SwapNaive {
             std::ptr::swap(pa, pb);
         }
 
-        allocations[a_loc].sort_by(|a, b| a.ballot[a_loc].partial_cmp(&b.ballot[a_loc]).unwrap().reverse());
-        allocations[b_loc].sort_by(|a, b| a.ballot[b_loc].partial_cmp(&b.ballot[b_loc]).unwrap().reverse());
+        allocations[a_loc].sort_by(|a, b| {
+            a.ballot[a_loc]
+                .partial_cmp(&b.ballot[a_loc])
+                .unwrap()
+                .reverse()
+        });
+        allocations[b_loc].sort_by(|a, b| {
+            a.ballot[b_loc]
+                .partial_cmp(&b.ballot[b_loc])
+                .unwrap()
+                .reverse()
+        });
 
         Some((allocations[a_loc][a_idx].id, allocations[b_loc][b_idx].id))
     }
