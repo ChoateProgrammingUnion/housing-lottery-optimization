@@ -94,12 +94,29 @@ if __name__ == "__main__":
     solver.Solve()
 
     # print(options)
+    choices = [0]*len(houses)
 
     total_weight = 0
     for x, ballot in enumerate(options):
         for y, option in enumerate(ballot):
             if option.solution_value() == 1:
                 print(ballots[x].name, "has house", houses[y].name, "with weight", weights[x][y])
+                preferences = list(reversed(sorted(ballots[x].ranking, key=lambda x: x.get("weight"))))
+
+                count = -1
+                prev = 1
+                # print(houses)
+                for pref in preferences:
+                    if pref.get("weight") < prev:
+                        count += 1
+                        prev = pref.get("weight")
+                    if pref.get("name") == houses[y].name:
+                        break
+                choices[count] += 1
+                # print(preferences, count)
+                
                 total_weight += weights[x][y]
 
     print("Weight", total_weight, "out of", sum([max(weight) for weight in weights]))
+
+    print(choices)

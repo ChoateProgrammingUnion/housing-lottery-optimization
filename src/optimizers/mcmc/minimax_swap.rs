@@ -14,7 +14,7 @@ impl MinimaxSwap {
             ballots: ballots.clone()
         }
     }
-    #[allow(dead_code)]
+
     fn size(&self , schedule: Vec<Vec<Student>>) -> (Vec<Vec<Student>>, usize) {
         let mut counter = 0;
         for house in &schedule {
@@ -22,10 +22,11 @@ impl MinimaxSwap {
         }
         return (schedule, counter);
     }
+
+    // custom step function for mcmc
     fn step(&self, mut schedule: Vec<Vec<Student>>) -> Vec<Vec<Student>> { // steps through one iteration of the MCMC chain
         let proposed_change: Proposal = self.propose(&schedule);
         let acceptance_prob: f64 = self.acceptance(&schedule,proposed_change.clone());
-        // println!("{:?}", acceptance_prob);
 
         if self.gen_bool(acceptance_prob) { // proposal accepted
             let student = schedule[proposed_change.student_location.0].remove(proposed_change.student_location.1);
@@ -82,6 +83,7 @@ impl MCMCOptimizer for MinimaxSwap{
        let mut current_house: usize = 0;
        let mut current_index: usize = 0;
 
+        // finds location of student
        for house in schedule {
            counter += house.len();
 
@@ -111,15 +113,19 @@ impl Optimizer for MinimaxSwap {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
         for _ in 0..rounds{
+            // runs the step function rounds number of times
             schedule = self.step(schedule);
-            for house in 0..schedule.len(){
-                while schedule[house].len()>self.ballots.houses[house].capacity {
-                    let student_location = self.gen_range(0, schedule[house].len());
-                    let student = schedule[house][student_location].clone();
-                    let choice = find_max(&self.ballots, &schedule, &student);
-                    schedule[house].remove(student_location);
-                    schedule[choice].push(student.clone());
-                }
+            
+        }
+
+        // removes overfilled students from the houses, and places them in the best available house
+        for house in 0..schedule.len(){
+            while schedule[house].len()>self.ballots.houses[house].capacity {
+                let student_location = self.gen_range(0, schedule[house].len());
+                let student = schedule[house][student_location].clone();
+                let choice = find_max(&self.ballots, &schedule, &student);
+                schedule[house].remove(student_location);
+                schedule[choice].push(student.clone());
             }
         }
         return schedule;

@@ -34,6 +34,13 @@ impl MCMCOptimizer for Minimax{
     // if current house is worse, chance of staying is current rank^(-2)
     // if current house is better, chance of moving is new rank^(-2)
     fn acceptance(&self, schedule: &Vec<Vec<Student>>, proposal: Proposal) -> f64 {
+        let extra_room_float: f64 = 0.1;
+        let mut extra_room_constant: usize = 0;
+        let mut other_constant: f64 = 0.5;
+        // if self.gen_bool(extra_room_float){
+        //     extra_room_constant = 1;
+        // }
+
         let extra_room_constant: usize = 1;
         let power_constant: f64 = -2.0;
 
@@ -67,6 +74,15 @@ impl MCMCOptimizer for Minimax{
             let probability: f64 = (new_house_rank as f64).powf(power_constant);
             return probability;
         }
+
+        // if new_house_rank == current_house_rank {return 0.0};
+        // if new_house_rank > current_house_rank {
+        //     let probability: f64 = (other_constant).powf(1.0/((new_house_rank-current_house_rank) as f64));
+        //     return probability;
+        // } else {
+        //     let probability: f64 = (other_constant).powf((current_house_rank-new_house_rank) as f64);
+        //     return probability;
+        // }
     }
 
     fn propose(&self, schedule: &Vec<Vec<Student>>) -> Proposal {
@@ -109,9 +125,11 @@ impl MCMCOptimizer for Minimax{
 impl Optimizer for Minimax {
     fn optimize(&mut self, rounds: usize) -> Vec<Vec<Student>> {
         let mut schedule: Vec<Vec<Student>> = generate_random_allocation(&self.ballots, 0 as u64);
+        // runs the step function rounds number of times
         for _round in 0..rounds{
             schedule = self.step(schedule);
         }
+        // removes overfilled students from the houses, and places them in the best available house
         for house in 0..schedule.len(){
             while schedule[house].len()>self.ballots.houses[house].capacity {
                 let student_location = self.gen_range(0, schedule[house].len());
