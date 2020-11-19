@@ -14,19 +14,19 @@ In addition to the computational leaps made within the past century, there has b
 We aim to examine and develop several optimization techniques that can take advantage of these recent developments.
 
 * Introduction
-In our Simulation Technique Directed Study, we decided to create a housing lottery system that can optimize students’ housing choices, using the simulation techniques we learned, such as Monte Carlo Simulations. It is important to understand that the purpose of our project is not to completely replace the current system on hand. We wish to create a tool that the Deans can use to assist them in their task to create the housing allocation. Our goal is to create an algorithm that can create a housing allocation within seconds and have it satisfy the majority of the student’s preferences. The finishing touches are still expected to be finished with human hands.
+In our Simulation Technique Directed Study, we decided to create a housing lottery system that can optimize students’ housing choices, using the simulation techniques we learned, such as Monte Carlo Simulations. It is important to understand that the purpose of our project is not to completely replace the current system on hand. We wish to create a tool that the deans can use to assist them in their task to create the housing allocation. Our goal is to create an algorithm that can create a housing allocation within seconds and have it satisfy the majority of the student’s preferences. The finishing touches are still expected to be finished with human hands.
 
 ** The Deans' Algorithm
-We define the Dean’s Algorithm to be the current system that Choate uses for the housing allocations. During the span of our project, our goal was to improve on the current system and provide aid to it. To do that, it was important to understand the current system.
-The Dean’s method starts by asking all students to rank their top four preferred houses. The students are then randomly distributed through the available houses using a computer system, then the allocation is finished by hand based on how the student’s ranked their preferences. Of course, there are many other nuances that change the results.
+We define the dean’s Algorithm to be the current system that Choate uses for the housing allocations. During the span of our project, our goal is to improve on the current system and provide aid to it. To do that, it was important to understand the current system.
+The dean’s method starts by asking all students to rank their top four preferred houses. The students are then randomly distributed through the available houses using a computer system, then the allocation is finished by hand based on how the student’s ranked their preferences. Of course, there are many other nuances that change the results.
 
 * The Lottery system
-There is a lottery system put in place to help your chances of obtaining the house you want. Each student chooses a random number, and those who choose a better number are given priority over those who chose a worse number - the better numbers are decided by a lottery by the deans. When students are on leave (medical or otherwise) for a year, students are unable to participate in the lottery. The school identifies what would be a good fit for the student based on what is known about them. 
+There is a lottery system put in place to randomly choose which students get to pick their house first. When students are on leave (medical or otherwise) for a year, students are unable to participate in the lottery. The school identifies what would be a good fit for the student based on what is known about them. 
 The purpose of the lottery system is to not only make it fun for the students to bet their luck, but it is also to create an element of randomness. The school wishes for diversity within each house in hopes that different groups of people can gather together and become friends.
 
 * Nuances
-Fourth formers are normally given priority over 3rd formers and new students, if their first choice dorm is the same dorm they lived in. So, fourth formers are in a tiered lottery that can be separated into three different tiers, as indicated below (refers to roommate status).
-Tier 1 status. Both students choose to stay in the same house and have priority for beds
+Fourth formers living in a specific house are given priority if their first choice  is the same dorm they currently live in. So, fourth formers are in a tiered lottery that can be separated into three different tiers, as indicated below (refers to roommate status).
+Tier 1 status. Both roommates choose to stay in the same house and have priority for beds
 Tier 2 status. One student chooses the stay in the same house and their roommate is coming from a different house
 Tier 3 status. Neither student are returning members of the house
 
