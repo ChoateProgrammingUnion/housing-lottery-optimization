@@ -46,7 +46,8 @@ Swap and Gibbs
 The swap and gibbs algorithm used a very simple variation of MCMC - the probability of accepting is 100% if the new state is better, and is 0% if the new state is worse, where our state is the weight of the student ballots.
 Ethan Swap Naive
 Max Network
-Ian Minimax
+Minimax
+The minimax algorithm tries to minimize the worst choices more than maximize the best choices. This minimax algorithms is also an MCMC, so when determining a wether a student should make a givin swap to a new house, the probabilility of staying is inversly proportional to the square of the current house's rank. This means that the chance of staying in a low ranked house is extremely low, and the chance of staying in a highly rank house is quite high.
 Friends
 During our project, we considered important variables that went into housing allocations and we believed that friends could play a role into how much you valued your housing experience. As a result, several of our algorithms considered friends and would place more importance on a dorm with friends compared to a dorm without. While every algorithm placed a different amount of importance on friends, each tried to group friends together.
 It is important to note that the data that we use for friends is computer generated, since real data has never been collected, and thus it will not necessarily be a good representation of real data.
