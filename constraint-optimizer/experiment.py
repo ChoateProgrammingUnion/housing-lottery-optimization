@@ -13,26 +13,28 @@ class House(pydantic.BaseModel):
 
 class Ballot(pydantic.BaseModel):
     name: str
-    rankings: List[dict]
+    ranking: List[dict]
 
 serialize = lambda model, x: model(**x)
 
-def find_ranking(rankings: List[dict], house):
-    for each_ranking in rankings:
+def find_ranking(ranking: List[dict], house):
+    for each_ranking in ranking:
         if each_ranking.get("name") == house:
             return each_ranking["weight"]
 
 def load_weights_and_ballots(houses: list, ballots: list, size: int):
-    solver = pywraplp.Solver.CreateSolver('housing', 'CBC')
+    # solver = pywraplp.Solver.CreateSolver('housing', 'CBC')
+    solver = pywraplp.Solver.CreateSolver('CBC')
 
     # 2d array (ballots x individual weight/size of ballot)
+    print(len(ballots))
     weights = np.zeros((len(ballots), size), dtype=float).tolist()
     options = np.zeros((len(ballots), size), dtype=float).tolist()
 
     for x, each_ballot in enumerate(ballots):
         for y, each_house in enumerate(houses):
-            # weight = each_ballot.rankings.get(each_house.name)
-            weight = find_ranking(each_ballot.rankings, each_house.name)
+            # weight = each_ballot.ranking.get(each_house.name)
+            weight = find_ranking(each_ballot.ranking, each_house.name)
             weights[x][y] = weight
 
 
@@ -52,22 +54,22 @@ def load_weights_and_ballots(houses: list, ballots: list, size: int):
     return solver, weights, options
 
 def normalize(x):
-    total = sum([choice.get("weight") for choice in x.rankings])
+    total = sum([choice.get("weight") for choice in x.ranking])
 
-    for choice in x.rankings:
+    for choice in x.ranking:
         choice["weight"] /= total
 
-    # assert sum([choice.get("weight") for choice in x.rankings]) == 100
+    # assert sum([choice.get("weight") for choice in x.ranking]) == 100
 
     return x
 
 def scale(x):
-    largest = max([choice.get("weight") for choice in x.rankings])
+    largest = max([choice.get("weight") for choice in x.ranking])
 
-    for choice in x.rankings:
+    for choice in x.ranking:
         choice["weight"] *= 1/largest
 
-    # assert sum([choice.get("weight") for choice in x.rankings]) == 100
+    # assert sum([choice.get("weight") for choice in x.ranking]) == 100
 
     return x
 
@@ -77,8 +79,10 @@ if __name__ == "__main__":
 
     houses = list(map(functools.partial(serialize, House), data.get("houses")))
     ballots = list(map(normalize, map(functools.partial(serialize, Ballot), data.get("ballots"))))
+    print(len(ballots))
     # ballots = list(map(scale, map(functools.partial(serialize, Ballot), data.get("ballots"))))
-    size = data.get("size")
+    # size = data.get("size")
+    size = len(houses)
 
 
     solver, weights, options = load_weights_and_ballots(houses, ballots, size)
@@ -90,12 +94,29 @@ if __name__ == "__main__":
     solver.Solve()
 
     # print(options)
+    choices = [0]*len(houses)
 
     total_weight = 0
     for x, ballot in enumerate(options):
         for y, option in enumerate(ballot):
             if option.solution_value() == 1:
                 print(ballots[x].name, "has house", houses[y].name, "with weight", weights[x][y])
+                preferences = list(reversed(sorted(ballots[x].ranking, key=lambda x: x.get("weight"))))
+
+                count = -1
+                prev = 1
+                # print(houses)
+                for pref in preferences:
+                    if pref.get("weight") < prev:
+                        count += 1
+                        prev = pref.get("weight")
+                    if pref.get("name") == houses[y].name:
+                        break
+                choices[count] += 1
+                # print(preferences, count)
+                
                 total_weight += weights[x][y]
 
     print("Weight", total_weight, "out of", sum([max(weight) for weight in weights]))
+
+    print(choices)

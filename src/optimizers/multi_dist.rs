@@ -1,10 +1,10 @@
 use ballot::{Ballot, Student};
-use optimizers::{generate_random_allocation, Optimizer};
 use optimizers::multi_dist::distribution::{AllocatedStudent, DistAllocations, DistHouse};
+use optimizers::{generate_random_allocation, Optimizer};
 
-use rand::{Rng, SeedableRng};
-use rand::rngs::StdRng;
 use optimizers::multi_dist::weight_functions::student_pick_weight;
+use rand::rngs::StdRng;
+use rand::{Rng, SeedableRng};
 
 mod distribution;
 mod weight_functions;
@@ -12,7 +12,7 @@ mod weight_functions;
 #[derive(Clone)]
 pub struct MultiDist {
     pub ballots: Ballot,
-    rng: StdRng
+    rng: StdRng,
 }
 
 impl MultiDist {
@@ -20,7 +20,7 @@ impl MultiDist {
     pub fn new(ballots: &Ballot, random_seed: u64) -> MultiDist {
         MultiDist {
             ballots: ballots.clone(),
-            rng: StdRng::seed_from_u64(random_seed)
+            rng: StdRng::seed_from_u64(random_seed),
         }
     }
 
@@ -31,8 +31,12 @@ impl MultiDist {
         Self::swap_students(allocations, loc_a, loc_b);
         crate::log_debug!("Move success", "random_move");
     }
-    
-    fn swap_students(allocations: &mut DistAllocations, loc_a: (usize, usize), loc_b: (usize, usize)) {
+
+    fn swap_students(
+        allocations: &mut DistAllocations,
+        loc_a: (usize, usize),
+        loc_b: (usize, usize),
+    ) {
         DistHouse::swap(&mut allocations.items, loc_a.0, loc_a.1, loc_b.0, loc_b.1);
         allocations[loc_a].location = loc_a;
         allocations[loc_b].location = loc_b;
@@ -44,21 +48,45 @@ impl MultiDist {
         /* Pick house to move student from */
         let house_index = self.rng.sample(&allocations.distribution);
 
-        crate::log_debug!(format!("[house] ID {} ({}) was selected", house_index, self.ballots.houses[house_index].name), "random_move");
+        crate::log_debug!(
+            format!(
+                "[house] ID {} ({}) was selected",
+                house_index, self.ballots.houses[house_index].name
+            ),
+            "random_move"
+        );
 
         /* Pick student in house */
         let student_index = allocations[house_index].sample(&mut self.rng);
 
-        crate::log_debug!(format!("[student] {} was selected", allocations[house_index][student_index].name), "random_move");
+        crate::log_debug!(
+            format!(
+                "[student] {} was selected",
+                allocations[house_index][student_index].name
+            ),
+            "random_move"
+        );
         (house_index, student_index)
     }
 
-    fn pick_move_location(&mut self, student_loc: (usize, usize), allocations: &DistAllocations) -> (usize, usize) {
+    fn pick_move_location(
+        &mut self,
+        student_loc: (usize, usize),
+        allocations: &DistAllocations,
+    ) -> (usize, usize) {
         let student = &allocations[student_loc];
 
-        let house_index_2 = self.rng.sample(&student.house_preference_dists[student_loc.0]);
+        let house_index_2 = self
+            .rng
+            .sample(&student.house_preference_dists[student_loc.0]);
 
-        crate::log_debug!(format!("[house-2] ID {} ({}) was selected", house_index_2, self.ballots.houses[house_index_2].name), "random_move");
+        crate::log_debug!(
+            format!(
+                "[house-2] ID {} ({}) was selected",
+                house_index_2, self.ballots.houses[house_index_2].name
+            ),
+            "random_move"
+        );
 
         let mut total_weight = 0.0;
 
@@ -77,7 +105,13 @@ impl MultiDist {
             }
         }
 
-        crate::log_debug!(format!("[student-2] {} was selected", allocations[house_index_2][student_index_2].name), "random_move");
+        crate::log_debug!(
+            format!(
+                "[student-2] {} was selected",
+                allocations[house_index_2][student_index_2].name
+            ),
+            "random_move"
+        );
 
         (house_index_2, student_index_2)
     }
@@ -90,27 +124,28 @@ impl Optimizer for MultiDist {
         let mut weighted_houses = vec![];
 
         for (index, house) in allocation.iter().enumerate() {
-            let allocated_students = house.iter().enumerate().map(|x| {
-                AllocatedStudent::from_student(x.1, (index, x.0))
-            }).collect();
+            let allocated_students = house
+                .iter()
+                .enumerate()
+                .map(|x| AllocatedStudent::from_student(x.1, (index, x.0)))
+                .collect();
             weighted_houses.push(DistHouse::new(allocated_students, |_, student| {
                 student_pick_weight(student)
             }))
         }
 
-        let mut weighted_allocations = DistAllocations::new(weighted_houses, |_, house| {
-            house.weight_sum
-        });
+        let mut weighted_allocations =
+            DistAllocations::new(weighted_houses, |_, house| house.weight_sum);
 
         for _ in 0..rounds {
             self.do_random_move(&mut weighted_allocations);
         }
 
-        return weighted_allocations.items.iter().map(|x| {
-            x.items.iter().map(|y| {
-                y.to_student()
-            }).collect()
-        }).collect();
+        return weighted_allocations
+            .items
+            .iter()
+            .map(|x| x.items.iter().map(|y| y.to_student()).collect())
+            .collect();
     }
 
     fn reseed(&mut self, new_seed: u64) {

@@ -46,7 +46,7 @@ impl DeansAlgorithmFriends {
         }
 
         // if there is space in the house, return that house
-        if ballots.houses[max[1] as usize].capacity  > schedule[max[1] as usize].len(){
+        if ballots.houses[max[1] as usize].capacity > schedule[max[1] as usize].len() {
             return max[1] as usize;
         }
         // if there is no space in the highest ranked house, sets the highest ranking to 0.0, and tries again
@@ -85,9 +85,7 @@ impl Optimizer for DeansAlgorithmFriends{
         schedule
     }
 
-    fn reseed(&mut self, _new_seed: u64) {
-
-    }
+    fn reseed(&mut self, _new_seed: u64) {}
 
     // doesn't use objective function, so it just returns 0.0
     fn objective(&self) -> f64 {
