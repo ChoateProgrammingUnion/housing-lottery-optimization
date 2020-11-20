@@ -11,8 +11,10 @@ pub fn write_output(allocations: &Vec<Vec<Student>>, ballot: &Ballot) {
 
     for house_num in 0..allocations.len() {
         for student in &allocations[house_num] {
-            yaml_string += &*format!("  - name: {}\n    assignment: {}\n",
-                                     &student.name, &ballot.houses[house_num].name)
+            yaml_string += &*format!(
+                "  - name: {}\n    assignment: {}\n",
+                &student.name, &ballot.houses[house_num].name
+            )
         }
     }
 

@@ -1,5 +1,5 @@
-use optimizers::multi_dist::distribution::AllocatedStudent;
 use ballot::Student;
+use optimizers::multi_dist::distribution::AllocatedStudent;
 
 fn scaled_high(n: f64) -> f64 {
     n + 0.001
@@ -26,12 +26,18 @@ pub fn student_swap_weight(student: &Student, swap_house: usize, current_house: 
 
     let net = ballot_percent(student, swap_house) - ballot_percent(student, current_house);
 
-    if net < 0.0 { 0.0001 } else { net + 1.0 }
+    if net < 0.0 {
+        0.0001
+    } else {
+        net + 1.0
+    }
 }
 
 // How much a student wants to move to each house
 pub fn house_move_weights(student: &Student) -> Vec<f64> {
-    student.ballot.iter().map(|weight| {
-        weight.powf(20.0)
-    }).collect::<Vec<f64>>()
+    student
+        .ballot
+        .iter()
+        .map(|weight| weight.powf(20.0))
+        .collect::<Vec<f64>>()
 }
