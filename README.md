@@ -1,6 +1,9 @@
 # housing-optimization
 ![Rust tests](https://github.com/ChoateProgrammingUnion/housing-optimization/workflows/Rust%20tests/badge.svg)
+
 Automating and optimizing the Choate housing lottery allocation system.
+
+Made by Max Fan, Ethan Chapman, Ian Haile, Aiyu Kamate, and Jeffrey Zhou for our simulations and optimizations directed study at Choate Rosemary Hall.
 
 ## Motivation
 Traditionally, housing allocation at Choate Rosemary Hall was done by hand.
@@ -20,10 +23,9 @@ Running `cargo run` will generate an `output.yaml` and `data_output.yaml` file.
 Build:
 ```rs
 cargo build --release
-``
+```
 Run:
 ```rs
 cargo run
 ```
 
-Made by Max Fan, Ethan Chapman, Ian Haile, Aiyu Kamate, and Jeffrey Zhou for our simulations and optimizations directed study at Choate Rosemary Hall.
