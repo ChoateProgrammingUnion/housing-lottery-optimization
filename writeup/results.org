@@ -43,7 +43,7 @@ To decide whether X’ is accepted as the next state: it is accepted with a prob
 Repeat the process of 2 and 3 as many times as needed.
 ** Methodology
 ** Swap and Gibbs
-The swap and gibbs algorithm used a very simple variation of MCMC - the probability of accepting is 100% if the new state is better, and is 0% if the new state is worse, where our state is the weight of the student ballots.
+The swap and gibbs algorithm used a very simple variation of MCMC metropolis hasting algorithm and gibbs algorithm - the probability of accepting is 100% if the new state is better, and is 0% if the new state is worse, where our state is the weight of the student ballots. For swap, the weight increased by 10% per 1 friend in the same dorm.
 ** Swap Naive
 ** Network
 ** Minimax
