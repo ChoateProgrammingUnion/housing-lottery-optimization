@@ -55,7 +55,7 @@ impl Optimizer for DeansAlgorithm {
             let rand_num: f64 = rng.gen();
 
             //random index for the student
-            let index_choice: usize = (len * rand_num) as usize;
+            let index_choice: usize = (len*rand_num) as usize;
 
             // student that was chosen
             let choice = input[index_choice].clone();
