@@ -32,7 +32,7 @@ Tier 3 status. Neither student are returning members of the house
 
 The school does not allow students to fill out all their living choices as singles. A student is only allowed to fill out one or two houses as singles if they would like to at all.
 
-*Markov chain Monte Carlo (MCMC)
+* Markov chain Monte Carlo (MCMC)
 In this project, we used Markov chain Monte Carlo methods to distribute students into their respective housing. MCMC is a generic method for approximate sampling from an arbitrary distribution. The main idea is to generate a Markov chain whose limiting distribution is equal to the described distribution.
 Metropolis-Hastings Algorithm is a specific type of MCMC method that we used in this project.
 Metropolis-Hastings Algorithm:
@@ -41,19 +41,20 @@ Initialize with some random state X0
 From the current state, generate a new state X’
 To decide whether X’ is accepted as the next state: it is accepted with a probability of P(X’)/P(X1) % and rejected otherwise.
 Repeat the process of 2 and 3 as many times as needed.
-Methodology
-Swap and Gibbs
-The swap and gibbs algorithm used a very simple variation of MCMC - the probability of accepting is 100% if the new state is better, and is 0% if the new state is worse, where our state is the weight of the student ballots.
-Ethan Swap Naive
-Max Network
-Minimax
+** Methodology
+** Swap and Gibbs
+The swap and gibbs algorithm used a very simple variation of MCMC metropolis hasting algorithm and gibbs algorithm - the probability of accepting is 100% if the new state is better, and is 0% if the new state is worse, where our state is the weight of the student ballots. For swap, the weight increased by 10% per 1 friend in the same dorm.
+** Swap Naive
+** Network
+** Minimax
 The minimax algorithm tries to minimize the worst choices more than maximize the best choices. This minimax algorithms is also an MCMC, so when determining a wether a student should make a givin swap to a new house, the probabilility of staying is inversly proportional to the square of the current house's rank. This means that the chance of staying in a low ranked house is extremely low, and the chance of staying in a highly rank house is quite high.
-Friends
+** Constraint Solvers
+** Friends
 During our project, we considered important variables that went into housing allocations and we believed that friends could play a role into how much you valued your housing experience. As a result, several of our algorithms considered friends and would place more importance on a dorm with friends compared to a dorm without. While every algorithm placed a different amount of importance on friends, each tried to group friends together.
 It is important to note that the data that we use for friends is computer generated, since real data has never been collected, and thus it will not necessarily be a good representation of real data.
 
 
-*Results
+* Results
 Housing distribution based on real ballots(year? grade?)
 
 Above is a visual representation of the results of several algorithms after taking in real data in the year of (year?). The graph shows the distribution of students who were able to get their first through sixth choice depending on the algorithm used. One particular algorithm to look for is the dean’s. As explained above, the dean’s algorithm was implemented to be as close as possible to the current system that Choate uses for housing allocations. Consequently, this method sets a good baseline for comparison to see the strengths and weaknesses of our own algorithms. From the graph above, it can be seen that the dean’s algorithm shows strong results in putting students into their first and second choices. Unfortunately, there are also an adequate amount of students in low ranked choices.
@@ -62,17 +63,5 @@ Swap-naive and swap are both notable methods that outperformed the others. Not o
 Friends distribution based on randomly generated ballots (100 students)
 
 
-
-*Conclusion
-
-
-
-** MCMC
-
-** Constraint Solvers
-
-* Methodology
-
-* Results
 
 * Conclusion
