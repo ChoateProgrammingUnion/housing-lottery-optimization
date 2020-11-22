@@ -16,6 +16,16 @@ It is now feasible for normal laptops to churn through hundreds of thousands of 
 In addition to the computational leaps made within the past century, there has been great development in the theory of optimization and resource allocation.
 We aim to examine and develop several optimization techniques that can take advantage of these recent developments.
 
+## Results
+`swap-naive` performs best on choice distributions out of all algorithms examined.
+`swap-naive` managed to achieve a 46% reduction in the number of students who got their last three houses *on real historical data* when compared to the `deans-algorithim` and a 15% decrease in the number of students who didn't get their first choice.
+
+![Choice Distribution](choice_distribution.png)
+
+`network` performs best on friend distributions.
+
+![Friend Distribution](friend_distribution.png)
+
 ## Usage
 The input files are `input.yaml` and `config.yaml`.
 Running `cargo run` will generate an `output.yaml` and `data_output.yaml` file.
