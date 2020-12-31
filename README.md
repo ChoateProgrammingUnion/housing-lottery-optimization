@@ -17,11 +17,14 @@ In addition to the computational leaps made within the past century, there has b
 We aim to examine and develop several optimization techniques that can take advantage of these recent developments.
 
 ## Results
+We define choice distribution to be the distribution of n, where n is the ranking of the house each student is assigned to. 
 `swap-naive` performs best on choice distributions out of all algorithms examined.
 `swap-naive` managed to achieve a 46% reduction in the number of students who got their last three houses *on real historical data* when compared to the `deans-algorithim` and a 15% decrease in the number of students who didn't get their first choice.
 
 ![Choice Distribution](choice_distribution.png)
 
+Friend distributions are a similiar metric. 
+It counts the number of friendships that are preserved. 
 `network` performs best on friend distributions.
 
 ![Friend Distribution](friend_distribution.png)
