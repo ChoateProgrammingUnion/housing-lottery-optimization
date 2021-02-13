@@ -19,7 +19,7 @@ We aim to examine and develop several optimization techniques that can take adva
 ## Results
 We define choice distribution to be the distribution of n, where n is the ranking of the house each student is assigned to. 
 `swap-naive` performs best on choice distributions out of all algorithms examined.
-`swap-naive` managed to achieve a 46% reduction in the number of students who got their last three houses *on real historical data* when compared to the `deans-algorithim` and a 15% decrease in the number of students who didn't get their first choice.
+`swap-naive` managed to achieve a 46% reduction in the number of students who got their last three houses *on real historical data* when compared to the `deans-algorithm` and a 15% decrease in the number of students who didn't get their first choice.
 
 ![Choice Distribution](choice_distribution.png)
 
@@ -42,3 +42,9 @@ Run:
 cargo run
 ```
 
+## Best Performing Algo: swap-naive
+`swap-naive` is the best performing algorithm on historical Choate ballots and randomly generated ballots.
+`swap-naive` implements a [Metropolis-Hastings]() Monte Carlo Markov Chain, where each step swaps the housing assignments for two given students.
+The proposal function uniformly samples from a list of students and the acceptance function is simply the normalized weight of the students' preferences.
+
+To validate the performance of `swap-naive`, we implemented the [constraints in a constraint solver](https://github.com/ChoateProgrammingUnion/housing-optimization/blob/master/constraint-optimizer/experiment.py). This resulted in an identical house choice distribution, which confirmed our expectations.
